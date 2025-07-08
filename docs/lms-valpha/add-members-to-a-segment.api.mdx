@@ -1,0 +1,71 @@
+---
+id: add-members-to-a-segment
+title: "Add members to a segment"
+description: "Adds one or more members to the specified segment"
+sidebar_label: "Add members to a segment"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VU2P2zYQ/SvEnBpAtrwfdlrdnCYFDGSbxW5yMnwYiyOLqUQyJOXEFfTfgxFlW1lvgqAI6ossaubN15vHFgLuPGRr8LSrSQcPmwQk+dwpG5TRkMFSSi+MJmGcqI0jUVO9JedFMCKUJLylXBWKpBgwIAGLDmsK5Bi7BY01QQaBNOqwkpCAYmSLoYQEHH1qlCMJWXANJeDzkmqErIVwsOzng1N6BwkUxtUYIIOmURK6LjlBD6F/IfYmOpMPr4w8sMdTrNzowOVmLaC1lcqRO5Z+9Ny29jKU2X6kvO+OM5ZcUOT5a2znSvqRKTqHBy4lUO1/ItuLmbG/MMUwK7F63Y8LpTxNbZhV142btB5ls+m6+NFbo33M9Xo248e3we4GPqCU1OMP2MI3eU7eF01VcTG/qF/nUf9MXwayLjm3kYPSgXbkooX3uKNLtK6LHbh9ruhXKMVD5Af0NleXNh80NqE0Tv1LMhrdXhr9bYL4yzS6t5g/F2qlAzmNlXgktycn3jhnXD+4mkJpJLPd+Lh2oYQM0rhoPm2PG9elx/1O21P/unRoDiTge+i4rY2rIIMyBOuzNN3PJ9KESVX7iaTaTNCq/kANWU1qcopfc9JB7clPG5q6KVrrrQnT3NTp/gqeEvQ17akyNtKkjw28zefQWZpWJseqND5kN7PZ7DmUt2xx8t8kwFx6OG/tmy9Y24qebNkabgr8fV4sbifzl1cvJ7fzxfVke1Pkk+v8j8VNsVhggQvYdCwlhemJoQLDwB3XKt7ePYplZUsUy/sVJMCdiwldTWfT2UWa7yzp5f3qqJSR914Uxo2gSEtrFCtwl/TzrLFfi0HgllKOhRdHYvtNsPa8Zv9JuYcVCPQlpLZCpTmdfiztQK/1oONMm2wk6acbJIFsLMdHkm0S4GEyQNtu0dMHV3UdH39qyB0gW28S2KNTuOVer1uQyvN/CVmBlacfVPrbwyBhL8T3ajgqq2Yp2mPV8Bsk8A8dxlcTs/B/jHtuVMd8Kwklub74+P3PGGrynlHO/hf6yWlHj2Wekw0/tN2MlOP+3eN7SGA73HG1kezj8DNfnvg55mr60nv17c9aqFDvml41IWLy7ysCidcS
+sidebar_class_name: "post api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Add members to a segment"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenantId}/segments/{segmentId}/members"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Adds one or more members to the specified segment
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenantId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"segmentId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"memberIds":{"type":"array","items":{"type":"string","format":"uuid"},"description":"Array of member IDs to add to the segment"}},"required":["memberIds"]}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Members added to segment successfully","content":{"application/json":{"schema":{"type":"object","properties":{"segmentId":{"type":"string","format":"uuid"},"membersAdded":{"type":"integer"},"message":{"type":"string"}}}}}},"400":{"description":"Bad Request"},"401":{"description":"Unauthorized"},"404":{"description":"Not Found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

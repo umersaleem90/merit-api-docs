@@ -1,0 +1,71 @@
+---
+id: analytics-controller-get-member-points-graph
+title: "Get member points graph data"
+description: "Retrieve time-series data for a specific member's active points balance"
+sidebar_label: "Get member points graph data"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1VVFv2zYQ/ivEvWwD5EjOmi3Tm7N0QYYWC5oUewiM4iydbTYSyZInt56h/z4cJVtObK8YtubFMX333cfjd99toKRQeO1YWwM5vCP2mlakWNc0CuQ1BVUio5pbr1AFR4We60LVVM/IfxcUFqxXpJzVhoOaYYWmIEjAOvIoqLcl5DAxWK1ZF+FXa9jbqiL/YUH8NqLcxdwbj24JCTj0WBOTD5A/bsBgTZADk0HDH3QJCXj61GhPJeTsG0pAC3OHLNmhWFKNkG9gbn2NDDk0TczitROgwF6bBbRtssPu7vJtsAOj52tkeoY9xypswT815NfH0csu7zQ6mfKbYS+8bdzV+qvYzwX0oGtS2jD5FVaKrYownYRmz6mQaWrIH6FEOf9M9AQJ1NbEXq8JPUwP+U2FTnDWBAoCcp5l8vGcRCcrtRBFdaV9r+tShaYoKIR5U1VStrCGybBgoHOVLqJm049BgDZ7bHsi6H2kq5nqsHduZx+pYJGvF+Wz7ug58tqWe3H9RV62TV4xlZlTXUYcN17qfvjidEEC9AVrVwnOeXb+apSNR9kY2gS6Iezm6KofwaGmaaQdBzUnxyZ3KNxT3yt6fpFlbbuvh0fYRR2jIO+nOfLtniTO+DUyxrhrttDKXwKvjj3jFZZKalFgNVK3ZoWVLtWeP8TE8WHie4MNL63Xf1HZBb06KRJjWc1tY2LgxTEat6Jmg5W6J78ir157b72MCjAuxKQGd5Mb18RLeXJYUNSDeEcOaWdgId3snKxNcZuXdhYU0s3Oi9o0MHJIF70thli888TGV5DDktmFPE1LWlFl3WiGxROZclTVYYTOjS5/ufz58uKn8UV2eXnWhFFBhj1W4zPfmDN07lCEHVBNhlVXDsQPhmp5mla2wGppA+c/ZlmWrsYHKG8kYpc/FeZF4zWv72WWurGYEXryuwETgfRHSf/Pb1uf+v3Ph8GmhETsvDZzGxW+k5fXrN68vVeTyi1RTe5uD4j94chM7m53OyxOeoiCHxLJlN1AQALS7y51fJadZb1bYCFuISScDVxj9IneM2+I+824HavBg17y2Qze8z+u3b5RTF84dRVqI7KOL7jppfjY71K5Yb6/VndqFBvu9Cgh+9sxShIS6EQ5TUCUIJCbzQwDvfdV28pxtxtEqqUOOKv2dscTrV+sxRVWjXCOYjsRPyy6f44+2eGv7qWjjeuKD5twKD6VL15L9eP3PMnk+3e9ff6gTpXd7hrzrOaWzvBm/64F/7nwoIR22iawJCxliB83/e+ToiDHe5kHG7Xd98eb1w/Qtn8DeNqYsA==
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get member points graph data"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/analytics/members/{member_id}/stats/graph"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve time-series data for a specific member's active points balance
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","schema":{"format":"uuid","type":"string"}},{"name":"member_id","required":true,"in":"path","schema":{"format":"uuid","type":"string"}},{"name":"startDate","required":false,"in":"query","schema":{"format":"date","type":"string"}},{"name":"endDate","required":false,"in":"query","schema":{"format":"date","type":"string"}},{"name":"groupBy","required":false,"in":"query","description":"Time interval to group data by","schema":{"enum":["day","week","month","year"],"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Member graph data retrieved successfully","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"period":{"type":"string","description":"Date/time period for this data point","example":"2024-01-01"},"activePointsBalance":{"type":"number","description":"Active points balance for this period","example":2500}},"required":["period","activePointsBalance"],"title":"MemberGraphDataPointDto"}}}}},"400":{"description":"Bad request - Invalid parameters"},"401":{"description":"Unauthorized"},"404":{"description":"Member not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

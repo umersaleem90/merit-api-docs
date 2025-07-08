@@ -1,0 +1,71 @@
+---
+id: fetch-all-api-keys-for-the-tenant
+title: "Fetch all API keys for the tenant"
+description: "Fetch all API keys for the tenant"
+sidebar_label: "Fetch all API keys for the tenant"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVNtu2zAM/RWDTxvgxOmGvegtQHcp1mLFLk9BULAWU6u1JVWijQaG/32g7XpuExSZX2yLOrwcHrIFxrsIagPozc0D7SNsU/AYsCKmIJYWLFYECpgsWr4xGlIwFhR45AJSCPRYm0AaFIeaUoh5QRWCaoH3XoCRg7F3kMLOhQoZFNS10dB1WwFH72ykKPc/rFby0hTzYDwbJ1EuTeTE7ZL19UUiCSY7FxIuKBnygRRyZ5ksCxS9L02OAs3uo+Dbw3wwBNxLEUxVnJ2723vKxaEPzlNgM2Rl9Am1pCM9F6ddjoxcx2NXydZV34+cTUM91dNnoMY9kPBPT76nfNul8ED760A783TobrB+w1gctfVe9ufI9GbSGpkWbCoSTB4ImfSaT4fUXv8fpJuLagO94iZ6J/Lmlf+rc57hPPQ2BTZcSuy1N99pD13/pK/k9oU4LxIsyzcEVxEXToOCO+rlInOgIBvsMWunSeky9GbRj1UKkULzPFJ1KEFBweyjyrLm00I7XpRVXGiq3EJAcmAsU7BYLioKRn5zsiKFuKxpGZboffSOl7mrsuYMXldyTg2VzldkORliQ5fOQ6ssK12OZeEiq4+r1eqYl0u5MeG3osed6xs5snkluSWXV7+SdekLFNogBal0cHC2XC1XB25/eLJCcPSUm904sgPV/1yR1d4Zy1FU5F3kCvuJHhfSKa16EXVSH9MTZ75EY3t9CiPt2MbNqDTpmJqvvKmT2xSEMbnatrcY6U8ou06OH2sKe1CbbQoNBoO3QtCmBW2ifGtQOywjHWQ1LTB493PU/ftENH8s2+clZmWFNVjW8jcMwIsl3cluKAg1hT6Jwb7Oc/I8Qx5sTOnxJPCvn39D1/0FXwsXog==
+sidebar_class_name: "get api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch all API keys for the tenant"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/api-keys"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch all API keys for the tenant
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of API keys for the tenant","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenantId":{"type":"string","format":"uuid"},"status":{"type":"string","enum":["active","inactive","revoked","expired"]},"keyPrefix":{"type":"string"},"keyHash":{"type":"string"},"expiryDate":{"type":"string","format":"date-time"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"required":["id","tenantId","status","keyPrefix","keyHash","createdAt","updatedAt"],"title":"ApiKey"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

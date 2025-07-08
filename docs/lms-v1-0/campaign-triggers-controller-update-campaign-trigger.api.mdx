@@ -1,0 +1,71 @@
+---
+id: campaign-triggers-controller-update-campaign-trigger
+title: "Update campaign trigger"
+description: "Update an existing campaign trigger"
+sidebar_label: "Update campaign trigger"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVE1v2zAM/SsCTxvgxMnWbplvXbsBGTqsWFvsUAQFazGJMFnSJDpYZvi/D7TdjzXBWvRkWSIfH8lHNqApldEENt5BAZdBI5NCp+i3SWzcSpVYBTQrpzia1YoiZOADRRSPuYYCjgeDi/49HXvH0VtL8bru4B4ZQAYBI1bEFBMUVw04rAgKMBoyiPSrNpE0FBxrysAIrYC8huwR1+NHxNT8BDJI5ZoqhKKBpY8VMhRQ1x0yb4NESRyNW0HbZneBmRw6vn4y/vOxFwKUgneJkti/mUzk80QCfbm0SnVZUkrL2tottBkc7PP+iFoJWUqsRmruNmiN3umW0sjYY0x3MS4d1rz20fwh3RsdPIOm86yWvnady+E+bnPHFB1adU5xQ1F9itFHKTkwrqTn96C3qoFFBhXx2oukQs2dSngNBeR9e1Le3PWpzW/zHA2kUt4Y3UqPuoi9rupooYA1c0hFnmvakPVhdIPlT3J6ZKs0whBGsw+z97PDd9PDyWw2rtOoJMcR7XQcazfGEHaEd9IDVeRY9eFAxHQfrchz60u0a5+4eDuZTPLNdAflVCzu/BfCvKyj4e25qKyXzQ1hpCinTnoiseEqGw6fb4X45cfFvQ6FRFdu45Ze3NmwlYevFA2r06/n6siGNaqjs/kOsW+B3NHZXKVApVmaspv0pJY+PnAkp4M3jhNkIPXuXafjyXgCGZTeMZYMRSMkgk9coRMew8ANa2bPavmHStMBkeNnb6Yhf6bfnAeLxolEu8Y0g5yuhmkX4sXDwd9RlBgYLbqUPopn09xgosto21auf9UUt1BcLTLYYDR4IyW+akCbJGcNxRJtov8k9er7sG1eq/3bbG8+wyW6rRQfbS1/kMFP2vZbVNT4IhIvi3hfxXbRPpjis8sLaNu/Cggw+Q==
+sidebar_class_name: "put api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update campaign trigger"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/tenants/{tenant_id}/campaign-triggers/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update an existing campaign trigger
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"id","required":true,"in":"path","description":"Campaign trigger ID","schema":{"format":"uuid","type":"string"}},{"name":"tenant_id","required":true,"in":"path","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Campaign trigger updated successfully"},"400":{"description":"Bad request - Invalid campaign trigger data"},"401":{"description":"Unauthorized"},"404":{"description":"Campaign trigger not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

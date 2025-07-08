@@ -1,0 +1,71 @@
+---
+id: assign-vouchers-to-a-member
+title: "Assign vouchers to a member"
+description: "Assigns one or more vouchers to a specific member"
+sidebar_label: "Assign vouchers to a member"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vk2P2zYQ/SvEnFqAsuSsvW11cz4OBrLIIpv2sjAKWhxbTCWSISknhqD/XowoS/auGwRBGl9kkZw3H3xvRi0EsfeQP8LBNEWJzsOGg0RfOGWDMhpyWHmv9tozo5EZx2rjkJ1Os2CYYN5ioXaqYDXWW3TAwQonagyElz+2oEWNkENALXT4W0ngoAjailACB4efGuVQQh5cgxx8UWItIG8hHC0Z+uCU3gOHnXG1CJBD0ygJXcdH7P8FNObzIwPeRGP04aWRR7J4ilUYHVAH2hLWVqoQdA/pR0+X0T53ZbYfsQgXQY23uZb9fVpnLLqg0JPd2d6EIpwTR8oyYO2/IREO+EXUtkLytlxm+PsiyxJ88cc2WczlIhG/zW+TxeL2drlcLLJsngH/lmNz2HQdh6ACIcNfA80iBWvU4XUw0HV0xqG3RvuY04sso8clcU/WTPTmKJlvigK93zVVRcl+d6kvC1qj92KP16o2FgkezlxPAd1cKCmUeJJQx+F06JVpYowDuNIB973KRvSbrotFWVyrw0sh2UA6lrC1PohKycmxcUxUDoWc4oIeavEc6q6PjkxGc20C25lG90bLa/7XOqDTomIP6A7o2BvnjCOdQY2hNJJ0ZXxfV5JXDmlsFD5tx47RpYPDROJOaUXQPm3PNnwaS+fTdpRtl8aMgIPvfcd21LgKcihDsD5P08MykSYkVe0TibVJhFX9ghrCTmp0il4L1EEd0M8anLmZsNZbE2aFqdPDHJ52zdd4wMpY4iyLvoEay+Q6T9PKFKIqjQ/5TZZl11De0onRfsOBuPl+aiBvTgy4lPWPliR1v53pOTgo845qwt7ePbBVZUvBVvdr4EAVjoHPZ9kse5bOO4t6db8eB0avN892xp1BoZbWKB08EYqIUYtejkNPjr3gyQQaB8+Fv3ZS+HdNsUFwAb+E1FZCaYqov8F2oOrjMNM8cMjPx9sVttKR8z1aGChLW+ezZmDthgOxg9y07VZ4/NNVXUfLnxp0R8gfNxwOwimx7RtxC1J5+i8h34nK41fq8cv7YVz8yv4r09No0NQrD6Jq6A04/IPHi2FOvP6Jjn++x+lqOtJCiUKi6+sd919FV8kHQpnsn80UCjtarIoCbfjq2c1Ze7x/9/ABOGyHT4baSLJx4jONffE5xmpspBl9U9BaC5XQ+6afTBAx6fcv4Xhb0Q==
+sidebar_class_name: "post api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Assign vouchers to a member"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/voucher-definitions/{id}/vouchers/members/{member_id}/assign"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Assigns one or more vouchers to a specific member
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"member_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["voucherIds"],"properties":{"voucherIds":{"type":"array","items":{"type":"string","format":"uuid"},"example":["550e8400-e29b-41d4-a716-446655440010","550e8400-e29b-41d4-a716-446655440011"]}},"title":"VouchersAssignmentDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Vouchers assigned successfully","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Successfully assigned 3 vouchers to the member"},"assignedCount":{"type":"integer","example":3}}}}}},"400":{"description":"Bad request - Invalid vouchers or already assigned"},"404":{"description":"Member or vouchers not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

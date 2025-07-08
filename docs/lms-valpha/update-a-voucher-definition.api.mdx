@@ -1,0 +1,71 @@
+---
+id: update-a-voucher-definition
+title: "Update a voucher definition"
+description: "Update an existing voucher definition"
+sidebar_label: "Update a voucher definition"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vk1v2zgQ/SvEnLaAZMleO7urm7cpsAFSrNG0vRhGQYtji13xoyTlJBD034sRFduxvWkORX2xRXHevPl64xYC33oolrAzTVmh87BKQKAvnbRBGg0FfLKCB2RcM3yQPki9ZcNlJnAjtezvJWC54woDYRTLFjRXCAUE1FyHL1JAApLgLA8VJODwWyMdCiiCazABX1aoOBQthEdLhj44qbeQwMY4xQMU0DRSQNcle+yfCLqKxujD30Y8ksUpVml0QB3oFbe2liWnuLOvnpLUnrsy669YBsqLMxZdkOjpbaR+TggfuLI17vMt2F2jFDq2cEYZcsUm+WQG3Ul5XoN0ZMA2xjEfke0TMoEqDFzwcDECLkRfZF4vjmKJadl7a6HkynK5pXo00fOX6CkS7yjFAlHdSiXDkR+pA27RQQJKaqkaBcX4CHhClkGGo5A+x/673rffdTDQddGFt0b7mOxJntPX837+fNa8bKDLfFOW6P2mqetH+GklV+g93/6g6k+sDjGxexkqdnPNZrMc/5zmeYqTv9bpdCymKf9jfJVOp1dXs9l0mud5ziru2RpRP4vhKbA+N5SdaT59VUK0CWxjGi2oNWaXsnijAzrNa3aHboeOvXPOuL7ICkNlRBzKsuqFIVRQQBalwGftXhO6bFCS9ODbZ60UHSTge+AoJo2roYAqBOuLLNvNUmFCWiufClQm5Vb2B3LglCp0kh5L1EHu0I8aHLkRt9ZbE0alUdluDKc6d407rI1VqAOLvoG05uC6yLLalLyujA/F73meX0K5pRt7+1UC1C0fDtLy7jAvg4q9PO+X1fgVM/18pH8wmyejOelIVzemb9lh8t5TTtnt+zs2r23F2XxxAwlQhSKx8Sgf5Wd0/7Wo54sb5i2WcjNMkO8ZH6BQC2ukDp6IWOOD4vosQYxfXjsnarif2VfvrWEmAz6EzNZc9nLYV70dWnc5bDEPCRTHC+1C99IVKWiLUpuQbduuucdPru46Ov7WoHuEYrlKYMed5GvK7rIFIT39FlBseO3xhcB++zCspjfs/+gPh1yTjO143dATJPAfPj7bydTgv9AxeVx1CVTIBbo+7PjibfSRfiTzg+GZ6hLfaDEvS7ThxburIy1azD++/QcSWA/bXRlBRo7f098Gfh9ZGhtrSOufzlqoud42vXhDBKXPd6sOLks=
+sidebar_class_name: "patch api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a voucher definition"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/tenants/{tenant_id}/voucher-definitions/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update an existing voucher definition
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string","example":"Updated Summer Promotion 2025"},"description":{"type":"string","example":"Updated description for summer promotion"},"metadata":{"type":"object","additionalProperties":true,"example":{"campaign":"updated_summer2025"}},"redeemLimit":{"type":"integer","minimum":1,"example":2}},"title":"UpdateVoucherDefinitionDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Voucher definition updated successfully","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Voucher Definition with ID 550e8400-e29b-41d4-a716-446655440000 has been successfully updated"}}}}}},"404":{"description":"Voucher definition not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: update-a-config-entry
+title: "Update a config entry"
+description: "Update a config entry"
+sidebar_label: "Update a config entry"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VcFu2zAM/RWDpw1Q4nTDLr5l3YAVaLGi605BUDAWk6izJVWi0waG/32g7SRe0hUdUCyXJCIfSZHvUTUwriJkM8idXZpVhLkCjwFLYgpiqMFiSZABk0XLd0aDAmMhA4+8BgWBHioTSEPGoSIFMV9TiZDVwFsvwMjB2BUoWLpQIkMGVWU0NI3ax37DoPMOTJE/O70VxHGs3Fkmy2JC7wuTIxtn0/vorJydpHKLe8oZFPjgPAU2FMX6i7an9TQKNlhU9LyFQjRdkt5mLNOKgvRiUOasjb2LNFfAhgtxP29n9NNrZIKm6VDROxu7kj5MJvKlKebBeG5z9aCkalHS5ze6v9GvGIca0OY13m/aVAV5ILn0HfKL2aUzIzYlCaZv1D9gjobXknmolhen2c6xUUdD62acYNLJMiHLQYKUxGunO53kIpRWLxmkXb6Y1vvETdpLOq2NbkBBpLDZaboKBWSwZvYxS9PNp5F2PCrKONJUuhF60x5IJ4PFYlRSMPI3J8tmQ3Fc0TiM0fvoHY9zV6abMzi+wxfaUOF8SZaTLjeI5A+pszQtXI7F2kXOPk4mk+eiXIrHHj9XIDy9OSj86xOWvqC9Ig+j6jkzONhRZdLItlm6dsD9NK7kisnl1Y9kWvg1JtPriyEEzsaT8eSkuu+e7PT6IomecrPspRSTpQuDUGS1d8ZyFHp5F7nElq/98vvbrP/ItGci0xOnvkBjW7JKM+ueBbOedREUZEMC7na7gsxooaB0XPzreoGRfoaiaeT4oaKwhWw2l+YFgwvpzKwGbaL81pAtsYh0Utp+o8C7m14I7xMRwXMl94dot4MZ9SoZvjLClf+YWDLOGwVrQk2hvXZnOO9yjG4FfgCerE6pt0NM85w8v+g7H0j5enp7/g0ULPr3qnRaQAEf5SHEx65K11663bztWQ0F2lWFK/HtgsrnNxCLqfE=
+sidebar_class_name: "patch api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a config entry"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/tenants/{tenant_id}/configs/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update a config entry
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"key":{"type":"string"},"value":{"type":"string"},"version":{"type":"integer"}},"required":["key","value"],"title":"ConfigUpdate"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Config updated","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"key":{"type":"string"},"value":{"type":"string"},"version":{"type":"integer"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","key","value"],"title":"Config"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

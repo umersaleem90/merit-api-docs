@@ -1,0 +1,71 @@
+---
+id: get-all-config-entries-for-a-tenant
+title: "Get all config entries for a tenant"
+description: "Get all config entries for a tenant"
+sidebar_label: "Get all config entries for a tenant"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVE1v2zAM/SsGTxugxOmGXXQLtqEo0GLFPk5BULAWk6iTJVWigwWG//tA20ndphg6X2yLX498T2yBcZtBr6AKfmO3GdYKIiasiSmJoQWPNYEGJo+e76wBBdaDhoi8AwWJHhubyIDm1JCCXO2oRtAt8CFKYOZk/RYUbEKqkUFD01gDXbeW4ByDz5TF/8NiIS9DuUo2sg1S5dpmLsKmGPAV5DlZyqAEMJNnicAYna1QIsqHLGHtOQxMCQ+CnanOk/Nw/0AVg4KYQqTEdgBjzRtaUJOpvMX7Nx3O/ToFe3QNvW6hlO3Q0WiznmlLSYxVImQyd8j/rG6Qaca2JolpovnPmG7K8Qp6AUzFIE0dW1grYMtOcn7uCYOuf9QLVi+JC3TuBavFJqQCiyE5KKiJd8GAhi31BIngNJSDPZftCUVXHuWrIFPaH6XbJAcadswx67Lcf5qZwDNX55mhOsww2v5AJpo8ullNycpvRZ7tnvK8oXmaY4w5Bp5XoS73F/CylS+0JxdiTZ6LoTZ0alpal6ULFbpdyKw/LhaL17Jci8cpfi1XbBN6hsZx3gi24vrmR7F0cYfF8vYKJvKAi/livjhL+y2SX95eFTlSZTfjHRnm/JSKvInBes6ijxgy19gLbrz4b+PqWd2TsJj+cBkdWt9rT2bSjjyuRhEJZ3qqp8kmkpGJZ9veY6ZfyXWdHD82lA6gV2uRXbJ4LxNatWBslm8DeoMu0xmo08qAd99HRb8vRM2vgT2uDf+kbg2j3KfbsFt3CnaEhlIPYrAvq4oiTyLPdpSQfBL45def0HV/AVJL5cI=
+sidebar_class_name: "get api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get all config entries for a tenant"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/configs"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get all config entries for a tenant
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of config entries","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"key":{"type":"string"},"value":{"type":"string"},"version":{"type":"integer"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","key","value"],"title":"Config"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

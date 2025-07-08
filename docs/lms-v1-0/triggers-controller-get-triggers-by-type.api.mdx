@@ -1,0 +1,71 @@
+---
+id: triggers-controller-get-triggers-by-type
+title: "Get triggers by type"
+description: "Fetch triggers filtered by trigger type"
+sidebar_label: "Get triggers by type"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVmFv2zYQ/SsEP22AFMuOk7j6liVt4aFdgibZgBlBQEtni61EMuTJqyfovw9H0bZsJw2GBgZi0HfHx7t3767hObjMSoNSK57yD4BZwdDK5RKsYwtZIljI2Xy9OWS4NsAjrg1YQV7TnKf8PnhcaYVWlyXYpyXg5vS39X3nZIQVFSBYx9NZw5WogKc8RA42Fp5raSHnKdoaIi4J13MNds2jA7TkwfRiB00HxGxOxi4roBI8bTiouuLpjM9rqwhGbbNCOLpNKgSrRMkjLrJCwgoqUMgjntUOdcUfI+4fnHKHVqolb9toBxyUUPgk89dgG4HFMWrvxabXexAX2lYCecrr2sc7vPWRrnBGKweO7EdJQv8OQm8KZwEtPSZnrs4ycG5RlyXlJNMK6YFpw4Uxpcx8DQdfHfk3PTzhfmGtID+JULneuZ5/hYzyZCwxAWWHSuY9m4D98P0PSj7XwGQOCuVCgmULbRkWsKkjjzh8F5UpKchwdArjs/OLGCbv5vFwlJ/GYnx2Ho9H5+fD8fBinCQJjw7S10ahRG9h+UNUHYNeuf02MIVdaTpB8LG7mG/F3rJzP/bPUHEHzLu3EXe1Mdoi5De+H7V1x6y429gwvTH6UcpnHJ5rUToe8aUFgWCfsBCq1wqvkWLXIrwCFLlA8RJl9tF9DpZMOKczKQjnPxKL1+A1IR9PAtHKeY2wJyY3NgfL/hRlDbsuUnU191Hc2iFU0y31CBY5PK28Q/vYRlzkuSRsorztcZu6uo145jOSX+Jez+YCIUZZwVHjHr72ivylVoysHYrK7PFtlIzGcTKMk+F9kqT+c5Ikyd8+pzuJmXGvEf7JfUxUIok+UpCCL0EzrlHzlv4iPk6Gxxx5UKLGQlv5b0fxs5fkZRoYyu7ArsCy99Zq66GhWFIVtgJESCrAQtNwWIIXCtLClA860XSDZque7WAzcKhCPnRX0tqWPOUFonHpYJDDCkpt4rnIvoHK47JysTAmnrybXEzOzodnyWRyUrs4A4VWlMMTW6sTYcxRDa67QNRdrLuOk6jvbksHg1Jnoiy0w/Q0SZLBangU5RNZbP0fCXlWW4nrO9LQTg7nICyRLAirb9zuKApfPmwo9Ptf9zvyEAifV6kW2rdQqOpnsBLZp8937LI0hWCXt9MjYDcG1OXtlDkDmVwEhe86fucIKjdaKqSUU7471+FJcpKEKSEy4jiBMNphJfx8CE32EXC3JNBu0I3uPRzNbtb8j7UiJADhOw5MKaQXOV+ZJjBoFsYuIU/7Exh73KPKkWnTzIWDB1u2LR13awRRK5dOzEvqpYUoHfwA+y9fQtv9yt7YN17E/g3WRytOJzYp97RZCSsJyk/A6i0UL2LYyLZa9y/fYtvm0MtfASInzs6a8PtlloHBnufR4tD2u/3j+3vetv8BdpOM4w==
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get triggers by type"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/triggers"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch triggers filtered by trigger type
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"triggerType","required":true,"in":"query","description":"Type of trigger to filter by","schema":{"enum":["burn","purchase","internal","achievement","custom"],"type":"string"}},{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Triggers retrieved successfully","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the trigger","example":"123e4567-e89b-12d3-a456-426614174000","format":"uuid"},"name":{"type":"string","description":"Name of the trigger","example":"Purchase Completed"},"type":{"type":"string","description":"Type of the trigger","enum":["burn","purchase","internal","achievement","custom"],"example":"burn"},"supportedOperators":{"description":"Supported operators for the trigger","example":["equals","greater_than"],"type":"array","items":{"type":"string"}},"metadata":{"type":"object","description":"Metadata associated with the trigger","example":{"custom_attributes":[{"name":"Order Value","type":"number","systemIdentifier":"order_value"}]},"additionalProperties":true},"createdAt":{"format":"date-time","type":"string","description":"Creation timestamp","example":"2024-01-01T00:00:00.000Z"}},"required":["id","name","createdAt"],"title":"TriggerResponseDto"}}}}},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

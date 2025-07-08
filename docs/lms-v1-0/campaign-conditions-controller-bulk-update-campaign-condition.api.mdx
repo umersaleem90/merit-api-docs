@@ -1,0 +1,71 @@
+---
+id: campaign-conditions-controller-bulk-update-campaign-condition
+title: "Bulk update campaign conditions"
+description: "Update multiple campaign conditions at once"
+sidebar_label: "Bulk update campaign conditions"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWNtu4zYQ/RV2nlpAiqVcvcKmQC5bwMVuE+TSPhhGQEtjmxuK5JJUdl1D/16MJNuyreYCtG/xgy1THM4M58wZDheQoUutMF5oBQncm4x7ZHkhvTASWcpzw8VUsVSrTNAkx7hnWqUIAWiDltPgIIMELpq5F6upF1p5q6VE+zAu5GO9+M40CMBwy3P0aB0kwwUoniMk4FFx5R9EBgFY/FYIixkk3hYYgCBrDfczCLZcuKuk2OASAnDpDHMOyQIm2ubcQwJFUa3n54ZUOG+FmkJZjmoV6Py5zuYksa0x1cqj8vSKGyNFWnne++pI66KlqlmaW8vnEIDwmLvWuB5/xdST05b2zwus3oqsNacxa9u1eyW+FchEhsqLiUDLJtoyP8N1eCAA/MFzI2mZeP8AD4+OT0LsfxiH8X52EPLDo+PwcP/4OD6MTw6jKIJga2/KAJZRH7zCpmU42eCS+Zlwa1PYGKVWU8e8/k+smgjp0d5V1rxkFc1iesJqmRe2Kcd8jPbBC7SV98tJfCzxbeo2dJA4o0h5ggGqIodkuNpbwqAV0ylaGLWNWb3ftuQ1wRhcvmTFSg95G8b7B6SnzmNtX1Zw1czs3tHGxVMI4Cf6+hUC+Ei/9Ofj6aajp22k3Xo07g1gcx7NNtyqrMQl3La2+yG1yBs7V2PLALSG2v6sBnEyqVN2czXMukO31lUG8MRl0UaQKghsO579SdOex2kcRW1MXL06aJ/1VKRcMt0OXqrzsVBCTVvU3tq3sz+IP69uNj2k0bJss/GwTRZduTMKwAtfSV9Um7bD/5deQ0kfWtcZrVzNiPtRRD//goBWQSqqupIxV6QpOjcppJzDO2G/E/Y7Yb8T9jth/5+EfdjF0ec8Y81hmoVsoJ64FFlHK8Ey7jlUq8S7q9wrXviZtuJvrNjkqEvVQHm0ikt2i/YJLftkrbaVx55PqZlYI3DdlpCLOfqZpq7FFBW1UyeRQK9uOVxvseo9yt7S8HBj312lsO5XCishgZn3xiW9XoZPKLUJxzx9RJWFMnchNybsf+if9I+O46Oo398rXJii8pbLeM8Wao8bswODy3qhHJVntToog7a2pNeTOuVypp1PDqIo6j3FHWAiKC3lR2R5Wljh57dUAOtaNkZu0a6qIsW+GQqah9+W5P77X3fr9omMqHabiurNun/6tATgsK6Try0h7Tr26rLTqjIblaGzMLTpfIet1xzbptiKHrd4r5OmGuaIo6gz6+tkHFHvOtEVCTRp9gWt8Ozzl1t2Js2Ms7PrQRePq7PrAXMGUzFpzjKuIoa1IKrMaKE84ZPAWYvGe9Fe1JyHeErnIYqY0c7nvDoJNe32eSEfm7NUV9+/bdJifcB647VBAx6PP3zPSC4q2q1QvWgScdj0/qQ0aV8DdOXiKABKAJJaLMbc4b2VZUnD3wq0c0iGI4qNFRTmCpKZcPScQTLh0uEzjv180xDnL6x9r9DpwfIYqeZrLAAE8IjzjcuMclQGMEOeUcYNF837i1pnWMF0Lb9zciUGqCXO0hSNf3Zum+iu7ylxx83tRq4zErH8O12u8O+1qdrUW0rXHzS2AMnVtOBTmlsvSZ9/ANxdMfE=
+sidebar_class_name: "put api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bulk update campaign conditions"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/tenants/{tenant_id}/campaign-conditions"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update multiple campaign conditions at once
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the condition","example":"123e4567-e89b-12d3-a456-426614174000","format":"uuid"},"campaignId":{"type":"string","description":"Campaign ID this condition belongs to","example":"123e4567-e89b-12d3-a456-426614174000","format":"uuid"},"filterType":{"type":"string","description":"Type of filter for the condition","example":"member_tier"},"conditionableType":{"type":"string","description":"Type of the conditionable entity","enum":["campaign","trigger"],"example":"campaign"},"conditionableId":{"type":"string","description":"ID of the conditionable entity","example":"tier-123"},"operator":{"type":"string","description":"Operator for the condition","enum":["=","!=",">","<",">=","<="],"example":"="},"campaignSteps":{"type":"string","description":"Campaign step this condition applies to","enum":["campaign_creation","campaign_trigger","campaign_condition","campaign_effect","campaign_created"],"example":"campaign_creation"},"value":{"type":"number","description":"Value for the condition","example":100},"conditionOperator":{"type":"string","description":"Logical operator for combining conditions","enum":["AND","OR"],"example":"AND"}},"required":["campaignId","conditionableType"],"title":"CreateCampaignConditionDto"}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Campaign conditions updated successfully","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the condition","example":"123e4567-e89b-12d3-a456-426614174000","format":"uuid"},"campaignId":{"type":"string","description":"Campaign ID this condition belongs to","example":"123e4567-e89b-12d3-a456-426614174000","format":"uuid"},"filterType":{"type":"string","description":"Type of filter for the condition","example":"member_tier"},"conditionableType":{"type":"string","description":"Type of the conditionable entity","enum":["campaign","trigger"],"example":"campaign"},"conditionableId":{"type":"string","description":"ID of the conditionable entity","example":"tier-123"},"operator":{"type":"string","description":"Operator for the condition","enum":["=","!=",">","<",">=","<="],"example":"="},"campaignSteps":{"type":"string","description":"Campaign step this condition applies to","enum":["campaign_creation","campaign_trigger","campaign_condition","campaign_effect","campaign_created"],"example":"campaign_creation"},"value":{"type":"number","description":"Value for the condition","example":100},"conditionOperator":{"type":"string","description":"Logical operator for combining conditions","enum":["AND","OR"],"example":"AND"}},"required":["campaignId","conditionableType"],"title":"CreateCampaignConditionDto"}}}}},"400":{"description":"Bad request - Invalid campaign condition data"},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: points-parcels-controller-calculate-points-parcels
+title: "Burn points parcels"
+description: "Calculate and burn points parcels for a member"
+sidebar_label: "Burn points parcels"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVt9v4jgQ/leseU4gtNCyebr+2JM4bbXoaHUPCJ2MMxTvOrbXdthyKP/7aexAoVSr3vWhTZ0Zf+OZ7/ucHVTohZM2SKOhhDuuRKN4QMZ1xZaN08waqYNnljuByrOVcYyzGuslOsjAWHSckicVlDCNsdMUemd0cEYpdH+L/bYnAZCB5Y7XGNB5KOeLDBz+aNCHW1NtodzFf6XDCsrgGsxAGB1QB3rFrVVSROj+N0/F78CLNdacnsLWIpRglt9QBMJxVGiQ6Omt4C48msDVUahuuhOdNuRxjSxQKOO1aXRgZsXCGhltARngC6+tQigHRdEbZVBLLeumhrJoM0idezRPHj8GlF4RRNf0YOIMjoFGRfEGJs2C+n/A8MFJ/fwuxuR+f4TDDA97w+DiEoejq+scx5+W+eCiusz5cHSVDy+urgbDwfWwKApoM5AV6iBXEt1jBPwIMEUQ9Gsu+7lGzfblM+mZdWYjK6xOisKXgE5zRYuaDj0/XpK6e1y0GWDNpfpYOTH0F61IS791Cz1hajq4aJxDLbYfw9hHM2EqjMohsOC49lzEuGPEp9k9tG12RPr5EVNP6bTIIMgQ024bp5Os7oOBtk1beGu0T2y/KAr6c1re9FTVxDKsmG+EQO9XjVJb+N9ySzUM34O95RXrNM5yNtEbrmTnMxUPHGLe4DzvSfMmrI2T/2CVgobnQQ+Y5OP28tEmsJVpdEwZvVfPpGMPm6HboGOfnTMuTiHwZ/KkfaP2lrUgvYW1Ibezxkdv4WENJfQTaN61tN8J18eNaasdNE5BCesQrC/7/Qo3qIzNl1x8R13lqvY5tzYffxpfj0dXg1ExHvcanwvUwXE16LlG97i1Z1S7TxvVqANLcNBmx2hlv6+M4GptfCgvi6LobwZnu3yhiEP+gioXjZNhO6MxJyotkTt0h9nTzLulrHv43biaByjhj78eIdsTg4qIXSXq/Pnq8Z/35D/x5M5LT+wz2d7B6T7mVOdGdWImySzeU/qx0JMuyWhWJnK9090DOhnYl4cZu1F2zdnNdHLW068W9c10wrxFIVedftId+pqIukpHhQyIKil10Ct6RadBLkiDbbxSfKh5VJ/m9V7+b+7ot2XsXoX83y/4boIBX0LfKi419SJSa9cxfw6nzCcuEPcXGRDhKGC3W3KPT061LS3/aNBt04W/4U7yJTV0Tga+Rl4RweY7+I7U/LtUeR7HR+GqoXLO7IgInzJuhEAbfhl7LOLp1xkRddl9cdSmohzHf0IWf5cQv3Li4OInCa3tQHH93PBnik170s+/owMssA==
+sidebar_class_name: "post api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Burn points parcels"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/points-parcels/burn"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Calculate and burn points parcels for a member
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"cartTotal":{"type":"number","description":"The total amount of the cart","example":100.5,"minimum":0},"pointsToUse":{"type":"number","description":"The number of points to burn","example":500,"minimum":0},"memberId":{"type":"string","description":"The ID of the member","example":"123e4567-e89b-12d3-a456-426614174000"},"identifierType":{"type":"string","description":"The type of identifier when memberId is provided","example":"external","enum":["external","internal"]},"email":{"type":"string","description":"The email of the member","example":"member@example.com"},"currency":{"type":"string","description":"The currency code for the transaction","example":"USD"}},"required":["cartTotal","pointsToUse"],"title":"BurnPointsDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Points parcels burned successfully","content":{"application/json":{"schema":{"type":"object"}}}},"400":{"description":"Bad request - Invalid burn data"},"401":{"description":"Unauthorized"},"404":{"description":"Member or points not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

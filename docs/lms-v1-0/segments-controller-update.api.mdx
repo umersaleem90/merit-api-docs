@@ -1,0 +1,71 @@
+---
+id: segments-controller-update
+title: "Update segment"
+description: "Update an existing segment"
+sidebar_label: "Update segment"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVm1v2zYQ/isEgQEbIMWUa6euvjlJh3louyBxMGBGUNDS2WIrkQxJOfEE/ffhKPrdC9Bs+WKbubvnufdraA42M0I7oSRN6YPOuQPCJYEXYZ2QS2JhWYF0NKJKg+EoOMlpSu+7d3utpDOqLMF8rb02jajmhlfgwFiazhoqeQU0pQ4kl+6ryGlEDTzVwkBOU2dqiKhAdM1dQaMjSlOvRSY3NKI2K6DiNG3oQpmKO5rSuvb23FojhHVGyCVt22iL+oNwwa0fxXvsMMC6K5WvUeMYMlPSYRzThnKtS5H5UPa+WYRt9qCCaTX/BhmGXRsMvBNgadq0EXXClShwxa3IAt0bp2jbti2ysFpJ64VpnzH8OO9hl62c2DrLwNpFXZZr+n/xxLDvZEKYIgovvNKe/XDIYDRgLIb+h3k8SPJBzN8nl/FgcHk5HA4GjDF2kpwHKZ5qICIH6cRCgCELZYgrYFulbRTy/hr2VGlyXVunKqzQY5AvvAKiFsdmD4Res76Jr6emNEnYT2gu2wCSObeQEyWJrk1WcAukENYpsz6hcrP7dYZRBdUcjL1WdZeuQEnW+LxPKWHsxEkvhEaDFSLksf3MABbI2B00ABZN7EQFJ12wH4Q+67+LExazZJr0U8ZSxv46bW1RgXW80uS5gAN48swtCfhIJdTqf6PSfzuVktttw9CuzTbdPesmjK+6Q6tHGdoP6L5Hj7uWDqVzF3p419WDc418xXMShg6JyUSueCnyLe2cO069anKq+iB57QplxN9dfAds8O+DQios5lp6yeE5JhPpwEheknswKzDkozHK+Dg5vsQdsN0W6G0FrlB5N4Czwq8LV9CU9roFYXvNdlO0veCO7TUib3Eke4Rur9SmpCktnNM27fVyWEGpdDzn2XeQeVxWNuZax6MPo/ej4WUyZKPRRW3jDKQzvEwuTC0vuNZnus4b8r53cBT3yQ4t7fVKlfGyUNal7xhjvVVyYuUTSmz1H5F5Vhvh1vc4QbshOQduwGzHKpZAeIrCl183tf77n9NdlSMJH16cyne7vfNxU/S4J4RcKD8WQnF9BiMc+fT5noxLXXAyvp2ckP5DgxzfTojVkIlFmP3Wj7KdIshcK4HJjCjmolNNLtgFC/uDZ9ioSFAr6yruJ2bYx+HE2J0VR4N1u39eP0ZCJBy8uJ4uuZB+TGCKmlBPs3BwIM10//bYlBS+ixwrEhOJCk2Ds/nBlG2Lz081mDVNZ48RXXEj+BzjOGtoLix+z2m64KWFV1z4+S7MiV/I/h1zlnx45BL3wIqXNf6iEf0O64PjCWvxTQwOTps3UEDsxzaiBfAcq3bWhH9cd2jxFNV3iifnAzLvNMZZBtq9Krs/KG7H0+vfsCfCbVWpHJUMf8bbjj93LJV33zeWf2toyeWy5kuU7Yzi3z9T07mX
+sidebar_class_name: "patch api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update segment"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/tenants/{tenant_id}/segments/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update an existing segment
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}},{"name":"id","required":true,"in":"path","description":"Segment ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{},"title":"BasicSegmentDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Segment updated successfully","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"550e8400-e29b-41d4-a716-446655440000","description":"Unique identifier for the segment"},"name":{"type":"string","example":"Top Customers","description":"Name of the segment"},"description":{"type":"string","example":"Segment for top 10% of customers based on purchase history","description":"Description of the segment"},"membersCount":{"type":"number","example":100,"description":"Number of members in the segment"},"createdAt":{"format":"date-time","type":"string","example":"2023-10-01T12:00:00Z","description":"Timestamp when the segment was created"},"updatedAt":{"format":"date-time","type":"string","example":"2023-10-02T12:00:00Z","description":"Timestamp when the segment was last updated"}},"required":["id","name","description","membersCount","createdAt","updatedAt"],"title":"SegmentResponseDto"}}}},"400":{"description":"Bad request - Invalid segment data"},"401":{"description":"Unauthorized"},"404":{"description":"Segment not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

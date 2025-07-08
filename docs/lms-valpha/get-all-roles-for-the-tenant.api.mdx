@@ -1,0 +1,63 @@
+---
+id: get-all-roles-for-the-tenant
+title: "Get all roles for the tenant"
+description: "Get all roles for the tenant"
+sidebar_label: "Get all roles for the tenant"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVMtu3DAM/BWDZ+3aadGLbgu0CAIkaNDHKdgDY3FjpXpFoo0uDP97QXuxdZP05YttghyOhkONwPhQQN9Bjo4K7BVkKimGQgX0CG+aRl6GSpttYhsDaLi2hat4qOaS6hBzxR1VTAEDg4I2BqbAUocpOdui1NWPRYpHKG1HHuWLj4lAA+aMR1BgmXxZxeP9I7UCmHJMlNkulKxZ5RTONjyAgkPMHhk09L01MCkI6Oll4qRg4Xn1byiFkfvyWiqF3otu2LIdSOiH0+d+UuCJ0SDjy+NMCtpMyGR2/EcKBpk2bD1JSZ/M/5VMMsin3mYywtIaOEmyEuB8vDWlda+9ArbspNmn6ARVHvXMDpfEFTr3Ozt44i4a0PBA8zCRO9BQL35TUCgPlMWCI/TZgYaOORVd18O7jYm8cb5sDPm4wWTngA1MOaDbeMpWflsKInzZ9rTNW0yppMjbNvp6uIDnbN/TQC4mT4GrpTdMat1a17WLLbouFtZvm6Z5DeVaMs71e5n+Ic6zOel1I9yq65vP1c6lDqvd7RUokJMuABfbZtu8gP2YKOxur6qSqLWH0+Ysmv6EomBStIGLGCPFwh7nxVoc/7dx/NLw7CWm71wnhzbMbhMxxtOoVleDSCKBcbzHQl+zmyYJP/WUj6Dv9goGzBbvRYE7WYOO0FCeZ/uNjqBh17aUhMaArp+X//kNIWKeLXP54QtM0w/28pSg
+sidebar_class_name: "get api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get all roles for the tenant"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/roles"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get all roles for the tenant
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of roles for the tenant","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"},"tenantId":{"type":"string","format":"uuid"},"status":{"type":"string","enum":["active","inactive"]},"metadata":{"type":"object"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"required":["id","name","tenantId","status","createdAt","updatedAt"],"title":"Role"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

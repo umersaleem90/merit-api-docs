@@ -1,0 +1,71 @@
+---
+id: campaign-effects-controller-delete-campaign-effect
+title: "Delete campaign effect"
+description: "Delete a campaign effect by its ID"
+sidebar_label: "Delete campaign effect"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVE2P2zYQ/SvEnBpAtuwm27i6bXcdwMUGDbob9GAYwVgarZhQJEOOjLiC/nswktZ27DRNooskcj4eh++9FgqKedCetbOQwS0ZYlKocqw96kerqCwpZ7XdK81RrW4hAecpoCSsCsjgZoxc9oHxxlkOzhgK74q+2Jf7kIDHgDUxhQjZugWLNUEGuoAEAn1sdKACMg4NJaAFk0euIDkDenOGrwcW84pqhKyF0oUaGTJomr4w7700iRy0fYSuSw59mSxafveD7R/6rB/tupEW0TsbKUr8r7OZvL59smGKhYpNnlOMZWPMHhLInWWyLPnovdF5fyPp+yhF2hNQIwi3fT+OP8j9sR4g1BQjPtJJ4Ig2AfqEtTf0vZC6/kngxdcO9QcWSqZLkdVEndezjlXpGlsoF/qfsQH05eaX5d5abLhyQf/7FPTi/wd56CIZV19DubJMwaJR9xR2FNQyBBeELcD4KGw91hzZDpsEauLKiRIG1D3DuYIM0oFbMW0PJOvSJ2FNBlQxbXXRCYv6loMkmmAgg4rZxyxNC9qRcX6yxfwD2WJi6jhB7yeL3xcvF1e/za9mi8W0iZOcLAc082lo7BS9vyDt7VCoJstqaAcihGO3LE2Ny9FULnL2fDabpbv5RZU7iTjkbwR53gTN+3uh3MCqLWGgcOChcGhcSsaPV09S+fOfh6NSBEQ/b21L13NSc8/A1xQ0q7vX9+ra+ArV9ZvVBbC/PNnrNysVPeW6HAURVenCSSLZwjttOUICMu8hdT6dTWejqDAXUQkI7yLX2MtpNIvRHs/M8RxJexTn9xnqeHqmT5x6g9oKQ/traUcurUefEtjZqWWd00n2dSG0lEuUxLbdYqS3wXSdLH9sKOwhW28S2GHQuJX5rlsodJTvArISTaRvHOmXv0ebfHYh5P8+zbiIVrxrh6aRP0jgA+0H8xcm/hSGUyv+idbHYXabLoGKsBDmrttx/zrPyfNJ5oXbdqcecLu8Wz4soes+AyeHgzU=
+sidebar_class_name: "delete api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete campaign effect"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/tenants/{tenant_id}/campaign-effects/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete a campaign effect by its ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"id","required":true,"in":"path","description":"Campaign effect ID","schema":{"format":"uuid","type":"string"}},{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Campaign effect deleted successfully","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Campaign effect deleted successfully"}}}}}},"400":{"description":"Bad request - Campaign effect not found or not deleted"},"401":{"description":"Unauthorized"},"404":{"description":"Campaign effect not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

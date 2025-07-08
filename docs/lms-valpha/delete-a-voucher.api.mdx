@@ -1,0 +1,71 @@
+---
+id: delete-a-voucher
+title: "Delete a voucher"
+description: "Soft deletes a specific voucher"
+sidebar_label: "Delete a voucher"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VE1v1DAQ/SvWnEByNtmSLZBbpd1DpVZUFLisVsibTBqXxHY9k4Uqyn9HzoZtlraIAzSXxI7nvfl4fh2wuiHI1rCzbV6hJ9hIKJByrx1rayCDa1uyKLBGRhJKkMNclzoXYwRIcMqrBjlEZ+sOjGoQMmA0yvBXXYAEHYCc4gokeLxrtccCMvYtSqC8wkZB1gHfuxBI7LW5AQml9Y1iyKBtdQF9Lw/Y/wV0LOhfZrwJweSsIaRw/iRJwuu4wV/2vGOPC0FtniNR2db1PUjIrWE0HOKUc7XOVYiLbykEd4+TsdtbzDmMxVuHnvWeukEidYNPZY0/VONqnKTyXXMlzpdisUjwXZokEZ6830bpvEgj9XZ+GqXp6elikaZJMk9EpUhsEc1R4r+qgX54JKRJ+nzpxrIobWsK6CUsnmrSuWH0RtXiGv0OvVh5b30YHzTIlS0ggz3joEeuIIN4r0CKu4MU+3gcclRgqY0O4BR3kx8Udw866EECDXx7Zbe+hgwqZkdZHO8WUWE5qhuKCmxspJweNvSYatSg12GZo2G9Q5q1OPMz5Rw5y7PcNvFuDr9ftyXusLauQcNizw1Bow/UWRzXNld1ZYmzN0mSPIVyEU4c4jdBz6UdZq95mPRlyE1cXF6Ls9pVSpxdnYOEUOkeYD5LZskj2A8OzdnV+cEEBimSKK2fQKEpnNWGKQzTWeJGDUodr9lyGJNQEwM5IukeFP8X3jNqmfEHx65W2gTSoVndqIP16EQEErKpKT0hhXBk+m/YmPjCRkJoewDtuq0i/Ozrvg/bdy36e8jWGwk75bXahi6vOyg0he8CslLVhH+o9dXH0WZei+fqGjeVCb6wU3UbViDhG94fGW4QzAsSvzzjZCT9ppdQoSrQDw3fHzjLc3Q8CX1kneFSHKxjubpYfVpB3/8EghRoLA==
+sidebar_class_name: "delete api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete a voucher"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/tenants/{tenant_id}/voucher-definitions/{id}/vouchers/{voucher_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Soft deletes a specific voucher
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"voucher_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Voucher deleted successfully","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Voucher with ID 550e8400-e29b-41d4-a716-446655440010 has been successfully deleted"}}}}}},"404":{"description":"Voucher not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

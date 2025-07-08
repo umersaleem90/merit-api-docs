@@ -1,0 +1,71 @@
+---
+id: campaign-engine-controller-process-trigger
+title: "Process campaign trigger"
+description: "Process campaign rules for a given event trigger"
+sidebar_label: "Process campaign trigger"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVE1v00AQ/SurOYHkxAlQCL6VAlJQq1a0iEMVoak9SVasd7ez44hg+b+jsd0vUnHg5PXab+bNvDfTQkWpZBvFBg8FXHAoKSVTYh3RbrzhxlEy68AGzcbuyBvakRcjbDcbYsggRGJU+LKCAk5G4Ce/sZ5OghcOzhH/iEPkq3tcRMaahDhBcd2Cx5qgACGPXn7YCjJgum0sUwWFcEMZWGUYUbaQ/UX7qkeZ5UfIIJVbqhGKFtaBaxQooGn6eLKPmiIJW7+BrltpihSDT5T0/1ezmT6ehj552omxDKpMako9rRvn9tBl8OY59AesjJZBSczELP0Ona3ummcqFByg80PoN4+NbAPb31SZibkv0fggZh0aXyn06LmsSy/EHp25JN4Rm0/MgaHrMhDcaLsfqhp0glUGNck2qIQxJOn1kS0UkA+KpLy9l6bL7+wxoQGeQeozDVI27KCArUhMRZ5XtCMX4uQGy5/kq4mr0wRjnCzeL94tjt7Oj2aLxbRJk5K8MLr5lBs/xRgPRP44BKrVfkM66LLH2Yo8d6FEtw1Jitez2SzfzQ+inOof9/iVMi8btrK/VN8MRrghZGI99WZS04xX2Xj4fGetL9+vHpylJPo2W78OChcrTj+cEVsxp2eX5tjFLZrji+UBsfNI/vhiaVKk0q5t2c/UMHoPQPJVDNZLggy03wN0Pp1NZ5BBGbxgKVC0SkJ1rNErj3G4Dqb7YYqfcGn7SOTl/zbC2A2hX5JHh9arUXuZ2tFV1+OcaxnF45H/21irDFRNRbTtDSb6xq7r9Pq2Id5Dcb3KYIds8UYbfd1CZZOeKyjW6BL9o7IXX8f98tI83h/Psh8v0e+18egafYMMftL+ydLqVt2jSbo4v7yCrvsDmWLbOw==
+sidebar_class_name: "post api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Process campaign trigger"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/campaign-engine"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Process campaign rules for a given event trigger
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Campaign rules processed successfully"},"400":{"description":"Bad request - Invalid trigger data"},"401":{"description":"Unauthorized - Tenant ID not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

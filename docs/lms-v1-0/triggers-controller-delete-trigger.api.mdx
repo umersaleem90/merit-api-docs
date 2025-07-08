@@ -1,0 +1,71 @@
+---
+id: triggers-controller-delete-trigger
+title: "Delete trigger"
+description: "Delete a trigger by ID"
+sidebar_label: "Delete trigger"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVMFu2zAM/RWBpw1wYmdrt0y3YsmADC1WrC12CIJCsZlYqCKpEh0sM/zvA203TZeuQHuyLIl8T4+PrKHAmAftSTsLEiZokFAoQUGv1xjEcidmE0jAeQyKL80KkHDdncavzlJwxmC4LdrI/gAS8CqoDRKGCHJeg1UbBAm6gAQC3lc6YAGSQoUJaEb2ikpI/qHTp+soxLzEjQJZw8qFjSKQUFVtQtp5Th4paLuGpkn2eIRWWbp9LWwb9VrUBUNE72zEyPc/ZBl/nn9RJ1chYpXnGOOqMmYHTQIn2eg46MaqikoX9B8sxEDs6QnrSKxcZYsu9OT/eE9unj7HbGYJg1VGXGHYYhDTEFxgMYHUmou4rzosEtgglY6t0D2kLTiVICHtJI9pvde+SXs3xbTWRcOithCdM6pgQEJJ5KNM0wK3aJwfLFV+h7YYmE0cKO8H4y/jz+PTT6PTbDweVnGQo6WgzGgYKjtU3h/VcNIl2qAl0cEB++IRTaapcbkypYskP2ZZlm5HR1nO+cY+fsHM8ypo2l2xLbo6L1EFDLxqvcKe6LeSfvHtwTnff10/GodJtPpqu3IcTpoMH1xg0CTOL67EmfGlEmeXsyNiPzzas8uZiB5zvdJ525tRrFw4CERbeKctRUiA9e5CR8NsmEECubOkcgJZMwnvIm2UZR597/SzgPYt/YRB3cajpZemRv9Swt+UeqO0Zfe1Jah7v8z7FmWK8rBbHyzD+7pgy3GhOKCulyriTTBNw9v3FYYdyPkiga0KWi1Zw3kNhY68LkCulIn4Av13P/vJ8F48GTjPsu83ld2xqMpU/AcJ3OGum2/ssrdhH0ydN0A/itcsmoMGnUzPp9dTaJq//ZYBpA==
+sidebar_class_name: "delete api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete trigger"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/tenants/{tenant_id}/triggers/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete a trigger by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"id","required":true,"in":"path","description":"Trigger ID","schema":{"format":"uuid","type":"string"}},{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Trigger deleted successfully"},"401":{"description":"Unauthorized - Tenant ID not found"},"404":{"description":"Trigger not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

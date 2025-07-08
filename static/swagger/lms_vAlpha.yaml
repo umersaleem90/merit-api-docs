@@ -1,0 +1,3716 @@
+openapi: 3.0.3
+info:
+  title: Merit LMS Alpha API
+  version: 1.0.0
+  description: OpenAPI specifications for LMS Alpha endpoints
+servers:
+  - url: https://v5-dot-lms-demo-api-dot-internal-merit-incentives.ue.r.appspot.com/v1
+    description: Development server
+  - url: http://localhost:3000/v1
+    description: Local server
+tags:
+  - name: tenants
+  - name: members
+  - name: rules
+  - name: events
+  - name: tiers
+  - name: points_ledger
+  - name: audit-logs
+  - name: event-logs
+  - name: segments
+  - name: configs
+  - name: auth
+  - name: api_keys
+  - name: points_parcels
+  - name: roles
+  - name: vouchers
+  - name: analytics
+
+paths:
+  /tenants:
+    post:
+      tags:
+        - tenants
+      summary: Create a new tenant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantCreate'
+      responses:
+        '201':
+          description: Tenant created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+    get:
+      tags:
+        - tenants
+      summary: List all tenants.
+      responses:
+        '200':
+          description: A list of tenants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tenant'
+
+  /tenants/{tenant_id}:
+    get:
+      tags:
+        - tenants
+      summary: Get a tenant by ID
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Tenant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+    patch:
+      tags:
+        - tenants
+      summary: Update a tenant by ID
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantUpdate'
+      responses:
+        '200':
+          description: Tenant updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+    delete:
+      tags:
+        - tenants
+      summary: Delete a tenant by ID
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Tenant deleted
+
+  /tenants/{tenant_id}/members:
+    post:
+      tags:
+        - members
+      summary: Create a new member
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberCreate'
+      responses:
+        '201':
+          description: Member created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+    get:
+      tags:
+        - members
+      summary: List all members. Also searches by email, name or externalId
+      responses:
+        '200':
+          description: List of members.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+
+  /tenants/{tenant_id}/members/{id}:
+    get:
+      tags:
+        - members
+      summary: Get a member by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Member details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+    patch:
+      tags:
+        - members
+      summary: Update a member by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberUpdate'
+      responses:
+        '200':
+          description: Member updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+
+  /tenants/{tenantId}/rules:
+    post:
+      tags:
+        - rules
+      summary: Create a new rule
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRuleDto'
+      responses:
+        '201':
+          description: Rule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+    get:
+      tags:
+        - rules
+      summary: List all rules with pagination
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Paginated list of rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRuleResponse'
+
+  /tenants/{tenantId}/rules/{id}:
+    get:
+      tags:
+        - rules
+      summary: Get a rule by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Rule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+    patch:
+      tags:
+        - rules
+      summary: Update a rule by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRuleDto'
+      responses:
+        '200':
+          description: Rule updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+    delete:
+      tags:
+        - rules
+      summary: Delete a rule by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Rule deleted
+
+  /tenants/{tenantId}/rules/adjust:
+    post:
+      tags:
+        - rules
+      summary: Process rules for an event
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Rules processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessRulesResponse'
+
+  /tenants/{tenant_id}/events:
+    post:
+      tags:
+        - events
+      summary: Create a new event
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCreate'
+      responses:
+        '201':
+          description: Event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+
+    get:
+      tags:
+        - events
+      summary: Get all events for a tenant
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+
+  /tenants/{tenant_id}/events/{id}:
+    get:
+      tags:
+        - events
+      summary: Get a specific event
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Tenant ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Event found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+
+    patch:
+      tags:
+        - events
+      summary: Update an event
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Tenant ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventUpdate'
+      responses:
+        '200':
+          description: Event updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+
+    delete:
+      tags:
+        - events
+      summary: Delete an event
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Tenant ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Event deleted
+
+  /tenants/{tenant_id}/points-ledger:
+    get:
+      tags:
+        - points_ledger
+      summary: Retrieve full point transaction history for a tenant
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Ledger entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PointsLedgerEntry'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      page:
+                        type: integer
+                      limit:
+                        type: integer
+                      totalPages:
+                        type: integer
+    post:
+      tags:
+        - points_ledger
+      summary: Add a new point entry (earn/burn/adjust)
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePointsLedgerDto'
+      responses:
+        '201':
+          description: Point entry created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsLedgerEntry'
+
+  /tenants/{tenant_id}/ledger:
+    get:
+      tags:
+        - points_ledger
+      summary: Retrieve combined ledger entries from points and vouchers ledgers
+      description: Returns a paginated list of combined entries from both points_ledger and vouchers_ledger tables
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+            description: Search term (UUID format for memberId or sourceId)
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+            description: Filter for ledger type (only applies to points ledger entries)
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            description: Start date for filtering entries
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            description: End date for filtering entries
+      responses:
+        '200':
+          description: Combined ledger entries retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CombinedLedgerResponse'
+        '400':
+          description: Bad request - Invalid parameters
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /events:
+    post:
+      tags:
+        - points_ledger
+      summary: Consume event from pub/sub
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '204':
+          description: Event acknowledged
+
+  /tenants/{tenant_id}/tiers:
+    post:
+      tags:
+        - tiers
+      summary: Create a new tier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TierCreate'
+      responses:
+        '201':
+          description: Tier created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tier'
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+    get:
+      tags:
+        - tiers
+      summary: List all tiers. Also list tier of a member based on query parameter
+      responses:
+        '200':
+          description: List of tiers. Also give tier for a member based on a query parameter
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tier'
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: member_id
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+
+  /tenants/{tenant_id}/tier/{id}:
+    patch:
+      tags:
+        - tiers
+      summary: Update a tier
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TierUpdate'
+      responses:
+        '200':
+          description: Tier updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tier'
+    delete:
+      tags:
+        - tiers
+      summary: Delete a tier by ID
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Tier deleted successfully
+
+  /auth/logins:
+    post:
+      tags:
+        - auth
+      summary: Admin login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+      parameters: []
+
+  /tenants/{tenant_id}/me:
+    get:
+      tags:
+        - auth
+      summary: Get tenant info from token
+      responses:
+        '200':
+          description: Current tenant info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+
+  /tenants/{tenant_id}/configs:
+    post:
+      tags:
+        - configs
+      summary: Create a new config entry
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigCreate'
+      responses:
+        '201':
+          description: Config created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Config'
+    get:
+      tags:
+        - configs
+      summary: Get all config entries for a tenant
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: List of config entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Config'
+
+  /tenants/{tenant_id}/configs/{id}:
+    patch:
+      tags:
+        - configs
+      summary: Update a config entry
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigUpdate'
+      responses:
+        '200':
+          description: Config updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Config'
+
+    get:
+      tags:
+        - configs
+      summary: Get a single config entry
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Config entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Config'
+
+    delete:
+      tags:
+        - configs
+      summary: Delete a config entry
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Config deleted successfully
+
+  /audit-log:
+    post:
+      tags:
+        - audit-logs
+      summary: Create a new audit log entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogCreate'
+      responses:
+        '201':
+          description: Audit log created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLog'
+    get:
+      tags:
+        - audit-logs
+      summary: List all audit logs. Also lists log for a tenant based on query parameter
+      parameters:
+        - name: tenant_id
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of logs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditLog'
+
+  /audit-log/{log_id}:
+    get:
+      tags:
+        - audit-logs
+      summary: Get a specific audit log entry
+      parameters:
+        - name: log_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Audit log detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLog'
+
+  /tenants/{tenant_id}/api-keys:
+    get:
+      tags:
+        - api_keys
+      summary: Fetch all API keys for the tenant
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: List of API keys for the tenant
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKey'
+    post:
+      tags:
+        - api_keys
+      summary: Create a new API key for the tenant
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApiKeyDto'
+      responses:
+        '201':
+          description: The API key has been successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateApiKeyResponseDto'
+
+  /tenants/{tenant_id}/api-keys/{id}/revoke:
+    patch:
+      tags:
+        - api_keys
+      summary: Revoke an API key
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The API key has been successfully revoked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+
+  /points-parcels/redeem:
+    post:
+      tags:
+        - points_parcels
+      summary: Redeem points from a member's account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedeemPointsDto'
+      responses:
+        '200':
+          description: Points redeemed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedeemPointsResponse'
+
+  /points-parcels/{tenantId}/upcoming-expiry:
+    get:
+      tags:
+        - points_parcels
+      summary: Get upcoming points expiry for a tenant
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [expiryDate, points]
+        - name: sortOrder
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [asc, desc]
+      responses:
+        '200':
+          description: List of upcoming points expiry
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        memberId:
+                          type: string
+                          format: uuid
+                        memberName:
+                          type: string
+                        points:
+                          type: integer
+                        expiryDate:
+                          type: string
+                          format: date-time
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      page:
+                        type: integer
+                      limit:
+                        type: integer
+                      totalPages:
+                        type: integer
+
+  /roles:
+    get:
+      tags:
+        - roles
+      summary: Get all roles for the tenant
+      responses:
+        '200':
+          description: List of roles for the tenant
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+
+  /event-logs:
+    post:
+      tags:
+        - event-logs
+      summary: Create a new event log entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogCreate'
+      responses:
+        '201':
+          description: Event log created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventLog'
+    get:
+      tags:
+        - event-logs
+      summary: List all event logs
+      parameters:
+        - name: tenant_id
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: member_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: event_id
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: All events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventLog'
+
+  /tenants/{tenantId}/segments:
+    get:
+      tags:
+        - segments
+      summary: Get all segments for a tenant
+      description: Returns a paginated list of all segments for the specified tenant
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Optional search term to filter segments by name
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: List of segments returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentPaginatedResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - segments
+      summary: Create a new segment
+      description: Creates a new segment for the specified tenant
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSegmentDto'
+      responses:
+        '201':
+          description: Segment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentResponseDto'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+
+  /tenants/{tenantId}/segments/{segmentId}:
+    get:
+      tags:
+        - segments
+      summary: Get a segment by ID
+      description: Returns a specific segment by ID for the specified tenant
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Segment returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+        - segments
+      summary: Update a segment
+      description: Updates an existing segment for the specified tenant
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSegmentDto'
+      responses:
+        '200':
+          description: Segment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentResponseDto'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+        - segments
+      summary: Delete a segment
+      description: Soft deletes a segment for the specified tenant
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Segment deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Segment deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+
+  /tenants/{tenantId}/segments/{segmentId}/members:
+    get:
+      tags:
+        - segments
+      summary: Get all members in a segment
+      description: Returns a paginated list of all members belonging to the specified segment
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Optional search term to filter members by name, email, or externalId
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: List of members returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Member'
+                  total:
+                    type: integer
+                    description: Total number of members
+                  totalPages:
+                    type: integer
+                    description: Total number of pages
+                  page:
+                    type: integer
+                    description: Current page number
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - segments
+      summary: Add members to a segment
+      description: Adds one or more members to the specified segment
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                memberIds:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                  description: Array of member IDs to add to the segment
+              required:
+                - memberIds
+      responses:
+        '200':
+          description: Members added to segment successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  segmentId:
+                    type: string
+                    format: uuid
+                  membersAdded:
+                    type: integer
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+
+  /tenants/{tenantId}/segments/{segmentId}/members/remove:
+    post:
+      tags:
+        - segments
+      summary: Remove members from a segment
+      description: Removes one or more members from the specified segment
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                memberIds:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                  description: Array of member IDs to remove from the segment
+              required:
+                - memberIds
+      responses:
+        '200':
+          description: Members removed from segment successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  segmentId:
+                    type: string
+                    format: uuid
+                  membersRemoved:
+                    type: integer
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+  
+  /members/{memberId}/tiers:
+    post:
+      tags:
+        - Member Tiers
+      summary: Assign a tier to a member
+      description: Assigns a new tier to a member with optional expiry date
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the member
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMemberTierDto'
+      responses:
+        '200':
+          description: Tier assigned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberTier'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+    get:
+      tags:
+        - Member Tiers
+      summary: Get member's tier history
+      description: Retrieves the history of tiers assigned to a member with pagination
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the member
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Page number for pagination
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+          description: Number of items per page
+      responses:
+        '200':
+          description: Member tier history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMemberTierResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+
+  # Adding Voucher Module Endpoints
+  /tenants/{tenant_id}/voucher-definitions:
+    get:
+      tags:
+        - vouchers
+      summary: Get all voucher definitions
+      description: Returns a paginated list of voucher definitions for a tenant
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedVoucherDefinitionResponse'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+          
+    post:
+      tags:
+        - vouchers
+      summary: Create a new voucher definition
+      description: Creates a new voucher definition with generated vouchers
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVoucherDefinitionDto'
+      responses:
+        '201':
+          description: Voucher definition created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherDefinitionResponseDto'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /tenants/{tenant_id}/voucher-definitions/{id}:
+    get:
+      tags:
+        - vouchers
+      summary: Get a voucher definition by ID
+      description: Returns a specific voucher definition by its ID
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherDefinitionResponseDto'
+        '404':
+          description: Voucher definition not found
+        '500':
+          description: Internal Server Error
+          
+    patch:
+      tags:
+        - vouchers
+      summary: Update a voucher definition
+      description: Update an existing voucher definition
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVoucherDefinitionDto'
+      responses:
+        '200':
+          description: Voucher definition updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Voucher Definition with ID 550e8400-e29b-41d4-a716-446655440000 has been successfully updated"
+        '404':
+          description: Voucher definition not found
+        '500':
+          description: Internal Server Error
+          
+    delete:
+      tags:
+        - vouchers
+      summary: Delete a voucher definition
+      description: Soft deletes a voucher definition and all its associated vouchers
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Voucher definition deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Voucher definition successfully deleted"
+        '404':
+          description: Voucher definition not found
+        '500':
+          description: Internal Server Error
+
+  /tenants/{tenant_id}/voucher-definitions/{id}/vouchers:
+    get:
+      tags:
+        - vouchers
+      summary: Get vouchers for a definition
+      description: Returns a paginated list of vouchers for a specific voucher definition
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Search term to filter vouchers
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ACTIVE, ASSIGNED, REDEEMED, EXPIRED, DELETED]
+          description: Filter vouchers by status
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedVoucherResponse'
+        '404':
+          description: Voucher definition not found
+        '500':
+          description: Internal Server Error
+
+  /tenants/{tenant_id}/voucher-definitions/{id}/vouchers/{voucher_id}:
+    delete:
+      tags:
+        - vouchers
+      summary: Delete a voucher
+      description: Soft deletes a specific voucher
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: voucher_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Voucher deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Voucher with ID 550e8400-e29b-41d4-a716-446655440010 has been successfully deleted"
+        '404':
+          description: Voucher not found
+        '500':
+          description: Internal Server Error
+
+  /tenants/{tenant_id}/voucher-definitions/{id}/vouchers/members/{member_id}/assign:
+    post:
+      tags:
+        - vouchers
+      summary: Assign vouchers to a member
+      description: Assigns one or more vouchers to a specific member
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: member_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VouchersAssignmentDto'
+      responses:
+        '200':
+          description: Vouchers assigned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Successfully assigned 3 vouchers to the member"
+                  assignedCount:
+                    type: integer
+                    example: 3
+        '400':
+          description: Bad request - Invalid vouchers or already assigned
+        '404':
+          description: Member or vouchers not found
+        '500':
+          description: Internal Server Error
+
+  /tenants/{tenant_id}/voucher-definitions/{id}/vouchers/members/{member_id}/unassign:
+    post:
+      tags:
+        - vouchers
+      summary: Unassign vouchers from a member
+      description: Removes the assignment of one or more vouchers from a specific member
+      parameters:
+        - name: tenant_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: member_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VouchersAssignmentDto'
+      responses:
+        '200':
+          description: Voucher assignments removed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Successfully removed 3 voucher assignments from member"
+                  removedCount:
+                    type: integer
+                    example: 3
+        '400':
+          description: Bad request - Invalid vouchers or not assigned to member
+        '404':
+          description: Member or vouchers not found
+        '500':
+          description: Internal Server Error
+
+  /analytics/tenant-stats:
+    get:
+      tags:
+        - analytics
+      summary: Get tenant statistics
+      description: Retrieve comprehensive statistics for the authenticated tenant including member counts, points data, and rates
+      parameters:
+        - name: start-date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            description: Start date for filtering data (YYYY-MM-DD)
+        - name: end-date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            description: End date for filtering data (YYYY-MM-DD)
+      responses:
+        '200':
+          description: Tenant statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantStats'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /analytics/tenant-graph-data:
+    get:
+      tags:
+        - analytics
+      summary: Get tenant graph data
+      description: Retrieve time-series data for tenant analytics, grouped by day, week, month, or year
+      parameters:
+        - name: start-date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            description: Start date for the data range (YYYY-MM-DD)
+        - name: end-date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            description: End date for the data range (YYYY-MM-DD)
+        - name: group-by
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [day, week, month, year]
+            default: day
+            description: Time interval to group data by
+      responses:
+        '200':
+          description: Graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TenantGraphDataPoint'
+        '400':
+          description: Bad request - Invalid parameters
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /analytics/member-stats/{memberId}:
+    get:
+      tags:
+        - analytics
+      summary: Get member statistics
+      description: Retrieve comprehensive statistics for a specific member
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            description: ID of the member
+      responses:
+        '200':
+          description: Member statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberStats'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+
+  /analytics/member-graph-data/{memberId}:
+    get:
+      tags:
+        - analytics
+      summary: Get member graph data
+      description: Retrieve time-series data for a specific member's active points balance
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            description: ID of the member
+        - name: start-date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            description: Start date for the data range (YYYY-MM-DD)
+        - name: end-date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            description: End date for the data range (YYYY-MM-DD)
+        - name: group-by
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [day, week, month, year]
+            default: day
+            description: Time interval to group data by
+      responses:
+        '200':
+          description: Member graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MemberGraphDataPoint'
+        '400':
+          description: Bad request - Invalid parameters
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    Tenant:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        metadata:
+          type: object
+        deleted_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - created_at
+        - updated_at
+    TenantCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          type: object
+      required:
+        - name
+    TenantUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          type: object
+    Member:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        external_id:
+          type: string
+        email:
+          type: string
+          format: email
+        referral_code:
+          type: string
+        referrer_member_id:
+          type: string
+          format: uuid
+        join_date:
+          type: string
+          format: date-time
+        tier_id:
+          type: string
+          format: uuid
+        points_balance:
+          type: integer
+        total_points_earned:
+          type: integer
+        metadata:
+          type: object
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        deleted_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tenant_id
+        - email
+        - referral_code
+        - join_date
+    MemberCreate:
+      type: object
+      properties:
+        tenant_id:
+          type: string
+        name:
+          type: string
+        external_id:
+          type: string
+        email:
+          type: string
+        referral_code:
+          type: string
+        referrer_member_id:
+          type: string
+        join_date:
+          type: string
+        tier_id:
+          type: string
+        metadata:
+          type: object
+      required:
+        - tenant_id
+        - email
+        - referral_code
+        - join_date
+    MemberUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        tier_id:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        metadata:
+          type: object
+    Rule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        event_id:
+          type: string
+          format: uuid
+        points_awarded:
+          type: integer
+        start_date:
+          type: string
+          format: date-time
+        end_date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        max_executions_per_user:
+          type: integer
+        max_points_per_user:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tenant_id
+        - name
+        - event_id
+        - points_awarded
+    RuleCreate:
+      type: object
+      properties:
+        tenant_id:
+          type: string
+        name:
+          type: string
+        event_id:
+          type: string
+        points_awarded:
+          type: integer
+        start_date:
+          type: string
+        end_date:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        max_executions_per_user:
+          type: integer
+        max_points_per_user:
+          type: integer
+      required:
+        - tenant_id
+        - name
+        - event_id
+        - points_awarded
+    RuleUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        points_awarded:
+          type: integer
+        start_date:
+          type: string
+        end_date:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        max_executions_per_user:
+          type: integer
+        max_points_per_user:
+          type: integer
+    PointsLedgerEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        member_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - earn
+            - burn
+            - adjustment
+        source_type:
+          type: string
+        source_id:
+          type: string
+        amount:
+          type: integer
+        status:
+          type: string
+          enum:
+            - completed
+            - pending
+            - expired
+        expiry_date:
+          type: string
+          format: date-time
+        reason:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tenant_id
+        - member_id
+        - type
+        - amount
+        - status
+        - created_at
+    CreatePointsLedgerDto:
+      type: object
+      properties:
+        memberId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - earn
+            - burn
+            - adjustment
+        sourceType:
+          type: string
+        sourceId:
+          type: string
+        amount:
+          type: integer
+        expiryDate:
+          type: string
+          format: date-time
+        reason:
+          type: string
+      required:
+        - memberId
+        - type
+        - sourceType
+        - sourceId
+        - amount
+    Tier:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        min_points:
+          type: integer
+        min_referrals:
+          type: integer
+        min_events:
+          type: integer
+        rank:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tenant_id
+        - name
+        - rank
+    TierCreate:
+      type: object
+      properties:
+        tenant_id:
+          type: string
+        name:
+          type: string
+        min_points:
+          type: integer
+        min_referrals:
+          type: integer
+        min_events:
+          type: integer
+        rank:
+          type: integer
+      required:
+        - tenant_id
+        - name
+        - rank
+    TierUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        min_points:
+          type: integer
+        min_referrals:
+          type: integer
+        min_events:
+          type: integer
+        rank:
+          type: integer
+    Config:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        key:
+          type: string
+        value:
+          type: string
+        version:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tenant_id
+        - key
+        - value
+    ConfigCreate:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        version:
+          type: integer
+      required:
+        - key
+        - value
+    ConfigUpdate:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        version:
+          type: integer
+      required:
+        - key
+        - value
+    AuditLog:
+      type: object
+      properties:
+        log_id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        admin_id:
+          type: string
+          format: uuid
+        action:
+          type: string
+        target_id:
+          type: string
+          format: uuid
+        details:
+          type: object
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - log_id
+        - tenant_id
+        - admin_id
+        - action
+        - created_at
+    AuditLogCreate:
+      type: object
+      properties:
+        tenant_id:
+          type: string
+          format: uuid
+        admin_id:
+          type: string
+          format: uuid
+        action:
+          type: string
+        target_id:
+          type: string
+          format: uuid
+        details:
+          type: object
+      required: [tenant_id, admin_id, action]
+    EventLog:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        member_id:
+          type: string
+          format: uuid
+        event_id:
+          type: string
+          format: uuid
+        metadata:
+          type: object
+        event_time:
+          type: string
+          format: date-time
+        processing_status:
+          type: string
+          enum:
+            - Pending
+            - Processing
+            - Completed
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tenant_id
+        - member_id
+        - event_id
+        - event_time
+        - processing_status
+    EventLogCreate:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          format: uuid
+          description: ID of the tenant
+        memberId:
+          type: string
+          format: uuid
+          description: ID of the member
+        eventId:
+          type: string
+          format: uuid
+          description: ID of the event
+        metadata:
+          type: object
+          description: Additional metadata for the event
+        eventTime:
+          type: string
+          format: date-time
+          description: Time when the event occurred
+        processingStatus:
+          type: string
+          enum: [pending, processing, completed]
+          description: Status of event processing
+      required:
+        - tenantId
+        - memberId
+        - eventId
+        - eventTime
+
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+          format: uuid
+        event_name:
+          type: string
+        event_type:
+          type: string
+          enum: [signup, referral, custom, other] # Modify as per your use cases
+        metadata:
+          type: object
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tenant_id
+        - event_name
+
+    EventCreate:
+      type: object
+      properties:
+        event_name:
+          type: string
+        event_type:
+          type: string
+          enum: [signup, referral, custom, other]
+        metadata:
+          type: object
+      required:
+        - event_name
+
+    EventUpdate:
+      type: object
+      properties:
+        event_name:
+          type: string
+        event_type:
+          type: string
+          enum: [signup, referral, custom, other]
+        metadata:
+          type: object
+
+    ApiKey:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [active, inactive, revoked, expired]
+        keyPrefix:
+          type: string
+        keyHash:
+          type: string
+        expiryDate:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tenantId
+        - status
+        - keyPrefix
+        - keyHash
+        - createdAt
+        - updatedAt
+
+    CreateApiKeyDto:
+      type: object
+      properties:
+        expiryDate:
+          type: string
+          format: date-time
+          description: Optional expiry date for the API key
+
+    CreateApiKeyResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [active, inactive, revoked, expired]
+        keyPrefix:
+          type: string
+        keyHash:
+          type: string
+        expiryDate:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        fullKeyHash:
+          type: string
+          description: The full API key hash that should be stored securely by the client
+      required:
+        - id
+        - tenantId
+        - status
+        - keyPrefix
+        - keyHash
+        - createdAt
+        - updatedAt
+        - fullKeyHash
+
+    RedeemPointsDto:
+      type: object
+      properties:
+        memberExternalId:
+          type: string
+          description: External ID of the member
+        redeemAmount:
+          type: integer
+          minimum: 1
+          description: Amount of points to redeem
+        metadata:
+          type: object
+          description: Additional metadata for the redemption
+      required:
+        - memberExternalId
+        - redeemAmount
+
+    RedeemPointsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the redemption was successful
+        message:
+          type: string
+          description: Message describing the result of the redemption
+        redeemedAmount:
+          type: integer
+          description: Amount of points that were redeemed
+      required:
+        - success
+        - message
+        - redeemedAmount
+
+    CreateRuleDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the rule
+        eventId:
+          type: string
+          format: uuid
+          description: ID of the event this rule applies to
+        pointsAwarded:
+          type: integer
+          minimum: 1
+          description: Number of points awarded when this rule is triggered
+        startDate:
+          type: string
+          format: date-time
+          description: Start date for the rule validity
+        endDate:
+          type: string
+          format: date-time
+          description: End date for the rule validity
+        status:
+          type: string
+          enum: [active, inactive]
+          description: Status of the rule
+        maxExecutionsPerUser:
+          type: integer
+          minimum: 0
+          description: Maximum number of times this rule can be executed per user
+        maxPointsPerUser:
+          type: integer
+          minimum: 0
+          description: Maximum points a user can earn from this rule
+        eligibilityFilters:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRuleFilterDto'
+          description: Filters that determine eligibility for this rule
+      required:
+        - name
+        - eventId
+        - pointsAwarded
+        - status
+
+    CreateRuleFilterDto:
+      type: object
+      properties:
+        filterType:
+          type: string
+          enum:
+            [
+              referrals,
+              tier,
+              join_date,
+              events_completed,
+              points_balance,
+              total_points_earned,
+            ]
+          description: Type of filter to apply
+        operator:
+          type: string
+          enum: ['=', '!=', '>', '>=', '<', '<=']
+          description: Comparison operator
+        value:
+          type: string
+          description: Value to compare against
+      required:
+        - filterType
+        - operator
+        - value
+
+    UpdateRuleDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the rule
+        eventId:
+          type: string
+          format: uuid
+          description: ID of the event this rule applies to
+        pointsAwarded:
+          type: integer
+          minimum: 1
+          description: Number of points awarded when this rule is triggered
+        startDate:
+          type: string
+          format: date-time
+          description: Start date for the rule validity
+        endDate:
+          type: string
+          format: date-time
+          description: End date for the rule validity
+        status:
+          type: string
+          enum: [active, inactive]
+          description: Status of the rule
+        maxExecutionsPerUser:
+          type: integer
+          minimum: 0
+          description: Maximum number of times this rule can be executed per user
+        maxPointsPerUser:
+          type: integer
+          minimum: 0
+          description: Maximum points a user can earn from this rule
+        eligibilityFilters:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRuleFilterDto'
+          description: Filters that determine eligibility for this rule
+
+    PaginatedRuleResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+          description: Array of rules
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+              description: Total number of rules
+            page:
+              type: integer
+              description: Current page number
+            limit:
+              type: integer
+              description: Number of items per page
+            totalPages:
+              type: integer
+              description: Total number of pages
+      required:
+        - data
+        - meta
+
+    ProcessRulesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the rules were processed successfully
+        pointsAwarded:
+          type: integer
+          description: Total points awarded
+        rulesTriggered:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: IDs of rules that were triggered
+      required:
+        - success
+        - pointsAwarded
+        - rulesTriggered
+
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        tenantId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [active, inactive]
+        metadata:
+          type: object
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - tenantId
+        - status
+        - createdAt
+        - updatedAt
+
+    CreateSegmentDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the segment
+          example: 'High Value Customers'
+        description:
+          type: string
+          description: Description of the segment
+          example: 'Customers with high lifetime value'
+      required:
+        - name
+
+    SegmentResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the segment
+          example: '550e8400-e29b-41d4-a716-446655440000'
+        name:
+          type: string
+          description: Name of the segment
+          example: 'High Value Customers'
+        description:
+          type: string
+          description: Description of the segment
+          example: 'Customers with high lifetime value'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    SegmentPaginatedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentResponseDto'
+        total:
+          type: integer
+          description: Total number of segments matching the query
+        totalPages:
+          type: integer
+          description: Total number of pages available
+        page:
+          type: integer
+          description: Current page number
+
+    CreateVoucherDefinitionDto:
+      type: object
+      required:
+        - name
+        - description
+        - quantity
+        - prefix
+        - voucherType
+        - voucherValue
+        - formatLength
+        - formatCharacterSet
+        - expiryType
+      properties:
+        name:
+          type: string
+          example: "Summer Promotion 2025"
+        description:
+          type: string
+          example: "25% discount for summer products"
+        quantity:
+          type: integer
+          minimum: 1
+          example: 100
+        prefix:
+          type: string
+          example: "SUMMER"
+        voucherType:
+          type: string
+          enum: [DISCOUNT_PERCENTAGE, DISCOUNT_FIXED, FREE_SHIPPING]
+          example: "DISCOUNT_PERCENTAGE"
+        voucherValue:
+          type: number
+          example: 25
+        formatLength:
+          type: integer
+          minimum: 8
+          example: 8
+        formatCharacterSet:
+          type: string
+          enum: [ALPHANUMERIC, ALPHABETIC, NUMERIC]
+          example: "ALPHANUMERIC"
+        metadata:
+          type: object
+          additionalProperties: true
+          example: { "campaign": "summer2025" }
+        expiryType:
+          type: string
+          enum: [FIXED, RELATIVE, NEVER]
+          example: "FIXED"
+        fixedExpiryDate:
+          type: string
+          format: date-time
+          example: "2025-08-31T23:59:59Z"
+        redeemLimit:
+          type: integer
+          minimum: 1
+          example: 1
+        relativeExpiryType:
+          type: string
+          enum: [DAYS, WEEKS, MONTHS]
+          example: "DAYS"
+
+    UpdateVoucherDefinitionDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Updated Summer Promotion 2025"
+        description:
+          type: string
+          example: "Updated description for summer promotion"
+        metadata:
+          type: object
+          additionalProperties: true
+          example: { "campaign": "updated_summer2025" }
+        redeemLimit:
+          type: integer
+          minimum: 1
+          example: 2
+
+    VoucherDefinitionResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        tenantId:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        name:
+          type: string
+          example: "Summer Promotion 2025"
+        createdById:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440002"
+        createdBy:
+          type: string
+          example: "admin@example.com"
+        prefix:
+          type: string
+          example: "SUMMER"
+        voucherType:
+          type: string
+          enum: [DISCOUNT_PERCENTAGE, DISCOUNT_FIXED, FREE_SHIPPING]
+          example: "DISCOUNT_PERCENTAGE"
+        voucherValue:
+          type: string
+          example: "25"
+        generationType:
+          type: string
+          enum: [GENERATED, IMPORTED]
+          example: "GENERATED"
+        formatLength:
+          type: integer
+          example: 8
+        formatCharacterSet:
+          type: string
+          enum: [ALPHANUMERIC, ALPHABETIC, NUMERIC]
+          example: "ALPHANUMERIC"
+        expiryType:
+          type: string
+          enum: [FIXED, RELATIVE, NEVER]
+          example: "FIXED"
+        fixedExpiryDate:
+          type: string
+          format: date-time
+          example: "2025-08-31T23:59:59Z"
+        redeemLimit:
+          type: integer
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        successfullyGeneratedVouchers:
+          type: integer
+          example: 100
+
+    VoucherResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440010"
+        voucherDefinitionId:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        code:
+          type: string
+          example: "SUMMER12345678"
+        status:
+          type: string
+          enum: [ACTIVE, ASSIGNED, REDEEMED, EXPIRED, DELETED]
+          example: "ACTIVE"
+        assignedTo:
+          type: string
+          format: uuid
+          nullable: true
+          example: null
+        assignedAt:
+          type: string
+          format: date-time
+          nullable: true
+          example: null
+        redeemedBy:
+          type: string
+          format: uuid
+          nullable: true
+          example: null
+        redeemedAt:
+          type: string
+          format: date-time
+          nullable: true
+          example: null
+        expiryDate:
+          type: string
+          format: date-time
+          example: "2025-08-31T23:59:59Z"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    VouchersAssignmentDto:
+      type: object
+      required:
+        - voucherIds
+      properties:
+        voucherIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          example: ["550e8400-e29b-41d4-a716-446655440010", "550e8400-e29b-41d4-a716-446655440011"]
+
+    PaginatedVoucherDefinitionResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherDefinitionResponseDto'
+        total:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example: 1
+        totalPages:
+          type: integer
+          example: 1
+
+    PaginatedVoucherResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherResponseDto'
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        totalPages:
+          type: integer
+          example: 10
+
+    RedeemVoucherDto:
+      type: object
+      required:
+        - voucherCode
+      properties:
+        voucherCode:
+          type: string
+          description: The voucher code to redeem
+          example: 'SAVE20'
+        memberId:
+          type: string
+          format: uuid
+          description: The member ID
+          example: '123e4567-e89b-12d3-a456-426614174000'
+        identifierType:
+          type: string
+          enum: [external, internal]
+          description: The type of identifier when memberId is provided
+          example: 'external'
+        email:
+          type: string
+          format: email
+          description: The member email
+          example: 'member@example.com'
+
+    VoucherRedeemResponseDto:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
+        voucherCode:
+          type: string
+          description: The redeemed voucher code
+        remainingRedemptions:
+          type: integer
+          description: Number of remaining redemptions for the voucher
+        voucherId:
+          type: string
+          format: uuid
+          description: ID of the redeemed voucher
+        voucherValue:
+          type: number
+          description: Value of the voucher
+        redeemedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the voucher was redeemed
+        assignedTo:
+          type: string
+          format: uuid
+          description: ID of the member the voucher was assigned to
+        redeemedBy:
+          type: string
+          format: uuid
+          description: ID of the member who redeemed the voucher
+
+    CombinedLedgerResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: Entry ID
+              amount:
+                type: number
+                nullable: true
+                description: Points amount (null for voucher entries)
+              created_at:
+                type: string
+                format: date-time
+                description: Creation timestamp
+              type:
+                type: string
+                nullable: true
+                description: Ledger type (null for voucher entries)
+              status:
+                type: string
+                nullable: true
+                description: Status (for voucher entries)
+              ledger_type:
+                type: string
+                enum: [points, vouchers]
+                description: Type of ledger entry
+              member_id:
+                type: string
+                format: uuid
+                description: Member ID
+              tenant_id:
+                type: string
+                format: uuid
+                description: Tenant ID
+              metadata:
+                type: object
+                description: Additional metadata
+              source_id:
+                type: string
+                format: uuid
+                nullable: true
+                description: Source ID (for points entries)
+        total:
+          type: integer
+          description: Total number of entries
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of entries per page
+        totalPages:
+          type: integer
+          description: Total number of pages
+
+    CreateMemberTierDto:
+      type: object
+      required:
+        - tenantId
+        - tierId
+        - sourceType
+      properties:
+        tenantId:
+          type: string
+          format: uuid
+          description: ID of the tenant
+        tierId:
+          type: string
+          format: uuid
+          description: ID of the tier to assign
+        expiry:
+          type: string
+          format: date-time
+          description: Optional expiry date for the tier assignment
+        sourceType:
+          type: string
+          enum: [ADMIN, SYSTEM, CAMPAIGN]
+          description: Source type of the tier assignment
+        sourceId:
+          type: string
+          format: uuid
+          description: Optional ID of the source (e.g., campaign ID)
+    MemberTier:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        memberId:
+          type: string
+          format: uuid
+        tierId:
+          type: string
+          format: uuid
+        expiry:
+          type: string
+          format: date-time
+          nullable: true
+        sourceType:
+          type: string
+          enum: [ADMIN, SYSTEM, CAMPAIGN]
+        sourceId:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        member:
+          $ref: '#/components/schemas/Member'
+        tier:
+          $ref: '#/components/schemas/Tier'
+    PaginatedMemberTierResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberTier'
+        total:
+          type: integer
+          minimum: 0
+        page:
+          type: integer
+          minimum: 1
+        totalPages:
+          type: integer
+          minimum: 1
+
+    TenantStats:
+      type: object
+      properties:
+        totalMembers:
+          type: integer
+          description: Total number of members (including soft-deleted)
+          example: 1250
+        activeMembers:
+          type: integer
+          description: Number of active members (not soft-deleted)
+          example: 1200
+        totalPointsIssued:
+          type: integer
+          description: Total points issued to all members
+          example: 50000
+        totalPointsIssuedInCurrency:
+          type: number
+          format: float
+          description: Total points issued converted to currency value
+          example: 5000.00
+        activePoints:
+          type: integer
+          description: Total active points balance across all members
+          example: 30000
+        spentPoints:
+          type: integer
+          description: Total points spent/redeemed by all members
+          example: 15000
+        expiredPoints:
+          type: integer
+          description: Total points that have expired
+          example: 5000
+        redemptionRate:
+          type: number
+          format: float
+          description: Percentage of issued points that have been redeemed
+          example: 30.0
+        breakageRate:
+          type: number
+          format: float
+          description: Percentage of issued points that have expired
+          example: 10.0
+
+    TenantGraphDataPoint:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: The date for this data point
+          example: "2025-06-15"
+        members_created:
+          type: integer
+          description: Number of members created on this date
+          example: 5
+        points_issued:
+          type: integer
+          description: Total points issued on this date
+          example: 1000
+        points_redeemed:
+          type: integer
+          description: Total points redeemed on this date
+          example: 500
+
+    MemberStats:
+      type: object
+      properties:
+        totalPointsEarned:
+          type: integer
+          description: Total points earned by the member
+          example: 5000
+        totalPointsRedeemed:
+          type: integer
+          description: Total points redeemed by the member
+          example: 2000
+        totalPointsExpired:
+          type: integer
+          description: Total points that have expired for the member
+          example: 500
+        pointsToBeExpiredSoon:
+          type: integer
+          description: Points that are about to expire soon
+          example: 100
+
+    MemberGraphDataPoint:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: The date for this data point
+          example: "2025-06-15"
+        activePointsBalance:
+          type: integer
+          description: Active points balance for the member on this date
+          example: 2500
+
+  parameters:
+    segmentId:
+      name: segmentId
+      in: path
+      description: ID of the segment
+      required: true
+      schema:
+        type: string
+        format: uuid

@@ -1,0 +1,71 @@
+---
+id: member-tiers-controller-get-member-tier-history
+title: "Get member tier history"
+description: "Fetch all tier assignments for a member (latest is considered active)"
+sidebar_label: "Get member tier history"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVU2P20YM/SsDnhJAtuQ227q6LZqPusi2i+wGPSyMgpYoa5LRzGSGMuIK+u/FjGRbjp2gAXqzJZLvkXx86qAkXzhpWRoNObwmLmqBSgmW5AR6L7e6Ic1eVMYJFA01G3LimUImz0J6URjtZUmOSoEFyx09hwSMJYeh5qqEHO5i0qMk5381mp1RitzfW+LTi9+kZ+P2kIBFhw0xOQ/5UwcaG4IcBtxVCQk4+tRKRyXk7FpKQAbiFrmG5ItuhvJi9RIS8EVNDULeQWVcgww5tK0M9XhvA4JnJ/UW+j45girZSD5DrFD5A+SnliLhc8w/2ohpKiGZGi8sOWFxS2cUSqqwVQz5Ijvi65h4hj/mfQ/8PW5JjKWuI14CrgOEt0Z78iH2hywbUq7MMsqiHpYlHLGTtKNS+LYoyPuqVSpwKoxm0hyqoLVKFlEL6QcfSnUTWiMVs/lARZi0dUE5LCORPgGWrGhoS2pkKt+NRKHv+z6BF9nikup7jS3Xxsl/qIQY9OKr/WjDojKtjoE31xpfaSanUYkHcjty4pVzJq4JGLdBo4dSUd+wTqAhrk3Q/ZZiT0GaOaSDhH3aHbTcpxxTEvCx9CD41inIoWa2Pk/TknakjJ1tsPhIupypxs/Q2tnyl+XPy5ufFjfZcjlv/awgzQ7VYu5aPUdrL4TxcigUblkMcBCUdkLL01SZAlVtPOc/ZlmW7hYXVd6GiGP+OjAvWid5/xBWOshnQ+jIHfcc1jc+SsYfrw8X+Ptfj6cDDCTiXKWuTBTHuPw7cpLF27sHcatsjeL2fnVB7E9L+vZ+JbylQlaj4AbTOiWSLq2RmsPIw7yH1MU8m2ejaLEIog0krPHcYJTreI1viA/2N72CL6l0J/X/b3Y6TojpM6dWodRBrXF13Sivp9EhQ2v5xCz5IMqw1hDWdRv09N6pvg+PBxcJuiulx42auMxXu/qGxV0l+pH2EzPdoWpDTJTffwc9N7Zv4IxMTjDr8MfJgPOdjT57NzrvczH9lFwFHx+i3k/BD6SOG+nXfQI1YRku5KkbX98WBdnpcC5cs5/6yptXj9D3/wLHyqYI
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get member tier history"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/members/{memberId}/tiers"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch all tier assignments for a member (latest is considered active)
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"memberId","required":true,"in":"path","description":"Member ID","schema":{"format":"uuid","type":"string"}},{"name":"limit","required":false,"in":"query","description":"Number of items per page","schema":{"default":10,"type":"number"}},{"name":"page","required":false,"in":"query","description":"Page number","schema":{"default":1,"type":"number"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Member tier history retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{},"title":"PaginatedResponse"}}}},"401":{"description":"Unauthorized"},"404":{"description":"Member not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

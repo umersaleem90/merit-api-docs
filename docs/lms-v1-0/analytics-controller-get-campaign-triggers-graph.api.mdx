@@ -1,0 +1,71 @@
+---
+id: analytics-controller-get-campaign-triggers-graph
+title: "Get campaign triggers graph data"
+description: "Retrieve time-series data for campaign triggers over time"
+sidebar_label: "Get campaign triggers graph data"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1VVFv2zYQ/isEnzZAjuSs2TK9uUkXZGi3oEmxh8AoztLZZkOR7PHk1jP034eTZFuOnRbDsLw4pnnffbz77ruNLjEWZAIb73Su3yOTwRUqNhWOIpLBqEpgUHNPqoAqgFk4xWQWC6So/AqpvasT7QMSCM5tqXM9cWDXbIp45R2Ttxbp4wL5qod46BFuCMJSJzoAQYWMFHX+uNEOKtS5ZnTg+KMpdaIJP9eGsNQ5U42JNsI3AEt0LJZYgc43eu6pAta5rus2itdBgCKTcQvdNMkOOzIQXwPjAfYcbNyCf66R1qfRyy7uZXR05f+GvSBfh9fr72IftvbBVKiMY6QVWMVetTBdc2eHVNDVlc4fdQly/gXxSSe68q6t9RqB9PSY31ToxOBdxCgg51kmH4ckro4UtBABdCyoF1+pYl0UGOO8tlYYFN4xOhY4CMGaopVZ+ikK5mZAvOcERC1zw1jFwbmffcKCRW0kYmXTMQ1IxpeDe/2bnldQGpqK2FUX0c4EL00/IcEbJ+D4FapgBec8O381ysajbKybRG+fPEjk6mqGdJToj/ZY+fmJidvl7FkP8o0vsibRFUpwnMznWDCW/yZb7cznGlWPoKCH+GbO86xphkJ81LtLuwcfkxL9GG6LdNIRroHhTup5zV438pfoV6cE9RpKJckxshqpW7cCa0o1cJM2cHwc+MFBzUtP5m8s5dLFKfRbGRcHVt0jidO9IfIks6gZFuJUe5uTJ1XISxGSXmCrMjGnXKedi8V0s7OzJoVtXLptcUy39UoXvSnGNmvniDVZneslc4h5mpa4QuvDaAbFE7pyZKs4ghBGl79e/nJ58fP4Iru8PKvjqEDHBHZ8RrU7gxCONd0BVehYdem0OM0+W56m1hdglz5y/lOWZelqfITyVm7s4qfCvKjJ8PpeRrObshkCIe3mVVrfHyX9P79tHfD3vx72Bigk2pIbN/etmnvhvEMyrN6+u1cTG5agJne3R8T+DOgmd7cqBizMvDeOboj2gejKdnZFqFLvLnR8lp1lvflAIeYjJIKPXEFrO70b3yCfGNO9rT3ntNnb2X9at315GL9yGiwYJypu+7bplffY7095Vz5cpTvxyfO28jsc2E6C00RL3wVqs5lBxA9km0aOux0jwixNhJkd7KAnXD9bryuwtXBtpfXC/f3C/PbtF2v53f12smBd8v1G3Sefyhcykv30O19k8sP73g1/VC+l3S4qd5BzS2ffq2baJHqJUMrkPG763ydFgYEHkUdbsRm60c2bB900/wDt0GnB
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get campaign triggers graph data"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/analytics/campaigns/triggers/graph"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve time-series data for campaign triggers over time
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","schema":{"format":"uuid","type":"string"}},{"name":"startDate","required":false,"in":"query","schema":{"format":"date","type":"string"}},{"name":"endDate","required":false,"in":"query","schema":{"format":"date","type":"string"}},{"name":"groupBy","required":false,"in":"query","description":"Time interval to group data by","schema":{"enum":["day","week","month","year"],"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Campaign triggers graph data retrieved successfully","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"period":{"type":"string","description":"Date/time period for this data point","example":"2024-01-01"},"triggers":{"type":"number","description":"Number of campaign triggers for this period","example":150},"membersAffected":{"type":"number","description":"Number of unique members affected for this period","example":120}},"required":["period","triggers","membersAffected"],"title":"CampaignTriggersGraphDataPointDto"}}}}},"400":{"description":"Bad request - Invalid parameters"},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

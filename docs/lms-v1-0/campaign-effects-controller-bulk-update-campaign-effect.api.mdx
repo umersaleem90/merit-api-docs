@@ -1,0 +1,71 @@
+---
+id: campaign-effects-controller-bulk-update-campaign-effect
+title: "Bulk update campaign effects"
+description: "Update multiple campaign effects at once"
+sidebar_label: "Bulk update campaign effects"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVNtu20YQ/ZXFPDUAJUpt3ap8sx0XUJGgRmyjD4YQjLgjcevl7mYvShSC/14MubZkyQhQvpDcnZkzlzOnA0mh9spFZQ1U8OAkRhJt0lE5TaLG1qHaGkGbDdUxCIzCmpqgAOvII7stJVRwnQ1vRrtra6K3WpP/vE76aQz72gYKcOixpUg+QPXYgcGWoIJIBk38rCQU4OlLUp4kVNEnKkBxkg5jA8VJ5veDl1i+hwJC3VCLUHWwsb7FCBWkNMSLe8cQIXplttD3qxGCQryycs8ep4i1NZFM5Ct0Tqt6qLn8NzBqdwSVQ6P3uIcCVKQ2HJ2/QPZ9z6DBWRNosPh5NuPX63quTzufhh5KEVJdUwibpPUe+gJ+fcv7CqXIhYmJWJodaiVPpykkRhxDzM9DPBhMsbFefSfJRhdv4SxNJG9QizvyO/LixnvrgSuMuOWpHurIzIBVAS3FxjJrXBppEBuooBwHH8ruhQF9+ZzyJLeBpztAjZRJXkMFTYwuVGUpaUfauska6ycycqLbMEHnJos/Fr8vLn6bX8wWi2kKk5pM9KjnU5/MFJ07I9P7MVBLJooRDvriGK0qS21r1I0NsfplNpuVu/lZlA9s8eK/4szr5FXc3zFpxtmvCT35FyYxU/JRkT/+fKbwX//cHxjMSQx9ZiJ+OlD45hu2ThN3PjNuxVuzsQMVVeQr+EheRfHh45241K5BcXm7PEv+b0fm8nYpgqNabTLtg9hYf+RIRjqrzDAWnsnoOp/OpjMYVwdrXh1O1NkQWxyWJi/6VdJPmdZnQnOaT3dYxP8jUrlbkb7F0mlUhpk8jLHLtHvMesOI1bH0nDFvVQCPm126bo2BHrzuez7+ksjvoXpcFbBDr3A9DKADqQJ/S6g2qAP9oKSfPmXZeSeOhezN9J+FxrDM7FAn/oMCnmj/Sj37VV9AQyiZX49dvr8eMSf3HOXgf6Zt/fGe3j4w9dZZIlsr2cXjV1Zo/DrC26GsgdTDWQcazTbhlm3HkPz8B5sCOR8=
+sidebar_class_name: "put api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bulk update campaign effects"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/tenants/{tenant_id}/campaign-effects"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update multiple campaign effects at once
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"array","items":{"type":"string"}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Campaign effects updated successfully"},"400":{"description":"Bad request - Invalid campaign effect data"},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

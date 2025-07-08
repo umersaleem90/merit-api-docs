@@ -1,0 +1,71 @@
+---
+id: audit-logs-controller-get-admin-logs
+title: "Get admin audit logs"
+description: "Fetch paginated admin audit logs for the authenticated tenant"
+sidebar_label: "Get admin audit logs"
+hide_title: true
+hide_table_of_contents: true
+api: eJyllN1u00AQhV9lNddO4gCF4LuI/iioQEVbcVFFaGJP4m3Xu9vdcUSx/O5obKsJTalA3CXWzpyzc76dBgqKedCetbOQwSlxXiqPG22RqVBYVNoqrAvNyrhNVGsXFJeksOaSLOu8O8Zk0TIk4DwFlF6LAjKYS92528QPznJwxlD4viGeS1P5DAl4DFgRU4iQ3TRgsSLIwOhKS7tA97UOVEC2RhMpAS0m72sKD5A8sf65rlYUlFsrzVRF5SnIRQgSiHlJFULWQEFrrA1DNk0T4AcvYrYrhLZNHvWHun+Rv8ANqaHV84qHgkuRiN7ZSFHOvkrTvmS/8Xw3/EAcNG2pULHOc4pxXRsjVnJnmSxLMXpvJBXt7OQ2Sodmz83gwK1uKZcB+yCJse702wRYs6H+Nj0BXwd/0LZtm8CbdHro8NoKDS7on1SokbrqYFCLY2Udq7WrbQFtAkfPXW5hmYJFoy4pbCmokxBcFwUwbgSJ4fodLcsEKuLSCVob6uwjl5DBpAN0ZHqkYteq56kOBjIomX3MJpOCtmScH60wvyNbjEwVR+j9aPZ+9m529HZ6lM5m4zqOcrIc0EzHobZj9P4g7OO+UUWWVS8HQs9OLZtMjMvRlC5y9jpN08l2etDlXE481i/FeV4HzQ+XklePxIowUHgMUbIZPiXDj1MXKmTI4OO3K3hkTEx0c9R27brkh2Q/UZB5frpUc+NLVPOLxYGxL57s/GKhoqdcrwea+re/KyRbeKcty8hl3n3pdJyO04FIzIVIMeFd5Ao7FocXdkZ8sFye+mh2XP/3YhrGwvSDJ96gtoJkl1czUHQDexQtE5Do5GvTrDDSdTBtK5/71y9sFTriyuxthz+af2E1Pevrjh72luAWTS1nOsT+XvT3hfSCzuBkJ7OUP0GLDmQ3yzaBkrAQCm+aoWae5+T3zR2snXb/tZ6dXEHb/gIgATSR
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get admin audit logs"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/audit-logs"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch paginated admin audit logs for the authenticated tenant
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"limit","required":false,"in":"query","description":"Number of items per page","schema":{"default":10,"type":"number"}},{"name":"page","required":false,"in":"query","description":"Page number","schema":{"default":1,"type":"number"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Audit logs retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{},"title":"PaginatedResponse"}}}},"401":{"description":"Unauthorized - Tenant ID not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

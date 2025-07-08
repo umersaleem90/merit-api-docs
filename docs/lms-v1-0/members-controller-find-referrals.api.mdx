@@ -1,0 +1,71 @@
+---
+id: members-controller-find-referrals
+title: "Get member referrals"
+description: "Fetch referrals for a specific member"
+sidebar_label: "Get member referrals"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1WGFv2zYQ/SsEv2wDZFtO7DTVp6VJWqRYuyBJsWFBUNDi2WIqkSxJpXUN//fhSMmSLduJOwzIB1sR33u8ezzeeUE52NQI7YSSNKFvwaUZMTAFY1huyVQZwojVkIqpSEkBxQQMjajSYBiuueI0oR/8Y3uupDMqz8F8ngrJb2oUGlHNDCvAgbE0uV9QyQqgCXUgmXSfBacRNfC1FAY4TZwpIaIC5WjmMhptaLzzq8jVBY2oTTMoGE0WdKpMwRxNaFl6PDfXSGGdEXJGl8toxXogXdjcJt1ueAvMpNkaxZTltub4WoKZd0hu/SLiwBQ+5iEDwKuIE8QmyhAomMhfKESzGRwo45rNgMiySnJDwmHKytzRZLgKbPVWmzAXhXAHMn70MERNiXBQWKLBkEr4Nvq4y/+AhFYracHiy0dxHNa0aW7W42mJAWcEPAEntkxTsHZa5jnKS5V0IB1CMK1zkXqbDx4t4iy6gVeTR0hx19rgoXAiqODMsa6MM2PYHDdbpTUsto1dGb5AI+qD8TyL4F0LRBS+s0Ln+Gg8juF0FMc9OHo96Y2GfNRjr4YnvdHo5GQ8Ho3iOI47KfkkxdcSiOAgnZgKMN6RLoP6+C+jKuP7qN+rTJILBTvO0y+WYMS9sREwGHsv4qPK5O/V136qit3IHowwzg1Yi+g6U3Kr3g3742uV/zFL63uG7w6MZPnVM0G//PtueHTcAb+slu8PbF16zxV/JsBnb86HR8ej8a781UgkVRx2MgF/M9/GI8s8ZxMkCvWxlVgmgdwWYkup/OirVDtu5FummmLmMmG3Ktge0t0afsrXVxcHaHtUQl4wB2tXC2cOek4U0Llf2uKO4qPjXjzsxcO7OE78Xz+O4386ghCffMtAtkUhMXCU4ASYj8+es3cq5x3k89IYkI4gRHV3bLrZOuZKux+bpU48dU9wjR4gNqAjCrIsaHLfrBZy9dGWVoPkwOkDaoBZAdJ5FSvWe/qBmS/ggphrA4UoC/qw87BXIH6bL6ikzUVJnXIsv1ZCOnvJDEa9eW11Ca50DeM47rQiiEC0hyDgMchkvhHpsPnA84blTKawl2jc5akjHqBqwkkA6+Y2NcAc8DP3f7r3HEmEkgQhrWOFRupS8/9MPRw/Q/0Hs44Epjb7st163Ic+z98v9fVSXwQbZXatFm6UpVYlaJ3I1fFpeXibn7Ynv52gdsQekMH5UAR331R9zYVTjWGfM+l2jzaXWt0BFcylmZAz753QnOFNib3XXoZd3tSt3rECuhU/ngHrqN3ZD67OK5uBPRB0MwTaY2z6xbdsdZCjun1e7WONv5WqazYTEjNYTUHrSUOSUTzstoKfJCtdpoz4Ear9KB51X6pmD6kcmapS+hfH2/rbK1k1F7dgnsCQS2OUCZ5hM+uLalCHygtwmcK5bQa+pcSpJ6GDMI3ZwWI1li0HlVkGC/xiWgOd9TxhmitNThOaOadtMhhweIJc6d6EpV9A8l5e2B7Tunf6+vTV6fhkOI5PT/ul7aUgnWH5sG9K2Wdad6/HAOSLe6CjOGw0bMlgkKuU5ZmyLjmO43jwNOzWCnxjtf4BlaelEW5+i518sNIEmAGzau8xq9WjqPrwtq5k7/+6a2oYivBBFnKqvCdXx9cIR/74cEvOcp0xcnZ91RH2pwZ5dn21Gq59MQ0Td7MQJA/FnkYU4x2WDvtxP65mFZZiqUURWllXMD+lVAPZO3B1W9HO3ZqORTPxvHj6r7bv4Lsb6JwJ6Su/8aUpuOm+mu2RLmmP+ZWh8HE1h9e6HiKKicS1i8WEWfhk8uUSH4fihE7jwmJD2EyWO7dy6EC9dUtfYN4e6J9YXuJL3oYvl7I+VO8hqirOT9LsmaT3cNYze0P6gF+MCI33QTH/9aaqpr+R9m80W9nrLk3O2+S1qsYxh8WgpaD9s81PKEBqbFEzYBxLw/2i+sdZmoJuR6zzK8GyXWLfXd7R5fJfDeeTRA==
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get member referrals"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/members/{id}/referrals"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch referrals for a specific member
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}},{"name":"id","required":true,"in":"path","description":"Member ID","schema":{"type":"string"}},{"name":"search","required":false,"in":"query","description":"Search term for referred member name or email","schema":{"type":"string"}},{"name":"page","required":false,"in":"query","description":"Page number","schema":{"default":1,"type":"number"}},{"name":"limit","required":false,"in":"query","description":"Number of items per page","schema":{"default":10,"type":"number"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Referred members retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"data":{"description":"Array of member objects","type":"array","items":{"type":"object","properties":{"id":{"type":"string","example":"550e8400-e29b-41d4-a716-446655440000","description":"Unique identifier for the member"},"name":{"type":"string","example":"John Doe","description":"Member's full name"},"email":{"type":"string","example":"john@example.com","description":"Member's email address"},"phone":{"type":"string","description":"Phone number of the member"},"externalId":{"type":"string","example":"EXT123","description":"External identifier for the member"},"referralCode":{"type":"string","example":"ABC12345","description":"Unique referral code for the member"},"referredBy":{"type":"string","nullable":true,"example":"Jane Smith","description":"Name of the member who referred this member"},"referredById":{"type":"string","nullable":true,"example":"550e8400-e29b-41d4-a716-446655440000","description":"ID of the member who referred this member"},"joinDate":{"format":"date-time","type":"string","example":"2023-01-01T00:00:00.000Z","description":"Date when the member joined"},"tierName":{"type":"string","example":"Gold","description":"Current tier name of the member"},"status":{"type":"string","example":"active","description":"Current status of the member","enum":["active","inactive","suspended"]},"segments":{"example":["Marketing","Premium"],"description":"Member's segment names","type":"array","items":{"type":"string"}},"totalPointsEarned":{"type":"number","example":1000,"description":"Total points earned by the member"},"activePointsBalance":{"type":"number","example":500,"description":"Current active points balance of the member"},"createdAt":{"format":"date-time","type":"string","example":"2023-01-01T00:00:00.000Z","description":"Creation timestamp"},"updatedAt":{"format":"date-time","type":"string","example":"2023-01-15T00:00:00.000Z","description":"Last update timestamp"}},"required":["id","name","email","phone","referralCode","referredBy","referredById","joinDate","tierName","status","segments","totalPointsEarned","activePointsBalance","createdAt","updatedAt"],"title":"MemberResponseDto"}},"total":{"type":"number","example":100,"description":"Total number of members matching the query"},"page":{"type":"number","example":1,"description":"Current page number"},"pageSize":{"type":"number","example":10,"description":"Number of items per page"},"totalPages":{"type":"number","example":10,"description":"Total number of pages"}},"required":["data","total","page","pageSize","totalPages"],"title":"PaginatedMembersResponseDto"}}}},"401":{"description":"Unauthorized"},"404":{"description":"Member not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

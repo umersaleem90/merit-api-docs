@@ -1,0 +1,71 @@
+---
+id: get-tenant-graph-data
+title: "Get tenant graph data"
+description: "Retrieve time-series data for tenant analytics, grouped by day, week, month, or year"
+sidebar_label: "Get tenant graph data"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1VcFu2zgQ/RViTrsAZSvZzR50yyJBEKDpBpv0EBRGMZbGFluKZMmRt15D/14MpThunQANiuYSWOCb94bz5nEHjOsE1XtAh3bLpk6w0NBQqqMJbLyDCv4ljoY2pNh0VCSKhpJqkFGtfFRMDh2rPV6rdfR9oEYtt6rBrVb/EX3SqvOOW618VFvCCBoCRuyIKQr/Dhx2BBUkxshFg0ygwQj9557iFjRE+tybSA1UK7SJNKS6pQ6h2gFvw4iNxq1Bw8rHDhkqmOp828+dUEgDNDbQ0thNRLcm9dvDw8NDcXNTXFz8DsOg98rINb9W16VrXq8qX3ax3P6EKnJ9JxZoUIAyLdCQxwUa8rCyJVbY21H79kj6velIGccUN2gV+9EDYwPLLQzDQhSl4F2iJBpOy1L+fVvlKmJop64nzzUq9XVNKa16a4W39o7JsYAxBGtqFPD8Y5IKu+MuMcas1zB16eC7X36kmsWG0QeKbEZdeTCvntz9OKzHyZlpPYI3TijoC3bBSr3T8vSsKP8qTs5g0NBRt6SYPtSRkGVUe165yjXFI6K3vSCUX6kJqyas8m5PTIeUZ4OGrCN9MCn1P8Ry7xntqD6pEfVi/ZOyLJ8oIjVE3etJHnEvt1GWw6CBDed7vM+hk/1ygYy3+aIH+dPw53PW+hsbJStBiVWhrt0GrWnUQQRl4Mkx8J3Dnlsfzf/UyKGz56pfi/MdWnVHcUNRXcboo6wpdMStb2RPKZsNuYUK5vu0nI/xWaylFYkXBA0pVxljsY8WKmiZQ6rm881Z0XgubJeKhjpfYDD5g5kEFB1FIz9rcmw2lGY9zeIMQ0jB86z23XxzcjSKC9qQ9aEjx2rkBkmYJ+pqPre+Rtv6xNUfZVk+V+WNnNjjF5JHK5+NMA3tRrSpNzd36tyGFtX57TVokE7HAiezclYelf0nkDu/vVYpUG1W076nvGlPpcg1o5MgezFxhzkOppC8In58p9b7jPmeafeULb/qyZtWgukLz4NF40RuvubdZI3Dh1jDsTkWGmQIcnC3W2Kid9EOg3weg18s05iES3sQ/Z9o+/3LukHbi5Q86BcABw/ejxw/eImeji/kRzRyHqr3i0FDS9hQzEJH3HldU+AD1FGuS5X9Il1d3sMwfAVf6fr6
+sidebar_class_name: "get api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get tenant graph data"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/analytics/tenant-graph-data"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve time-series data for tenant analytics, grouped by day, week, month, or year
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"start-date","in":"query","required":false,"schema":{"type":"string","format":"date","description":"Start date for the data range (YYYY-MM-DD)"}},{"name":"end-date","in":"query","required":false,"schema":{"type":"string","format":"date","description":"End date for the data range (YYYY-MM-DD)"}},{"name":"group-by","in":"query","required":false,"schema":{"type":"string","enum":["day","week","month","year"],"default":"day","description":"Time interval to group data by"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Graph data retrieved successfully","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"date":{"type":"string","format":"date","description":"The date for this data point","example":"2025-06-15"},"members_created":{"type":"integer","description":"Number of members created on this date","example":5},"points_issued":{"type":"integer","description":"Total points issued on this date","example":1000},"points_redeemed":{"type":"integer","description":"Total points redeemed on this date","example":500}},"title":"TenantGraphDataPoint"}}}}},"400":{"description":"Bad request - Invalid parameters"},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

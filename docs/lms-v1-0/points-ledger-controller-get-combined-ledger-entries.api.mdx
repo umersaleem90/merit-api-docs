@@ -1,0 +1,71 @@
+---
+id: points-ledger-controller-get-combined-ledger-entries
+title: "Get combined ledger entries"
+description: "Fetch combined entries from points and vouchers ledgers"
+sidebar_label: "Get combined ledger entries"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Ve+P2jgQ/Ves+dRKAUJ7e6X5tiq7Fafdu1XZ6rSqUGWSCbHq2K49QUej/O8nO+HHLpQCp/tESGbmPc8bz6shQ5daYUhoBQncIqUFS3U5FwozhoqsQMdyq0tmtFDkGFcZW+oqLdA6JjFboHUQgTZoua8yySCBhxB7F75+0IqslhLt1wXSh652++2mBYAIDLe8RPLFki81KF4iJOCQ27SACCx+r4TFDJKcS4cRCE/3e4V2BdGLQ0xDEiO0Jcu17UiuDwMRuLTAkkNSA61MgCEr1AKaJtog50IS2jORb0PSC0A2XzGPw7RljjhVp1IwfIFnEnjgC2SqKueB+hYkw5xXkiAZRmvALmoXUIpS0JmIf4YyTOdMEJaOGbSsI34IPj6G74hbGnM699RTn8cyThj0bqUTasFePT09PfXu73vj8etnhHJtS06QQNai/VwEVNkFjG5U9j/xIVRc0VeRPWNEtloTMpyKPT6PIYtNxodRqyrUe4k68xDOaOXQ+fg3cdyquVt6faFfTr1F/7vEjLkqTdG5vJJyBU0Ev8XD/TKfFa+o0Fb8wMwHXR3CmihCq7hkU7RLtOzGWh1GCIgv/OLoFg9rtwvMIiiRCu1X0gIprBkqIIFB20Y3qDf9bAbtAXyHQvV2EVVWQgIFkXHJYJDhEqU2vTlPv6HKerJ0PW5Mb/R+9G509fvwKh6N+pXrpb4LXA77tlJ9bsyeIOO2UImKWAsHXuQtWjIYSJ1yWWhHyds4jgfL4V6VOx+xyZ955mllBa2mXuNWtDlyi9Y/BeG9wN2rqHu4XY/BH38/bqfAkwitFSrXYVEJkv7DPVpB7O5+yq6lKTi7fpjsEfvLoLp+mDBnMBW5SIMzuHAbtomostZTIALf7zZ12I/7MUSQakU8JUhqT8JoRyVXnkd3ET4ibY1qb8U/o1OHYqjoPzlc1xfCf2hgJBfKj2kQrO7G6kt3O310sntR5WYcvZw+sK7n3OFnK5vGv263iJ+3TDg+lztb5qcn+aXNHST8DVe7vrrksvJBYfpOxz7d6I6Q2FjshSSem90RoM6PLoQ54nBHMNdeeiHoqZZ2TOMdN72QxWk2doTD1j23DGb+jxWewpkT/+pTZ3iv2a6hHcTvXnK12gVf89pezmbW7JjEx5tHaJp/AUuHyYs=
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get combined ledger entries"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/ledger"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch combined entries from points and vouchers ledgers
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"search","required":false,"in":"query","description":"Search term for ledger entries","schema":{"type":"string"}},{"name":"filter","required":false,"in":"query","description":"Filter ledger entries by type or status","schema":{"type":"string"}},{"name":"page","required":false,"in":"query","description":"Page number","schema":{"default":1,"type":"number"}},{"name":"limit","required":false,"in":"query","description":"Number of items per page","schema":{"default":10,"type":"number"}},{"name":"startDate","required":false,"in":"query","description":"Start date for filtering (YYYY-MM-DD)","schema":{"format":"date","type":"string"}},{"name":"endDate","required":false,"in":"query","description":"End date for filtering (YYYY-MM-DD)","schema":{"format":"date","type":"string"}},{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Combined ledger entries retrieved successfully"},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,4859 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - App
+  /tenants/{tenantId}/tiers:
+    post:
+      description: Create a new tier for the tenant
+      operationId: TiersController_create
+      parameters:
+        - name: tenantId
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        description: Tier creation data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTierDto'
+      responses:
+        '201':
+          description: Tier created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TierResponseDto'
+        '400':
+          description: Bad request - Invalid tier data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create tier
+      tags:
+        - Tiers
+    get:
+      description: Fetch all tiers for the tenant
+      operationId: TiersController_findAll
+      parameters:
+        - name: tenantId
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Tiers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TierResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get all tiers
+      tags:
+        - Tiers
+  /tenants/{tenantId}/tiers/{id}:
+    get:
+      description: Fetch a specific tier by ID
+      operationId: TiersController_findOne
+      parameters:
+        - name: tenantId
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Tier ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Tier retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TierResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Tier not found
+        '500':
+          description: Internal Server Error
+      summary: Get tier by ID
+      tags:
+        - Tiers
+    patch:
+      description: Update an existing tier
+      operationId: TiersController_update
+      parameters:
+        - name: tenantId
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Tier ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        description: Tier update data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTierDto'
+      responses:
+        '200':
+          description: Tier updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TierResponseDto'
+        '400':
+          description: Bad request - Invalid tier data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Tier not found
+        '500':
+          description: Internal Server Error
+      summary: Update tier
+      tags:
+        - Tiers
+    delete:
+      description: Delete a tier by ID
+      operationId: TiersController_remove
+      parameters:
+        - name: tenantId
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Tier ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Tier deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Tier not found
+        '500':
+          description: Internal Server Error
+      summary: Delete tier
+      tags:
+        - Tiers
+  /members/{memberId}/tiers:
+    post:
+      description: Assign a tier to a specific member
+      operationId: MemberTiersController_assignTier
+      parameters:
+        - name: memberId
+          required: true
+          in: path
+          description: Member ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        description: Member tier assignment data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMemberTierDto'
+      responses:
+        '201':
+          description: Tier assigned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberTier'
+        '400':
+          description: Bad request - Invalid tier data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member or tier not found
+        '500':
+          description: Internal Server Error
+      summary: Assign tier to member
+      tags:
+        - Member Tiers
+    get:
+      description: Fetch all tier assignments for a member (latest is considered active)
+      operationId: MemberTiersController_getMemberTierHistory
+      parameters:
+        - name: memberId
+          required: true
+          in: path
+          description: Member ID
+          schema:
+            format: uuid
+            type: string
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+      responses:
+        '200':
+          description: Member tier history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+      summary: Get member tier history
+      tags:
+        - Member Tiers
+  /event-logs:
+    post:
+      description: Save an event log for the authenticated tenant using API key authentication
+      operationId: EventLogsController_saveEventLog
+      parameters:
+        - name: x-api-key
+          in: header
+          description: API key for admin authentication
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Event log creation data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventLogDto'
+      responses:
+        '201':
+          description: Event log saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateEventLogDto'
+        '400':
+          description: Bad request - Invalid event log data
+        '401':
+          description: Unauthorized - Invalid API key
+        '500':
+          description: Internal Server Error
+      summary: Save an event log
+      tags:
+        - Event Logs
+  /tenants/{tenant_id}/members:
+    post:
+      description: Create a new member for the authenticated tenant
+      operationId: MembersController_create
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMemberDto'
+      responses:
+        '201':
+          description: Member created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponseDto'
+        '400':
+          description: Bad request - Invalid member data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create a new member
+      tags:
+        - Members
+    get:
+      description: Fetch all members for the tenant with pagination and filters
+      operationId: MembersController_findAll
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: search
+          required: false
+          in: query
+          description: Search term for member name or email
+          schema:
+            type: string
+        - name: tiers
+          required: false
+          in: query
+          description: Filter by tier IDs (comma-separated)
+          schema:
+            type: string
+        - name: segments
+          required: false
+          in: query
+          description: Filter by segment IDs (comma-separated)
+          schema:
+            type: string
+        - name: minPoints
+          required: false
+          in: query
+          description: Minimum points filter
+          schema:
+            type: number
+        - name: maxPoints
+          required: false
+          in: query
+          description: Maximum points filter
+          schema:
+            type: number
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+      responses:
+        '200':
+          description: Members retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMembersResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get all members
+      tags:
+        - Members
+  /tenants/{tenant_id}/members/{id}:
+    get:
+      description: Fetch a specific member by ID or external ID
+      operationId: MembersController_findOne
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Member ID or external ID
+          schema:
+            type: string
+        - name: identifier
+          required: false
+          in: query
+          description: Identifier type (external for external ID)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Member retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+      summary: Get member by ID
+      tags:
+        - Members
+    patch:
+      description: Update an existing member
+      operationId: MembersController_update
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Member ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMemberDto'
+      responses:
+        '200':
+          description: Member updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponseDto'
+        '400':
+          description: Bad request - Invalid member data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+      summary: Update member
+      tags:
+        - Members
+    delete:
+      description: Soft delete a member by ID
+      operationId: MembersController_softDelete
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Member ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Member deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+      summary: Delete member
+      tags:
+        - Members
+  /tenants/{tenant_id}/members/{id}/referrals:
+    get:
+      description: Fetch referrals for a specific member
+      operationId: MembersController_findReferrals
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Member ID
+          schema:
+            type: string
+        - name: search
+          required: false
+          in: query
+          description: Search term for referred member name or email
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+      responses:
+        '200':
+          description: Referred members retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMembersResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+      summary: Get member referrals
+      tags:
+        - Members
+  /tenants/{tenant_id}/members/validate:
+    post:
+      description: Validate a list of member IDs for the tenant
+      operationId: MembersController_validateMembers
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateMembersDto'
+      responses:
+        '200':
+          description: Validated members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ValidatedMemberDto'
+        '400':
+          description: Bad request - Invalid member IDs
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Validate member IDs
+      tags:
+        - Members
+  /tenants/{tenant_id}/members/{id}/stats:
+    get:
+      description: Fetch statistics for a specific member
+      operationId: MembersController_getMemberStats
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Member ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Member statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+      summary: Get member statistics
+      tags:
+        - Members
+  /points-parcels/burn:
+    post:
+      description: Calculate and burn points parcels for a member
+      operationId: PointsParcelsController_calculatePointsParcels
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BurnPointsDto'
+      responses:
+        '200':
+          description: Points parcels burned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request - Invalid burn data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member or points not found
+        '500':
+          description: Internal Server Error
+      summary: Burn points parcels
+      tags:
+        - Points Parcels
+  /points-parcels/redeem:
+    post:
+      description: Redeem points for a member
+      operationId: PointsParcelsController_redeemPoints
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedeemPointsDto'
+      responses:
+        '200':
+          description: Points redeemed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request - Invalid redeem data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member or points not found
+        '500':
+          description: Internal Server Error
+      summary: Redeem points
+      tags:
+        - Points Parcels
+  /tenants/{tenant_id}/points-parcels/upcoming-expiry:
+    get:
+      description: Fetch points parcels that are expiring soon
+      operationId: PointsParcelsController_getUpcomingPointsExpiry
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: sortBy
+          required: false
+          in: query
+          description: Sort field (e.g., expiry_date, points)
+          schema:
+            type: string
+            enum:
+              - unspentAmount
+              - name
+              - expiryDate
+        - name: sortOrder
+          required: false
+          in: query
+          description: Sort order
+          schema:
+            enum:
+              - ASC
+              - DESC
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Upcoming points expiry retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPointsParcelExpiryResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get upcoming points expiry
+      tags:
+        - Points Parcels
+  /tenants/{tenant_id}/points-ledger:
+    get:
+      description: Fetch all points ledger entries for the tenant with pagination and filters
+      operationId: PointsLedgerController_getAllLedgers
+      parameters:
+        - name: search
+          required: false
+          in: query
+          description: Search term for ledger entries
+          schema:
+            type: string
+        - name: filter
+          required: false
+          in: query
+          description: Filter ledger entries by type or status
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+        - name: startDate
+          required: false
+          in: query
+          description: Start date for filtering (YYYY-MM-DD)
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          description: End date for filtering (YYYY-MM-DD)
+          schema:
+            format: date
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Points ledger entries retrieved successfully
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get points ledger entries
+      tags:
+        - Points Ledger
+    post:
+      description: Create a new points ledger entry for the tenant
+      operationId: PointsLedgerController_addLedgerEntry
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePointsLedgerDto'
+      responses:
+        '201':
+          description: Points ledger entry created successfully
+        '400':
+          description: Bad request - Invalid ledger entry data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Add points ledger entry
+      tags:
+        - Points Ledger
+  /events:
+    post:
+      description: Process events from Google Pub/Sub for points ledger
+      operationId: PointsLedgerController_handlePubSubMessage
+      parameters: []
+      responses:
+        '204':
+          description: Event processed successfully
+        '400':
+          description: Bad request - Invalid event data
+        '500':
+          description: Internal Server Error
+      summary: Handle pub/sub event
+      tags:
+        - Points Ledger
+  /tenants/{tenant_id}/ledger:
+    get:
+      description: Fetch combined entries from points and vouchers ledgers
+      operationId: PointsLedgerController_getCombinedLedgerEntries
+      parameters:
+        - name: search
+          required: false
+          in: query
+          description: Search term for ledger entries
+          schema:
+            type: string
+        - name: filter
+          required: false
+          in: query
+          description: Filter ledger entries by type or status
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+        - name: startDate
+          required: false
+          in: query
+          description: Start date for filtering (YYYY-MM-DD)
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          description: End date for filtering (YYYY-MM-DD)
+          schema:
+            format: date
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Combined ledger entries retrieved successfully
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get combined ledger entries
+      tags:
+        - Points Ledger
+  /trigger-logs:
+    post:
+      description: Create a new trigger log for the authenticated tenant
+      operationId: TriggerLogsController_createTriggerLog
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTriggerLogsDto'
+      responses:
+        '201':
+          description: Trigger log created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTriggerLogsDto'
+        '400':
+          description: Bad request - Invalid trigger log data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create trigger log
+      tags:
+        - Trigger Logs
+  /tenants/{tenant_id}/triggers:
+    post:
+      description: Create a new trigger for the authenticated tenant
+      operationId: TriggersController_addTrigger
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTriggerDto'
+      responses:
+        '201':
+          description: Trigger created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerResponseDto'
+        '400':
+          description: Bad request - Invalid trigger data
+        '401':
+          description: Unauthorized - Tenant ID not found
+        '500':
+          description: Internal Server Error
+      summary: Create trigger
+      tags:
+        - Triggers
+    get:
+      description: Fetch triggers filtered by trigger type
+      operationId: TriggersController_getTriggersByType
+      parameters:
+        - name: triggerType
+          required: true
+          in: query
+          description: Type of trigger to filter by
+          schema:
+            enum:
+              - burn
+              - purchase
+              - internal
+              - achievement
+              - custom
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Triggers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TriggerResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get triggers by type
+      tags:
+        - Triggers
+  /tenants/{tenant_id}/triggers/{id}:
+    put:
+      description: Update an existing trigger
+      operationId: TriggersController_updateTrigger
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: Trigger ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTriggerDto'
+      responses:
+        '200':
+          description: Trigger updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerResponseDto'
+        '400':
+          description: Bad request - Invalid trigger data
+        '401':
+          description: Unauthorized - Tenant ID not found
+        '404':
+          description: Trigger not found
+        '500':
+          description: Internal Server Error
+      summary: Update trigger
+      tags:
+        - Triggers
+    delete:
+      description: Delete a trigger by ID
+      operationId: TriggersController_deleteTrigger
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: Trigger ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Trigger deleted successfully
+        '401':
+          description: Unauthorized - Tenant ID not found
+        '404':
+          description: Trigger not found
+        '500':
+          description: Internal Server Error
+      summary: Delete trigger
+      tags:
+        - Triggers
+  /tenants/{tenant_id}/triggers/default:
+    post:
+      description: Add default triggers for the authenticated tenant
+      operationId: TriggersController_addDefaultTrigger
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '201':
+          description: Default triggers added successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TriggerResponseDto'
+        '401':
+          description: Unauthorized - Tenant ID not found
+        '500':
+          description: Internal Server Error
+      summary: Add default triggers
+      tags:
+        - Triggers
+  /tenants/{tenant_id}/configs:
+    put:
+      description: Update tenant-specific configuration settings
+      operationId: ConfigsController_updateSettings
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConfigsDto'
+      responses:
+        '200':
+          description: Settings updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateConfigsDto'
+        '400':
+          description: Bad request - Invalid settings data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Update tenant settings
+      tags:
+        - Configs
+    get:
+      description: Fetch tenant-specific configuration settings
+      operationId: ConfigsController_fetchSettings
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Settings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateConfigsDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get tenant settings
+      tags:
+        - Configs
+  /tenants/{tenant_id}/configs/default:
+    post:
+      description: Add default configuration settings for the tenant
+      operationId: ConfigsController_addDefaultConfigs
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '201':
+          description: Default configs added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateConfigsDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Add default configs
+      tags:
+        - Configs
+  /tenants/{tenant_id}/campaign-engine:
+    post:
+      description: Process campaign rules for a given event trigger
+      operationId: CampaignEngineController_processTrigger
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Campaign rules processed successfully
+        '400':
+          description: Bad request - Invalid trigger data
+        '401':
+          description: Unauthorized - Tenant ID not found
+        '500':
+          description: Internal Server Error
+      summary: Process campaign trigger
+      tags:
+        - Campaign Engine
+  /tenants/{tenant_id}/campaign-triggers:
+    post:
+      description: Create a new campaign trigger for the authenticated tenant
+      operationId: CampaignTriggersController_addCampaign
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCampaignTriggerDto'
+      responses:
+        '201':
+          description: Campaign trigger created successfully
+        '400':
+          description: Bad request - Invalid campaign trigger data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create a new campaign trigger
+      tags:
+        - Campaign Triggers
+  /tenants/{tenant_id}/campaign-triggers/{id}:
+    put:
+      description: Update an existing campaign trigger
+      operationId: CampaignTriggersController_updateCampaignTrigger
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: Campaign trigger ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Campaign trigger updated successfully
+        '400':
+          description: Bad request - Invalid campaign trigger data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign trigger not found
+        '500':
+          description: Internal Server Error
+      summary: Update campaign trigger
+      tags:
+        - Campaign Triggers
+  /tenants/{tenant_id}/campaigns:
+    post:
+      description: Create a new campaign for the authenticated tenant
+      operationId: CampaignsController_createCampaign
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCampaignDto'
+      responses:
+        '201':
+          description: Campaign created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '400':
+          description: Bad request - Invalid campaign data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create a new campaign
+      tags:
+        - Campaigns
+  /tenants/{tenant_id}/campaigns/stats:
+    get:
+      description: Get active campaigns and triggers count for the tenant
+      operationId: CampaignsController_campaignStats
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Campaign statistics retrieved successfully
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get campaign statistics
+      tags:
+        - Campaigns
+  /tenants/{tenant_id}/campaigns/list:
+    get:
+      description: Fetch all campaigns for the tenant with pagination, filters, and search
+      operationId: CampaignsController_fetchCampaigns
+      parameters:
+        - name: search
+          required: false
+          in: query
+          description: Search term for campaign name or description
+          schema:
+            type: string
+        - name: status
+          required: false
+          in: query
+          description: Filter by campaign status
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: List of campaigns for the tenant
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Campaign'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Fetch all campaigns for the tenant
+      tags:
+        - Campaigns
+  /tenants/{tenant_id}/campaigns/{campaign_id}:
+    get:
+      description: Fetch a specific campaign by its ID
+      operationId: CampaignsController_fetchCampaignById
+      parameters:
+        - name: campaign_id
+          required: true
+          in: path
+          description: Campaign ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Campaign retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+        '500':
+          description: Internal Server Error
+      summary: Get campaign by ID
+      tags:
+        - Campaigns
+    put:
+      description: Update an existing campaign
+      operationId: CampaignsController_updateCampaign
+      parameters:
+        - name: campaign_id
+          required: true
+          in: path
+          description: Campaign ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCampaignDto'
+      responses:
+        '200':
+          description: Campaign updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '400':
+          description: Bad request - Invalid campaign data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+        '500':
+          description: Internal Server Error
+      summary: Update campaign
+      tags:
+        - Campaigns
+    delete:
+      description: Delete a campaign by its ID
+      operationId: CampaignsController_deleteCampaign
+      parameters:
+        - name: campaign_id
+          required: true
+          in: path
+          description: Campaign ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Campaign deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Campaign deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign not found
+        '500':
+          description: Internal Server Error
+      summary: Delete campaign
+      tags:
+        - Campaigns
+  /tenants/{tenant_id}/campaign-conditions:
+    post:
+      description: Create new campaign conditions for the authenticated tenant
+      operationId: CampaignConditionsController_addCampaignCondition
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateCampaignConditionDto'
+      responses:
+        '201':
+          description: Campaign conditions created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateCampaignConditionDto'
+        '400':
+          description: Bad request - Invalid campaign condition data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create campaign conditions
+      tags:
+        - Campaign Conditions
+    put:
+      description: Update multiple campaign conditions at once
+      operationId: CampaignConditionsController_bulkUpdateCampaignCondition
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateCampaignConditionDto'
+      responses:
+        '200':
+          description: Campaign conditions updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateCampaignConditionDto'
+        '400':
+          description: Bad request - Invalid campaign condition data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Bulk update campaign conditions
+      tags:
+        - Campaign Conditions
+  /tenants/{tenant_id}/campaign-conditions/{id}:
+    put:
+      description: Update an existing campaign condition
+      operationId: CampaignConditionsController_updateCampaignCondition
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: Campaign condition ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCampaignConditionDto'
+      responses:
+        '200':
+          description: Campaign condition updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCampaignConditionDto'
+        '400':
+          description: Bad request - Invalid campaign condition data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign condition not found
+        '500':
+          description: Internal Server Error
+      summary: Update campaign condition
+      tags:
+        - Campaign Conditions
+  /tenants/{tenant_id}/campaign-effects:
+    post:
+      description: Create new campaign effects for the authenticated tenant
+      operationId: CampaignEffectsController_addCampaignEffect
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '201':
+          description: Campaign effects created successfully
+        '400':
+          description: Bad request - Invalid campaign effect data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create campaign effects
+      tags:
+        - Campaign Effects
+    put:
+      description: Update multiple campaign effects at once
+      operationId: CampaignEffectsController_bulkUpdateCampaignEffect
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: Campaign effects updated successfully
+        '400':
+          description: Bad request - Invalid campaign effect data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Bulk update campaign effects
+      tags:
+        - Campaign Effects
+  /tenants/{tenant_id}/campaign-effects/{id}:
+    put:
+      description: Update an existing campaign effect
+      operationId: CampaignEffectsController_updateCampaignEffect
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: Campaign effect ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Campaign effect updated successfully
+        '400':
+          description: Bad request - Invalid campaign effect data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign effect not found
+        '500':
+          description: Internal Server Error
+      summary: Update campaign effect
+      tags:
+        - Campaign Effects
+    delete:
+      description: Delete a campaign effect by its ID
+      operationId: CampaignEffectsController_deleteCampaignEffect
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: Campaign effect ID
+          schema:
+            format: uuid
+            type: string
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Campaign effect deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Campaign effect deleted successfully
+        '400':
+          description: Bad request - Campaign effect not found or not deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Campaign effect not found
+        '500':
+          description: Internal Server Error
+      summary: Delete campaign effect
+      tags:
+        - Campaign Effects
+  /tenants/{tenant_id}/voucher-definitions:
+    post:
+      description: Create a new voucher definition for the tenant
+      operationId: VouchersController_create
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVoucherDefinitionDto'
+      responses:
+        '201':
+          description: Voucher definition created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherDefinitionResponseDto'
+        '400':
+          description: Bad request - Invalid voucher definition data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create voucher definition
+      tags:
+        - Vouchers
+    get:
+      description: Fetch all voucher definitions for the tenant with pagination and search
+      operationId: VouchersController_findAll
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+        - name: search
+          required: false
+          in: query
+          description: Search term for voucher definition name or description
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Voucher definitions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VoucherDefinitionResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get all voucher definitions
+      tags:
+        - Vouchers
+  /tenants/{tenant_id}/voucher-definitions/{id}:
+    get:
+      description: Fetch a specific voucher definition by ID
+      operationId: VouchersController_findOne
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Voucher definition ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Voucher definition retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherDefinitionResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voucher definition not found
+        '500':
+          description: Internal Server Error
+      summary: Get voucher definition by ID
+      tags:
+        - Vouchers
+    patch:
+      description: Update an existing voucher definition
+      operationId: VouchersController_update
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Voucher definition ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVoucherDefinitionDto'
+      responses:
+        '200':
+          description: Voucher definition updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherDefinitionResponseDto'
+        '400':
+          description: Bad request - Invalid voucher definition data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voucher definition not found
+        '500':
+          description: Internal Server Error
+      summary: Update voucher definition
+      tags:
+        - Vouchers
+    delete:
+      description: Delete a voucher definition by ID
+      operationId: VouchersController_remove
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Voucher definition ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Voucher definition deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voucher definition not found
+        '500':
+          description: Internal Server Error
+      summary: Delete voucher definition
+      tags:
+        - Vouchers
+  /tenants/{tenant_id}/voucher-definitions/{id}/vouchers:
+    get:
+      description: Fetch all vouchers for a specific voucher definition
+      operationId: VouchersController_findAllVouchers
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Voucher definition ID
+          schema:
+            format: uuid
+            type: string
+        - name: search
+          required: false
+          in: query
+          description: Search term for voucher code
+          schema:
+            type: string
+        - name: status
+          required: false
+          in: query
+          description: Filter by voucher status
+          schema:
+            enum:
+              - active
+              - redeemed
+              - expired
+              - inactive
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+      responses:
+        '200':
+          description: Vouchers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VoucherResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voucher definition not found
+        '500':
+          description: Internal Server Error
+      summary: Get vouchers by definition
+      tags:
+        - Vouchers
+  /tenants/{tenant_id}/voucher-definitions/{id}/vouchers/{voucher_id}/assign:
+    post:
+      description: Assign a voucher to a specific member
+      operationId: VouchersController_assignVoucherToAMember
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Voucher definition ID
+          schema:
+            format: uuid
+            type: string
+        - name: voucher_id
+          required: true
+          in: path
+          description: Voucher ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VouchersAssignmentDto'
+      responses:
+        '200':
+          description: Voucher assigned successfully
+        '400':
+          description: Bad request - Invalid assignment data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voucher or member not found
+        '500':
+          description: Internal Server Error
+      summary: Assign voucher to member
+      tags:
+        - Vouchers
+  /tenants/{tenant_id}/voucher-definitions/{id}/vouchers/{voucher_id}/unassign:
+    post:
+      description: Remove voucher assignment from a member
+      operationId: VouchersController_removeVoucherAssignments
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Voucher definition ID
+          schema:
+            format: uuid
+            type: string
+        - name: voucher_id
+          required: true
+          in: path
+          description: Voucher ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VouchersAssignmentDto'
+      responses:
+        '200':
+          description: Voucher unassigned successfully
+        '400':
+          description: Bad request - Invalid unassignment data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voucher or member not found
+        '500':
+          description: Internal Server Error
+      summary: Unassign voucher from member
+      tags:
+        - Vouchers
+  /tenants/{tenant_id}/voucher-definitions/{id}/vouchers/{voucher_id}:
+    delete:
+      description: Soft delete a voucher by ID
+      operationId: VouchersController_deleteVoucher
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Voucher definition ID
+          schema:
+            format: uuid
+            type: string
+        - name: voucher_id
+          required: true
+          in: path
+          description: Voucher ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Voucher deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voucher not found
+        '500':
+          description: Internal Server Error
+      summary: Delete voucher
+      tags:
+        - Vouchers
+  /tenants/{tenant_id}/voucher-definitions/upload:
+    post:
+      description: Upload a CSV file for voucher processing
+      operationId: VouchersController_uploadFile
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '201':
+          description: File uploaded successfully
+        '400':
+          description: Bad request - Invalid file format or size
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Upload voucher file
+      tags:
+        - Vouchers
+  /tenants/{tenant_id}/voucher-definitions/process-file:
+    post:
+      description: Process uploaded CSV file to create vouchers
+      operationId: VouchersController_processVoucherFile
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VouchersFileProcessDto'
+      responses:
+        '200':
+          description: File processed successfully
+        '400':
+          description: Bad request - Invalid file data
+        '401':
+          description: Unauthorized
+        '404':
+          description: File not found
+        '500':
+          description: Internal Server Error
+      summary: Process voucher file
+      tags:
+        - Vouchers
+  /vouchers/redeem:
+    post:
+      operationId: VoucherRedeemController_redeemVoucher
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedeemVoucherDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - VoucherRedeem
+  /tenants/{tenant_id}/segments:
+    post:
+      description: Create a new segment for the tenant
+      operationId: SegmentsController_create
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasicSegmentDto'
+      responses:
+        '201':
+          description: Segment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentResponseDto'
+        '400':
+          description: Bad request - Invalid segment data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Create segment
+      tags:
+        - Segments
+    get:
+      description: Fetch all segments for the tenant with pagination and search
+      operationId: SegmentsController_findAll
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: search
+          required: false
+          in: query
+          description: Search term for segment name or description
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+      responses:
+        '200':
+          description: Segments retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SegmentResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get all segments
+      tags:
+        - Segments
+  /tenants/{tenant_id}/segments/{id}:
+    get:
+      description: Fetch a specific segment by ID
+      operationId: SegmentsController_findOne
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Segment retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+        '500':
+          description: Internal Server Error
+      summary: Get segment by ID
+      tags:
+        - Segments
+    patch:
+      description: Update an existing segment
+      operationId: SegmentsController_update
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasicSegmentDto'
+      responses:
+        '200':
+          description: Segment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentResponseDto'
+        '400':
+          description: Bad request - Invalid segment data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+        '500':
+          description: Internal Server Error
+      summary: Update segment
+      tags:
+        - Segments
+    delete:
+      description: Soft delete a segment by ID
+      operationId: SegmentsController_softDelete
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Segment soft deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+        '500':
+          description: Internal Server Error
+      summary: Soft delete segment
+      tags:
+        - Segments
+  /tenants/{tenant_id}/segments/{id}/members:
+    post:
+      description: Add multiple members to a segment
+      operationId: SegmentsController_addMembersToSegment
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MembersToSegmentDto'
+      responses:
+        '200':
+          description: Members added to segment successfully
+        '400':
+          description: Bad request - Invalid member data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+        '500':
+          description: Internal Server Error
+      summary: Add members to segment
+      tags:
+        - Segments
+    get:
+      description: Fetch all members belonging to a segment
+      operationId: SegmentsController_getSegmentMembers
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+        - name: search
+          required: false
+          in: query
+          description: Search term for member name or email
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+      responses:
+        '200':
+          description: Segment members retrieved successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+        '500':
+          description: Internal Server Error
+      summary: Get segment members
+      tags:
+        - Segments
+  /tenants/{tenant_id}/segments/{id}/members/remove:
+    post:
+      description: Remove multiple members from a segment
+      operationId: SegmentsController_removeMembersFromSegment
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MembersToSegmentDto'
+      responses:
+        '200':
+          description: Members removed from segment successfully
+        '400':
+          description: Bad request - Invalid member data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+        '500':
+          description: Internal Server Error
+      summary: Remove members from segment
+      tags:
+        - Segments
+  /tenants/{tenant_id}/segments/{id}/available-members:
+    get:
+      description: Fetch members that can be added to a segment
+      operationId: SegmentsController_getAvailableMembersForSegment
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+        - name: search
+          required: false
+          in: query
+          description: Search term for member name or email
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+      responses:
+        '200':
+          description: Available members retrieved successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+        '500':
+          description: Internal Server Error
+      summary: Get available members for segment
+      tags:
+        - Segments
+  /tenants/{tenant_id}/segments/{id}/upload:
+    post:
+      description: Upload a CSV file for segment member processing
+      operationId: SegmentsController_uploadFile
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '201':
+          description: File uploaded successfully
+        '400':
+          description: Bad request - Invalid file format or size
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+        '500':
+          description: Internal Server Error
+      summary: Upload segment file
+      tags:
+        - Segments
+  /tenants/{tenant_id}/segments/{id}/process-file:
+    post:
+      description: Process uploaded CSV file to add members to segment
+      operationId: SegmentsController_processSegmentFile
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          description: Tenant ID
+          schema:
+            format: uuid
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: Segment ID
+          schema:
+            format: uuid
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SegmentCsvFileProcessingDto'
+      responses:
+        '200':
+          description: File processed successfully
+        '400':
+          description: Bad request - Invalid file data
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment or file not found
+        '500':
+          description: Internal Server Error
+      summary: Process segment file
+      tags:
+        - Segments
+  /tenants/{tenant_id}/analytics/stats/graph:
+    get:
+      description: Retrieve time-series data for tenant analytics, grouped by day, week, month, or year
+      operationId: AnalyticsController_getGraphData
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: groupBy
+          required: false
+          in: query
+          description: Time interval to group data by
+          schema:
+            enum:
+              - day
+              - week
+              - month
+              - year
+            type: string
+      responses:
+        '200':
+          description: Graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TenantGraphDataPointDto'
+        '400':
+          description: Bad request - Invalid parameters
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get tenant graph data
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/stats:
+    get:
+      description: Retrieve comprehensive statistics for the authenticated tenant including member counts, points data, and rates
+      operationId: AnalyticsController_getTenantStats
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+      responses:
+        '200':
+          description: Tenant statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantStatsResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get tenant statistics
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/members/{member_id}/stats:
+    get:
+      description: Retrieve comprehensive statistics for a specific member
+      operationId: AnalyticsController_getMemberStats
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: member_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Member statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberStatsResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+      summary: Get member statistics
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/members/{member_id}/stats/graph:
+    get:
+      description: Retrieve time-series data for a specific member's active points balance
+      operationId: AnalyticsController_getMemberPointsGraph
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: member_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: groupBy
+          required: false
+          in: query
+          description: Time interval to group data by
+          schema:
+            enum:
+              - day
+              - week
+              - month
+              - year
+            type: string
+      responses:
+        '200':
+          description: Member graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MemberGraphDataPointDto'
+        '400':
+          description: Bad request - Invalid parameters
+        '401':
+          description: Unauthorized
+        '404':
+          description: Member not found
+        '500':
+          description: Internal Server Error
+      summary: Get member points graph data
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/campaigns/stats:
+    get:
+      description: >-
+        Retrieve comprehensive campaign statistics including total active campaigns, total triggers, and total unique
+        members affected
+      operationId: AnalyticsController_getCampaignStats
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Campaign statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignStatsResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get campaign statistics
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/campaigns/engagement-stats:
+    get:
+      description: Retrieve comprehensive campaign engagement statistics for a tenant
+      operationId: AnalyticsController_getCampaignEngagementStats
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+      responses:
+        '200':
+          description: Campaign engagement statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignEngagementStatsResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get campaign engagement statistics
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/campaigns/triggers/graph:
+    get:
+      description: Retrieve time-series data for campaign triggers over time
+      operationId: AnalyticsController_getCampaignTriggersGraph
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: groupBy
+          required: false
+          in: query
+          description: Time interval to group data by
+          schema:
+            enum:
+              - day
+              - week
+              - month
+              - year
+            type: string
+      responses:
+        '200':
+          description: Campaign triggers graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CampaignTriggersGraphDataPointDto'
+        '400':
+          description: Bad request - Invalid parameters
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get campaign triggers graph data
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/members/stats:
+    get:
+      description: Retrieve aggregated member statistics for a tenant
+      operationId: AnalyticsController_getMembersStats
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+      responses:
+        '200':
+          description: Members statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembersStatsResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get members statistics
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/members/segments/graph:
+    get:
+      description: Retrieve member distribution across segments
+      operationId: AnalyticsController_getMemberSegmentsGraph
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Members segments graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MembersSegmentsGraphDataPointDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get members segments graph data
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/points/stats:
+    get:
+      description: Retrieve comprehensive points statistics for a tenant
+      operationId: AnalyticsController_getPointsStats
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+      responses:
+        '200':
+          description: Points statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsStatsResponseDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get points statistics
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/points/expiry-graph:
+    get:
+      description: Retrieve time-series data for points expiry over time
+      operationId: AnalyticsController_getPointsExpiryGraph
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: groupBy
+          required: false
+          in: query
+          description: Time interval to group data by
+          schema:
+            enum:
+              - day
+              - week
+              - month
+              - year
+            type: string
+      responses:
+        '200':
+          description: Points expiry graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PointsExpiryGraphDataPointDto'
+        '400':
+          description: Bad request - Invalid parameters
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get points expiry graph data
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/campaigns/tiers/graph:
+    get:
+      description: Retrieve time-series data for campaign distribution across tiers
+      operationId: AnalyticsController_getCampaignTiersGraph
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+        - name: startDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: endDate
+          required: false
+          in: query
+          schema:
+            format: date
+            type: string
+        - name: groupBy
+          required: false
+          in: query
+          description: Time interval to group data by
+          schema:
+            enum:
+              - day
+              - week
+              - month
+              - year
+            type: string
+      responses:
+        '200':
+          description: Campaign tiers graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CampaignTiersGraphDataPointDto'
+        '400':
+          description: Bad request - Invalid parameters
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get campaign tiers graph data
+      tags:
+        - Analytics
+  /tenants/{tenant_id}/analytics/members/tiers/graph:
+    get:
+      description: Retrieve member distribution across tiers
+      operationId: AnalyticsController_getMembersTiersGraph
+      parameters:
+        - name: tenant_id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '200':
+          description: Members tiers graph data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MembersTiersGraphDataPointDto'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      summary: Get members tiers graph data
+      tags:
+        - Analytics
+  /audit-logs:
+    get:
+      description: Fetch paginated admin audit logs for the authenticated tenant
+      operationId: AuditLogsController_getAdminLogs
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: Number of items per page
+          schema:
+            default: 10
+            type: number
+        - name: page
+          required: false
+          in: query
+          description: Page number
+          schema:
+            default: 1
+            type: number
+      responses:
+        '200':
+          description: Audit logs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+        '401':
+          description: Unauthorized - Tenant ID not found
+        '500':
+          description: Internal Server Error
+      summary: Get admin audit logs
+      tags:
+        - Audit Logs
+info:
+  title: Merit LMS Alpha API
+  description: OpenAPI specifications for LMS Alpha endpoints
+  version: 1.0.0
+  contact: {}
+tags: []
+servers:
+  - url: https://develop-backend-lms-app-898785615088.us-central1.run.app
+    description: Development server
+  - url: http://localhost:3000/v1
+    description: Local server
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    CreateTierDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the tier
+          example: Gold
+          minLength: 1
+          maxLength: 100
+        minPoints:
+          type: number
+          description: Minimum points required to achieve this tier
+          example: 1000
+          minimum: 0
+        minReferrals:
+          type: number
+          description: Minimum number of referrals required to achieve this tier
+          example: 5
+          minimum: 0
+        minEvents:
+          type: number
+          description: Minimum number of events required to achieve this tier
+          example: 10
+          minimum: 0
+        rank:
+          type: number
+          description: Rank/priority of the tier (higher number = higher tier)
+          example: 3
+          minimum: 1
+      required:
+        - name
+        - minPoints
+        - minReferrals
+        - minEvents
+        - rank
+    TierResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the tier
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        tenantId:
+          type: string
+          description: Tenant ID that owns this tier
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        name:
+          type: string
+          description: Name of the tier
+          example: Gold
+        minPoints:
+          type: number
+          description: Minimum points required to achieve this tier
+          example: 1000
+        minReferrals:
+          type: number
+          description: Minimum number of referrals required to achieve this tier
+          example: 5
+        minEvents:
+          type: number
+          description: Minimum number of events required to achieve this tier
+          example: 10
+        rank:
+          type: number
+          description: Rank/priority of the tier (higher number = higher tier)
+          example: 3
+      required:
+        - id
+        - tenantId
+        - name
+        - minPoints
+        - minReferrals
+        - minEvents
+        - rank
+    UpdateTierDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the tier
+          example: Gold
+          minLength: 1
+          maxLength: 100
+        minPoints:
+          type: number
+          description: Minimum points required to achieve this tier
+          example: 1000
+          minimum: 0
+        minReferrals:
+          type: number
+          description: Minimum number of referrals required to achieve this tier
+          example: 5
+          minimum: 0
+        minEvents:
+          type: number
+          description: Minimum number of events required to achieve this tier
+          example: 10
+          minimum: 0
+        rank:
+          type: number
+          description: Rank/priority of the tier (higher number = higher tier)
+          example: 3
+          minimum: 1
+    CreateMemberTierDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Tenant ID that owns this member tier assignment
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        tierId:
+          type: string
+          description: Tier ID to assign to the member
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        expiry:
+          format: date-time
+          type: string
+          description: Optional expiry date for the tier assignment
+          example: '2024-12-31T23:59:59.000Z'
+        sourceType:
+          type: string
+          description: Source type that triggered this tier assignment
+          enum:
+            - admin
+            - system
+            - campaign
+          example: campaign
+        sourceId:
+          type: string
+          description: Optional source ID (e.g., campaign ID, admin ID) that triggered this assignment
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+      required:
+        - tenantId
+        - tierId
+        - sourceType
+    MemberTier:
+      type: object
+      properties: {}
+    PaginatedResponse:
+      type: object
+      properties: {}
+    CreateEventLogDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Tenant ID that owns this event log
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        memberId:
+          type: string
+          description: Member ID associated with this event
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        eventId:
+          type: string
+          description: Event ID that triggered this log
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        metadata:
+          type: object
+          description: Optional metadata associated with the event
+          example:
+            points: 100
+            source: purchase
+            orderId: ORD-123
+          additionalProperties: true
+        eventTime:
+          format: date-time
+          type: string
+          description: Timestamp when the event occurred
+          example: '2024-01-15T10:30:00.000Z'
+        processingStatus:
+          type: string
+          description: Processing status of the event log
+          enum:
+            - pending
+            - processing
+            - completed
+          example: pending
+      required:
+        - tenantId
+        - memberId
+        - eventId
+    CreateMemberDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Full name of the member
+          example: John Doe
+        externalId:
+          type: string
+          description: External system ID for the member
+          example: EXT-12345
+        email:
+          type: string
+          description: Email address of the member
+          example: john.doe@example.com
+        phone:
+          type: string
+          description: Phone number of the member
+          example: '+1234567890'
+          maxLength: 20
+          pattern: ^\+?[0-9\s\-]{7,20}$
+        referralCode:
+          type: string
+          description: Referral code for the member
+          example: ABC12345
+          pattern: ^[A-Za-z0-9]{8}$
+        joinDate:
+          format: date-time
+          type: string
+          description: Date the member joined
+          example: '2024-01-01T00:00:00.000Z'
+        metadata:
+          type: object
+          description: Optional metadata for the member
+          example:
+            loyaltyLevel: Gold
+            referredBy: ABC12345
+          additionalProperties: true
+      required:
+        - name
+        - email
+        - joinDate
+    MemberResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: Unique identifier for the member
+        name:
+          type: string
+          example: John Doe
+          description: Member's full name
+        email:
+          type: string
+          example: john@example.com
+          description: Member's email address
+        phone:
+          type: string
+          description: Phone number of the member
+        externalId:
+          type: string
+          example: EXT123
+          description: External identifier for the member
+        referralCode:
+          type: string
+          example: ABC12345
+          description: Unique referral code for the member
+        referredBy:
+          type: string
+          nullable: true
+          example: Jane Smith
+          description: Name of the member who referred this member
+        referredById:
+          type: string
+          nullable: true
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: ID of the member who referred this member
+        joinDate:
+          format: date-time
+          type: string
+          example: '2023-01-01T00:00:00.000Z'
+          description: Date when the member joined
+        tierName:
+          type: string
+          example: Gold
+          description: Current tier name of the member
+        status:
+          type: string
+          example: active
+          description: Current status of the member
+          enum:
+            - active
+            - inactive
+            - suspended
+        segments:
+          example:
+            - Marketing
+            - Premium
+          description: Member's segment names
+          type: array
+          items:
+            type: string
+        totalPointsEarned:
+          type: number
+          example: 1000
+          description: Total points earned by the member
+        activePointsBalance:
+          type: number
+          example: 500
+          description: Current active points balance of the member
+        createdAt:
+          format: date-time
+          type: string
+          example: '2023-01-01T00:00:00.000Z'
+          description: Creation timestamp
+        updatedAt:
+          format: date-time
+          type: string
+          example: '2023-01-15T00:00:00.000Z'
+          description: Last update timestamp
+      required:
+        - id
+        - name
+        - email
+        - phone
+        - referralCode
+        - referredBy
+        - referredById
+        - joinDate
+        - tierName
+        - status
+        - segments
+        - totalPointsEarned
+        - activePointsBalance
+        - createdAt
+        - updatedAt
+    PaginatedMembersResponseDto:
+      type: object
+      properties:
+        data:
+          description: Array of member objects
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberResponseDto'
+        total:
+          type: number
+          example: 100
+          description: Total number of members matching the query
+        page:
+          type: number
+          example: 1
+          description: Current page number
+        pageSize:
+          type: number
+          example: 10
+          description: Number of items per page
+        totalPages:
+          type: number
+          example: 10
+          description: Total number of pages
+      required:
+        - data
+        - total
+        - page
+        - pageSize
+        - totalPages
+    UpdateMemberDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Full name of the member
+          example: John Doe
+        email:
+          type: string
+          description: Email address of the member
+          example: john.doe@example.com
+        phone:
+          type: string
+          description: Phone number of the member
+          example: '+1234567890'
+          maxLength: 20
+          pattern: ^\+?[0-9\s\-]{7,20}$
+        tierId:
+          type: string
+          description: Tier ID to assign to the member
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        status:
+          type: string
+          description: Status of the member
+          enum:
+            - active
+            - inactive
+          example: active
+        metadata:
+          type: object
+          description: Optional metadata for the member
+          example:
+            loyaltyLevel: Gold
+            referredBy: ABC12345
+          additionalProperties: true
+    ValidateMembersDto:
+      type: object
+      properties:
+        memberIds:
+          description: Array of member UUIDs to validate
+          example:
+            - 123e4567-e89b-12d3-a456-426614174000
+            - 123e4567-e89b-12d3-a456-426614174001
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+        - memberIds
+    ValidatedMemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Member ID
+          example: 550e8400-e29b-41d4-a716-446655440000
+        email:
+          type: string
+          description: Member email address
+          example: member@example.com
+        fullName:
+          type: string
+          description: Member full name
+          example: John Doe
+        assignedTier:
+          type: string
+          description: Assigned tier name
+          example: Gold
+        pointBalance:
+          type: number
+          description: Current points balance
+          example: 1250
+        isValid:
+          type: boolean
+          description: Whether the member ID is valid
+          example: true
+      required:
+        - id
+        - email
+        - fullName
+        - assignedTier
+        - pointBalance
+        - isValid
+    BurnPointsDto:
+      type: object
+      properties:
+        cartTotal:
+          type: number
+          description: The total amount of the cart
+          example: 100.5
+          minimum: 0
+        pointsToUse:
+          type: number
+          description: The number of points to burn
+          example: 500
+          minimum: 0
+        memberId:
+          type: string
+          description: The ID of the member
+          example: 123e4567-e89b-12d3-a456-426614174000
+        identifierType:
+          type: string
+          description: The type of identifier when memberId is provided
+          example: external
+          enum:
+            - external
+            - internal
+        email:
+          type: string
+          description: The email of the member
+          example: member@example.com
+        currency:
+          type: string
+          description: The currency code for the transaction
+          example: USD
+      required:
+        - cartTotal
+        - pointsToUse
+    RedeemPointsDto:
+      type: object
+      properties:
+        memberExternalId:
+          type: string
+          description: External ID of the member
+          example: EXT-12345
+        memberId:
+          type: string
+          description: Internal UUID of the member
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        redeemAmount:
+          type: number
+          description: Amount of points to redeem
+          example: 100
+          minimum: 1
+        metadata:
+          type: object
+          description: Optional metadata for the redemption
+          example:
+            orderId: ORD-123
+            source: checkout
+          additionalProperties: true
+      required:
+        - redeemAmount
+    PointsParcelExpiryResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: Unique identifier for the member
+        name:
+          type: string
+          example: John Doe
+          description: Name of the member
+        externalId:
+          type: string
+          example: ext-123
+          description: External identifier for the member
+        email:
+          type: string
+          example: john.doe@example.com
+          description: Email address of the member
+        expiryDate:
+          format: date-time
+          type: string
+          example: '2024-12-31T23:59:59Z'
+          description: Expiry date of the points parcel
+        unspentAmount:
+          type: number
+          example: 100
+          description: Unspent amount of points in the parcel
+        activePointsBalance:
+          type: number
+          example: 500
+          description: Active points balance of the member
+      required:
+        - id
+        - name
+        - externalId
+        - email
+        - expiryDate
+        - unspentAmount
+        - activePointsBalance
+    PaginatedPointsParcelExpiryResponseDto:
+      type: object
+      properties:
+        data:
+          description: Array of points parcel expiry objects
+          type: array
+          items:
+            $ref: '#/components/schemas/PointsParcelExpiryResponseDto'
+        total:
+          type: number
+          example: 100
+          description: Total number of records matching the query
+        page:
+          type: number
+          example: 1
+          description: Current page number
+        pageSize:
+          type: number
+          example: 10
+          description: Number of items per page
+        totalPages:
+          type: number
+          example: 10
+          description: Total number of pages
+      required:
+        - data
+        - total
+        - page
+        - pageSize
+        - totalPages
+    CreatePointsLedgerDto:
+      type: object
+      properties:
+        memberId:
+          type: string
+          description: UUID of the member
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        type:
+          type: string
+          description: Type of ledger entry
+          enum:
+            - earn
+            - burn
+            - adjustment
+            - expired
+          example: earn
+        sourceType:
+          type: string
+          description: Source type for the ledger entry
+          example: campaign
+        sourceId:
+          type: string
+          description: Source ID for the ledger entry
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        amount:
+          type: number
+          description: Amount of points for the ledger entry
+          example: 100
+        expiryDate:
+          format: date-time
+          type: string
+          description: Optional expiry date for the points
+          example: '2024-12-31T23:59:59.000Z'
+        reason:
+          type: string
+          description: Optional reason for the ledger entry
+          example: Manual adjustment
+      required:
+        - memberId
+        - type
+        - sourceType
+        - sourceId
+        - amount
+    CreateTriggerLogsDto:
+      type: object
+      properties:
+        memberId:
+          type: string
+          description: UUID of the member
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        triggerId:
+          type: string
+          description: UUID of the trigger
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        triggerIdentifier:
+          type: string
+          description: Identifier of the trigger
+          example: purchase_completed
+        metadata:
+          type: object
+          description: Optional metadata for the trigger log
+          example:
+            orderId: ORD-123
+            source: checkout
+          additionalProperties: true
+        triggerTime:
+          format: date-time
+          type: string
+          description: Time when the trigger occurred
+          example: '2024-01-01T00:00:00.000Z'
+        processingStatus:
+          type: string
+          description: Processing status of the trigger log
+          enum:
+            - pending
+            - processing
+            - completed
+          example: pending
+      required:
+        - memberId
+        - triggerTime
+    CustomAttributeDto:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - text
+            - number
+            - boolean
+            - date
+        systemIdentifier:
+          type: string
+      required:
+        - name
+        - type
+        - systemIdentifier
+    MetadataDto:
+      type: object
+      properties:
+        custom_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomAttributeDto'
+    CreateTriggerDto:
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          additionalProperties: true
+          allOf:
+            - $ref: '#/components/schemas/MetadataDto'
+      required:
+        - name
+    TriggerResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the trigger
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        name:
+          type: string
+          description: Name of the trigger
+          example: Purchase Completed
+        type:
+          type: string
+          description: Type of the trigger
+          enum:
+            - burn
+            - purchase
+            - internal
+            - achievement
+            - custom
+          example: burn
+        supportedOperators:
+          description: Supported operators for the trigger
+          example:
+            - equals
+            - greater_than
+          type: array
+          items:
+            type: string
+        metadata:
+          type: object
+          description: Metadata associated with the trigger
+          example:
+            custom_attributes:
+              - name: Order Value
+                type: number
+                systemIdentifier: order_value
+          additionalProperties: true
+        createdAt:
+          format: date-time
+          type: string
+          description: Creation timestamp
+          example: '2024-01-01T00:00:00.000Z'
+      required:
+        - id
+        - name
+        - createdAt
+    UpdateTriggerDto:
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          additionalProperties: true
+          allOf:
+            - $ref: '#/components/schemas/MetadataDto'
+    UpdateConfigsDto:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Configuration key
+          example: max_points_per_transaction
+        value:
+          type: string
+          description: Configuration value
+          example: '1000'
+    CreateCampaignTriggerDto:
+      type: object
+      properties: {}
+    CreateCampaignDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Tenant ID
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        name:
+          type: string
+          description: Name of the campaign
+          example: Summer Promo
+        description:
+          type: string
+          description: Description of the campaign
+          example: Earn double points during summer
+        type:
+          type: string
+          description: Type of the campaign
+          enum:
+            - purchase
+            - internal
+            - achievement
+            - custom
+          example: purchase
+        startDate:
+          format: date-time
+          type: string
+          description: Start date of the campaign
+          example: '2024-06-01T00:00:00.000Z'
+        endDate:
+          format: date-time
+          type: string
+          description: End date of the campaign
+          example: '2024-08-31T23:59:59.000Z'
+        frequency:
+          type: number
+          description: Frequency of the campaign
+          example: 1
+        rewardLimitPerMember:
+          type: number
+          description: Reward limit per member
+          example: 5
+        totalRewardLimit:
+          type: number
+          description: Total reward limit for the campaign
+          example: 100
+        totalPointsLimit:
+          type: number
+          description: Total points limit for the campaign
+          example: 10000
+        status:
+          type: string
+          description: Status of the campaign
+          enum:
+            - active
+            - draft
+            - inactive
+          example: active
+        campaignSteps:
+          type: string
+          description: Current step of the campaign
+          enum:
+            - campaign_creation
+            - campaign_trigger
+            - campaign_condition
+            - campaign_effect
+            - campaign_created
+          example: campaign_creation
+        priority:
+          type: number
+          description: Priority of the campaign
+          example: 1
+        conditionOperator:
+          type: string
+          description: Logical operator for campaign conditions
+          enum:
+            - AND
+            - OR
+          example: AND
+      required:
+        - tenantId
+        - name
+        - type
+        - status
+    Campaign:
+      type: object
+      properties: {}
+    UpdateCampaignDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the campaign
+          example: Summer Promo
+        description:
+          type: string
+          description: Description of the campaign
+          example: Earn double points during summer
+        type:
+          type: string
+          description: Type of the campaign
+          enum:
+            - purchase
+            - internal
+            - achievement
+            - custom
+          example: purchase
+        startDate:
+          format: date-time
+          type: string
+          description: Start date of the campaign
+          example: '2024-06-01T00:00:00.000Z'
+        endDate:
+          format: date-time
+          type: string
+          description: End date of the campaign
+          example: '2024-08-31T23:59:59.000Z'
+        frequency:
+          type: number
+          description: Frequency of the campaign
+          example: 1
+        rewardLimitPerMember:
+          type: number
+          description: Reward limit per member
+          example: 5
+        totalRewardLimit:
+          type: number
+          description: Total reward limit for the campaign
+          example: 100
+        totalPointsLimit:
+          type: number
+          description: Total points limit for the campaign
+          example: 10000
+        status:
+          type: string
+          description: Status of the campaign
+          enum:
+            - active
+            - draft
+            - inactive
+          example: active
+        campaignSteps:
+          type: string
+          description: Current step of the campaign
+          enum:
+            - campaign_creation
+            - campaign_trigger
+            - campaign_condition
+            - campaign_effect
+            - campaign_created
+          example: campaign_creation
+        priority:
+          type: number
+          description: Priority of the campaign
+          example: 1
+        conditionOperator:
+          type: string
+          description: Logical operator for campaign conditions
+          enum:
+            - AND
+            - OR
+          example: AND
+    CreateCampaignConditionDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the condition
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        campaignId:
+          type: string
+          description: Campaign ID this condition belongs to
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+        filterType:
+          type: string
+          description: Type of filter for the condition
+          example: member_tier
+        conditionableType:
+          type: string
+          description: Type of the conditionable entity
+          enum:
+            - campaign
+            - trigger
+          example: campaign
+        conditionableId:
+          type: string
+          description: ID of the conditionable entity
+          example: tier-123
+        operator:
+          type: string
+          description: Operator for the condition
+          enum:
+            - '='
+            - '!='
+            - '>'
+            - <
+            - '>='
+            - <=
+          example: '='
+        campaignSteps:
+          type: string
+          description: Campaign step this condition applies to
+          enum:
+            - campaign_creation
+            - campaign_trigger
+            - campaign_condition
+            - campaign_effect
+            - campaign_created
+          example: campaign_creation
+        value:
+          type: number
+          description: Value for the condition
+          example: 100
+        conditionOperator:
+          type: string
+          description: Logical operator for combining conditions
+          enum:
+            - AND
+            - OR
+          example: AND
+      required:
+        - campaignId
+        - conditionableType
+    CreateVoucherDefinitionDto:
+      type: object
+      properties: {}
+    VoucherDefinitionResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the voucher definition
+          example: 550e8400-e29b-41d4-a716-446655440000
+        tenantId:
+          type: string
+          description: Tenant ID
+          example: 550e8400-e29b-41d4-a716-446655440001
+        name:
+          type: string
+          description: Name of the voucher definition
+          example: Summer Sale 2025
+        description:
+          type: string
+          description: Description of the voucher definition
+          example: Get 25% off on all summer products
+        createdById:
+          type: string
+          description: ID of the user who created the voucher definition
+          example: 550e8400-e29b-41d4-a716-446655440002
+        prefix:
+          type: string
+          description: Prefix for generated voucher codes
+          example: SUMMER25
+        voucherType:
+          type: string
+          description: Type of voucher
+          enum:
+            - discount_fixed
+            - discount_percentage
+            - free_shipping
+          example: discount_fixed
+        voucherValue:
+          type: string
+          description: Value of the voucher (amount, percentage, etc.)
+          example: 100% or $5
+        generationType:
+          type: string
+          description: Type of generation
+          enum:
+            - uploaded
+            - generated
+          example: generated
+        formatLength:
+          type: number
+          description: Length of generated voucher code
+          example: 8
+        formatCharacterSet:
+          type: string
+          description: Character set for generated voucher code
+          enum:
+            - alphanumeric
+            - numeric
+            - alphabetic
+          example: alphanumeric
+        metadata:
+          type: object
+          description: Additional metadata for voucher definition
+          example:
+            campaign: Summer2025
+            department: Marketing
+        expiryType:
+          type: string
+          description: Type of expiry for vouchers
+          enum:
+            - fixed
+            - relative
+            - none
+          example: fixed
+        fixedExpiryDate:
+          format: date-time
+          type: string
+          description: Fixed expiry date for vouchers
+          example: '2025-12-31'
+        redeemLimit:
+          type: number
+          description: Maximum number of times a voucher can be redeemed
+          example: 1
+        relativeExpiryType:
+          type: string
+          description: Type of relative expiry
+          enum:
+            - date_of_issuance
+            - date_of_generation
+          example: date_of_issuance
+        relativeExpiryValue:
+          type: number
+          description: Value for relative expiry in days
+          example: 30
+        createdAt:
+          format: date-time
+          type: string
+          description: Creation timestamp
+          example: '2025-06-11T10:30:00Z'
+        updatedAt:
+          format: date-time
+          type: string
+          description: Last update timestamp
+          example: '2025-06-11T10:30:00Z'
+        successfullyGeneratedVouchers:
+          type: number
+          description: Number of vouchers successfully generated
+          example: '500'
+        totalVouchers:
+          type: number
+          description: Total number of vouchers defined
+          example: 1000
+        totalAssignedVouchers:
+          type: number
+          description: Total number of vouchers assigned
+          example: 800
+        totalRedeemedVouchers:
+          type: number
+          description: Total number of vouchers redeemed
+          example: 600
+      required:
+        - id
+        - tenantId
+        - name
+        - description
+        - createdById
+        - voucherType
+        - voucherValue
+        - generationType
+        - formatLength
+        - expiryType
+        - createdAt
+        - updatedAt
+        - successfullyGeneratedVouchers
+    UpdateVoucherDefinitionDto:
+      type: object
+      properties: {}
+    VoucherResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the voucher definition
+          example: 550e8400-e29b-41d4-a716-446655440000
+        tenantId:
+          type: string
+          description: Tenant ID
+          example: 550e8400-e29b-41d4-a716-446655440001
+        code:
+          type: string
+          description: Name of the voucher definition
+          example: Summer Sale 2025
+        assignedToName:
+          type: string
+          description: Name of the user assigned to the voucher
+          example: John Doe
+        assignedToEmail:
+          type: string
+          description: Email of the user assigned to the voucher
+          example: john.doe@example.com
+        issuedAt:
+          format: date-time
+          type: string
+          description: Date when the voucher was issued
+          example: '2025-06-01T12:00:00Z'
+        redeemedAt:
+          format: date-time
+          type: string
+          description: Date when the voucher was redeemed
+          example: '2025-06-01T12:00:00Z'
+        expiryDate:
+          format: date-time
+          type: string
+          description: Date when the voucher expires
+          example: '2025-06-01T12:00:00Z'
+        status:
+          type: string
+          description: Status of the voucher
+          enum:
+            - active
+            - redeemed
+            - expired
+      required:
+        - id
+        - tenantId
+        - code
+        - assignedToName
+        - assignedToEmail
+        - issuedAt
+        - redeemedAt
+        - expiryDate
+        - status
+    VouchersAssignmentDto:
+      type: object
+      properties: {}
+    VouchersFileProcessDto:
+      type: object
+      properties: {}
+    RedeemVoucherDto:
+      type: object
+      properties:
+        voucherCode:
+          type: string
+          description: The voucher code to redeem
+          example: SAVE20
+        memberId:
+          type: string
+          description: The member ID
+          example: 123e4567-e89b-12d3-a456-426614174000
+        identifierType:
+          type: string
+          description: The type of identifier when memberId is provided
+          example: external
+          enum:
+            - external
+            - internal
+        email:
+          type: string
+          description: The member email
+          example: member@example.com
+      required:
+        - voucherCode
+    BasicSegmentDto:
+      type: object
+      properties: {}
+    SegmentResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: Unique identifier for the segment
+        name:
+          type: string
+          example: Top Customers
+          description: Name of the segment
+        description:
+          type: string
+          example: Segment for top 10% of customers based on purchase history
+          description: Description of the segment
+        membersCount:
+          type: number
+          example: 100
+          description: Number of members in the segment
+        createdAt:
+          format: date-time
+          type: string
+          example: '2023-10-01T12:00:00Z'
+          description: Timestamp when the segment was created
+        updatedAt:
+          format: date-time
+          type: string
+          example: '2023-10-02T12:00:00Z'
+          description: Timestamp when the segment was last updated
+      required:
+        - id
+        - name
+        - description
+        - membersCount
+        - createdAt
+        - updatedAt
+    MembersToSegmentDto:
+      type: object
+      properties:
+        memberIds:
+          description: Array of member IDs to add to the segment
+          example:
+            - 550e8400-e29b-41d4-a716-446655440000
+            - 550e8400-e29b-41d4-a716-446655440001
+          type: array
+          items:
+            type: string
+      required:
+        - memberIds
+    SegmentCsvFileProcessingDto:
+      type: object
+      properties: {}
+    TenantGraphDataPointDto:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Date/time period for this data point
+          example: '2024-01-01'
+        members:
+          type: number
+          description: Number of members for this period
+          example: 100
+        activePointsBalance:
+          type: number
+          description: Active points balance for this period
+          example: 5000
+        pointsEarned:
+          type: number
+          description: Points earned for this period
+          example: 1000
+        pointsRedeemed:
+          type: number
+          description: Points redeemed for this period
+          example: 500
+        pointsExpired:
+          type: number
+          description: Points expired for this period
+          example: 100
+      required:
+        - period
+        - members
+        - activePointsBalance
+        - pointsEarned
+        - pointsRedeemed
+        - pointsExpired
+    TenantStatsResponseDto:
+      type: object
+      properties:
+        totalMembers:
+          type: number
+          description: Total number of members
+          example: 1250
+        totalActivePointsBalance:
+          type: number
+          description: Total active points balance across all members
+          example: 50000
+        totalPointsEarned:
+          type: number
+          description: Total points earned across all members
+          example: 75000
+        totalPointsRedeemed:
+          type: number
+          description: Total points redeemed across all members
+          example: 25000
+        totalPointsExpired:
+          type: number
+          description: Total points expired across all members
+          example: 5000
+        averagePointsPerMember:
+          type: number
+          description: Average points per member
+          example: 40
+        pointsRedemptionRate:
+          type: number
+          description: Points redemption rate (percentage)
+          example: 33.33
+        pointsExpiryRate:
+          type: number
+          description: Points expiry rate (percentage)
+          example: 6.67
+      required:
+        - totalMembers
+        - totalActivePointsBalance
+        - totalPointsEarned
+        - totalPointsRedeemed
+        - totalPointsExpired
+        - averagePointsPerMember
+        - pointsRedemptionRate
+        - pointsExpiryRate
+    MemberStatsResponseDto:
+      type: object
+      properties:
+        totalPointsEarned:
+          type: number
+          description: Total points earned by the member
+          example: 5000
+        totalPointsRedeemed:
+          type: number
+          description: Total points redeemed by the member
+          example: 2000
+        totalPointsExpired:
+          type: number
+          description: Total points expired for the member
+          example: 500
+        activePointsBalance:
+          type: number
+          description: Current active points balance
+          example: 2500
+        pointsToBeExpiredSoon:
+          type: number
+          description: Points to be expired soon
+          example: 200
+        campaignEngagement:
+          type: number
+          description: Campaign engagement rate for the member
+          example: 75.5
+      required:
+        - totalPointsEarned
+        - totalPointsRedeemed
+        - totalPointsExpired
+        - activePointsBalance
+        - pointsToBeExpiredSoon
+        - campaignEngagement
+    MemberGraphDataPointDto:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Date/time period for this data point
+          example: '2024-01-01'
+        activePointsBalance:
+          type: number
+          description: Active points balance for this period
+          example: 2500
+      required:
+        - period
+        - activePointsBalance
+    CampaignStatsResponseDto:
+      type: object
+      properties:
+        totalActiveCampaigns:
+          type: number
+          description: Total number of active campaigns
+          example: 15
+        totalTriggers:
+          type: number
+          description: Total number of campaign triggers
+          example: 2500
+        totalMembersAffected:
+          type: number
+          description: Total unique members affected by campaigns
+          example: 800
+        averageTriggersPerCampaign:
+          type: number
+          description: Average triggers per campaign
+          example: 166.67
+        campaignEngagementRate:
+          type: number
+          description: Campaign engagement rate (percentage)
+          example: 64
+      required:
+        - totalActiveCampaigns
+        - totalTriggers
+        - totalMembersAffected
+        - averageTriggersPerCampaign
+        - campaignEngagementRate
+    CampaignEngagementStatsResponseDto:
+      type: object
+      properties:
+        totalCampaignsTriggered:
+          type: number
+          description: Total campaigns triggered in the period
+          example: 45
+        totalMembersEngaged:
+          type: number
+          description: Total unique members engaged
+          example: 320
+        averageEngagementRate:
+          type: number
+          description: Average engagement rate per campaign
+          example: 71.1
+        mostEngagedCampaignType:
+          type: string
+          description: Most engaged campaign type
+          example: points_earned
+        engagementTrend:
+          type: string
+          description: Campaign engagement trend
+          example: increasing
+      required:
+        - totalCampaignsTriggered
+        - totalMembersEngaged
+        - averageEngagementRate
+        - mostEngagedCampaignType
+        - engagementTrend
+    CampaignTriggersGraphDataPointDto:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Date/time period for this data point
+          example: '2024-01-01'
+        triggers:
+          type: number
+          description: Number of campaign triggers for this period
+          example: 150
+        membersAffected:
+          type: number
+          description: Number of unique members affected for this period
+          example: 120
+      required:
+        - period
+        - triggers
+        - membersAffected
+    MembersStatsResponseDto:
+      type: object
+      properties:
+        totalMembers:
+          type: number
+          description: Total number of members
+          example: 1250
+        activeMembers:
+          type: number
+          description: Number of active members in the period
+          example: 980
+        newMembers:
+          type: number
+          description: Number of new members in the period
+          example: 45
+        memberGrowthRate:
+          type: number
+          description: Member growth rate (percentage)
+          example: 3.7
+        averagePointsPerMember:
+          type: number
+          description: Average points per member
+          example: 40
+        campaignEngagement:
+          type: number
+          description: Campaign engagement rate across all members
+          example: 78.4
+      required:
+        - totalMembers
+        - activeMembers
+        - newMembers
+        - memberGrowthRate
+        - averagePointsPerMember
+        - campaignEngagement
+    MembersSegmentsGraphDataPointDto:
+      type: object
+      properties:
+        segmentName:
+          type: string
+          description: Segment name
+          example: Premium Members
+        memberCount:
+          type: number
+          description: Number of members in this segment
+          example: 250
+        percentage:
+          type: number
+          description: Percentage of total members
+          example: 20
+      required:
+        - segmentName
+        - memberCount
+        - percentage
+    PointsStatsResponseDto:
+      type: object
+      properties:
+        totalPointsEarned:
+          type: number
+          description: Total points earned in the period
+          example: 15000
+        totalPointsRedeemed:
+          type: number
+          description: Total points redeemed in the period
+          example: 8000
+        totalPointsExpired:
+          type: number
+          description: Total points expired in the period
+          example: 2000
+        activePointsBalance:
+          type: number
+          description: Current active points balance
+          example: 50000
+        redemptionRate:
+          type: number
+          description: Points redemption rate (percentage)
+          example: 53.33
+        expiryRate:
+          type: number
+          description: Points expiry rate (percentage)
+          example: 13.33
+        averagePointsEarnedPerMember:
+          type: number
+          description: Average points earned per member
+          example: 12
+      required:
+        - totalPointsEarned
+        - totalPointsRedeemed
+        - totalPointsExpired
+        - activePointsBalance
+        - redemptionRate
+        - expiryRate
+        - averagePointsEarnedPerMember
+    PointsExpiryGraphDataPointDto:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Date/time period for this data point
+          example: '2024-01-01'
+        pointsExpiring:
+          type: number
+          description: Number of points expiring in this period
+          example: 500
+        membersAffected:
+          type: number
+          description: Number of members affected by expiring points
+          example: 45
+      required:
+        - period
+        - pointsExpiring
+        - membersAffected
+    CampaignTiersGraphDataPointDto:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Date/time period for this data point
+          example: '2024-01-01'
+        tierName:
+          type: string
+          description: Tier name
+          example: Gold
+        campaignCount:
+          type: number
+          description: Number of campaigns for this tier in this period
+          example: 5
+        memberCount:
+          type: number
+          description: Number of members in this tier
+          example: 150
+      required:
+        - period
+        - tierName
+        - campaignCount
+        - memberCount
+    MembersTiersGraphDataPointDto:
+      type: object
+      properties:
+        tierName:
+          type: string
+          description: Tier name or "Not Assigned"
+          example: Gold
+        memberCount:
+          type: number
+          description: Number of members in this tier
+          example: 250
+        percentage:
+          type: number
+          description: Percentage of total members
+          example: 20
+      required:
+        - tierName
+        - memberCount
+        - percentage

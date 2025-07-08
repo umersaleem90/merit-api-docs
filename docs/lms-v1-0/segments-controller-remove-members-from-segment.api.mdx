@@ -1,0 +1,71 @@
+---
+id: segments-controller-remove-members-from-segment
+title: "Remove members from segment"
+description: "Remove multiple members from a segment"
+sidebar_label: "Remove members from segment"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVdtu2zgQ/RVinnYBKZK7durqLW1awIsWDeIU+2AExVgcx2opkiUpt67gf18MRV9SB4u2WL9Yonjmes5MD5J87RobGqOhgltqzYZE26nQWEWipXZJzouVM61A4emhJR0gA2PJIYNmEiqYD+f+ldHBGaXIfXTR0rsB/8aZdn7AWnTYUiDnoVr0oLElqCCQRh0+NhIycPSlaxxJqILrKIOGY7MY1pD9EPBdRInZNWTg6zW1CFUPK+NaDFBB10V7YWvZhQ+u0Q+w22UHr7/oLiXxq/7uBx/kw0sjt4z40WVtdODqVD2gtaqpY3GLT57d9ieukmmz/ER1LKbjVoSGPH8d+jWT8eVx6FfO4VaYVeqpmF17EYxAKfkvrOmku/QNW6sIqgVMJiVNx2WZ07MXy3w8kuMcn48u8/H48nIyGY/Lsiwh+5lrI7g/VAY5GMigCdT6k7QOFduddmVxkhfbaALHBolcdyZ15ToYRkaot0b7oSbPyvK8GgkrBprKgeCpAMJ3dU3erzqltrDLYPyUhZcoRWqqyMVMb1A1cl9ciQEH5Ogc+UFjF9bGNd9JDpfG55f2TNMmiJXpdLw5eSqQmQ7kNCoxJ7chJ147ZxyTHAI+sMQO8uTitRTWhjVrjR/EGNZQQTHIzxf9QYe7ItXDFz2/pVlQDCVj/kd/g4g7p6CCdQjWV0UhaUPK2HyJ9WfSMletz9HafPpi+nw6uRxNyun0ovN5TTo4VKML1+kLtPZMb9eDoaEr0R2weI/eqqJQpka1Nj5Uf5VlWWxGZ1be8o0D/p4jrzvXhO2cZTWwZEnoyB20xvxKR1l6eLMX+d//3B01zkHEYrNUb48if72X0CNR/s962vGsWpkooIMoXBPE23dzcaXsGsXVzeysHu8t6aubmfCW6maVZo0XK+NOgKSlNQ2zJgNu8wAdXZQXHB/PK6x5XnHuzKUW46RKc3W/SE73x3G+PAqnPw6/n98/qfqBvoXCKmw0yyPSok+UXqSNwvFXp8tlz2o+jwfJSVwEkdr3GTCf2EbfL9HTB6d2Oz7+0pHbQrW4z2CDrsFlHJI9yMbzs4RqhcrTf2T4x20aa3+K0931ZD77Yal5VG5QdfwGGXym7aOFyZL4rQgerbPfCIF9MwnXhJLFs+jTh1eDt/yO4Ufg2WrbnU6km/dzFtYyrcjWSMY4/Mqdwa+DYxMzipKNZz0o1A8dPvDdwSb//gWamvbS
+sidebar_class_name: "post api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Remove members from segment"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/segments/{id}/members/remove"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Remove multiple members from a segment
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}},{"name":"id","required":true,"in":"path","description":"Segment ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"memberIds":{"description":"Array of member IDs to add to the segment","example":["550e8400-e29b-41d4-a716-446655440000","550e8400-e29b-41d4-a716-446655440001"],"type":"array","items":{"type":"string"}}},"required":["memberIds"],"title":"MembersToSegmentDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Members removed from segment successfully"},"400":{"description":"Bad request - Invalid member data"},"401":{"description":"Unauthorized"},"404":{"description":"Segment not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

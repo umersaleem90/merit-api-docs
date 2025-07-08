@@ -1,0 +1,71 @@
+---
+id: create-a-new-tier
+title: "Create a new tier"
+description: "Create a new tier"
+sidebar_label: "Create a new tier"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVUtvm0AQ/itoTq20NqRVL9zStIdIiRIl6cmyojGM7U1gd7M7OLEQ/70awA5+xGqlHsoFduf9zTdDDYyLAOkEWJMPMFXg6aWiwN9tvoa0bo/aUw4p+4oUZNYwGRYROlfoDFlbEz8Fa+QuZEsqUb547QhSsLMnyhgUOG8dedYUWikZNPyo84FqYK/NAhoFBks6Kii1eXRWGw4DsTZMC/Ibuac5eY/FCRVa0YcuPJrnY5JGDbCYDAro0+0tpwpYcyGmD5r8hSdkgqbp7IOzJnQIfEnO5JVTyLx2AmJvEmWtjTj+R2AfQ1nB3PoSGVKoKp1L5Sd6ckT7f+yRgh67R+STReTINGJdkthULv9Lmz0utCT4Q0K0VGgUOPRYEsvQpZO6R3PHiRZCOOQlqIMpPOj8R31qpmqPYh0jI4wMvUYy9aCgJF7aXMLZ0NJHoqYQd+mEuN7m1cTdolAQyK822Ve+gBSWzC6kcbz6Nsotj4oyjHIq7Qidbi+kTd5gMSrJazlmZFivKIwrGvsxOhec5XFmy3h1Bvt5/6AVFdaVZDjqYkOjhqHTOC5shsXSBk6/JklyzMuVaGztpwpklu7eV97PNyxdQXsr6h3evk/b85DsyQG3k10qJxvmJo20d27bMD05rgWU6Or6Pjov3BKj89tLUCAQd5mfjZNxclDPjSNzfnsZBUeZnvcLIkRz6weuyOR9jkI8G7jEdn/0xRxjxE6ULcuY3jh2BWrTzo1AX/dk2WxEoUY6pPH2xyJ9Eb26nmGgX75oGrl+qcivIZ1MFazQa5wJGpMach3kO4d0jkWgg5S2uxE+3fXT8TmSeMdS7S/RrAVTLCo5gYJnWu9MXTNtFCwJc/JtEp38ogs1ehAv7/YHK1n42FmcZxk5Pqk7HYzd7c39AyiY9f/c0uZi4/G1XSKvXa62Lb3diO1dDQWaRYUL0e18yvMb1BauoA==
+sidebar_class_name: "post api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create a new tier"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/tiers"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Create a new tier
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"tenant_id":{"type":"string"},"name":{"type":"string"},"min_points":{"type":"integer"},"min_referrals":{"type":"integer"},"min_events":{"type":"integer"},"rank":{"type":"integer"}},"required":["tenant_id","name","rank"],"title":"TierCreate"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Tier created","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"name":{"type":"string"},"min_points":{"type":"integer"},"min_referrals":{"type":"integer"},"min_events":{"type":"integer"},"rank":{"type":"integer"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","name","rank"],"title":"Tier"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

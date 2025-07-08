@@ -1,0 +1,71 @@
+---
+id: vouchers-controller-process-voucher-file
+title: "Process voucher file"
+description: "Process uploaded CSV file to create vouchers"
+sidebar_label: "Process voucher file"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVF2P0zgU/SvWfVqkpGmB2S15G2ZAKgIxogP7UFXoNr6ZGBzb2E6hG+W/r25iph06uxLzMqntcz/OPff0IClUXrmorIESbrytKATROW1RkhRX60+iVppEtKLyhJHE3nZVQz5ABtaRR4auJJTwKV1cWRO91Zr8ZzfFSzevlSbIwKHHliKHKDc9GGwJSohk0MTPSkIGnr51ypOEMvqOMlBcm8PYQPZLwbcjSqyuIYNQNdQilD3U1rcYoYSuG+PFg+MUIXpl7mAYtlMKCvGllQdG/JqxsiaSiXyFzmlVjW0WXwJn7U9SpdB294WqyM15JiUqClD2QwZRRU0n5DAHieXraGEYhoGLCc6aMGLg6XzO/x72yTCR2CQpQlfxV91pfYAhg+ePYV6iFKlNkYuV2aNWcpqmxIgTbnGO+2iwi4316h+S06Pn/1GQsVHUtjPjs4vHaliZSN6gFmvye/LilffWA/cc8Y7nf08MbDNoKTaWpeRsGMnkkZdQTNoIRX8vkqFIMswl1cooTheKRFBeT0ILY85JZZ3XUEITowtlUUjak7Yu32H1lYzMdRtydC5fvlj+tbz4c3ExXy5nXcgrMtGjXsx8Z2bo3Jn+rqdALZkopnQwZKfZyqLQtkLd2BDLZ/P5vNgvzqK85Rf3+C1XXnVexcOadTbJYkfoyd+LjzWVjrL08fqn6t/8fXsUPRcxEs7a/XBU/asf2DqWJqtUmdqOak5qfUdeRfH23VpcateguLxZnRX93pG5vFmJ4KhSddqQIGrrT4BkpLPKRHYLnsUEXczmszlMW4YVbxkXyENvcdyv5Ak/7SjNWqS5PqijP+7q79pXYijSj1g4jcqwjMfR9Ul6m2RL/Lo8dahH1Dct/1F/2wx46Byk73cY6KPXw8DH3zryByg32wz26BXumPNND1IF/pZQ1qgD/U+jf3xIfvVEnDrgow2lQzQHrht1x78gg690eGC7w3bIoCGUrLJNn+6vppz5LUc54s9McThd35v3a1bgLplrayVjPH5nb8fvU37rJtrYffmsB43mrsM7fjvF5L9/AXN7SsQ=
+sidebar_class_name: "post api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Process voucher file"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/voucher-definitions/process-file"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Process uploaded CSV file to create vouchers
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{},"title":"VouchersFileProcessDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"File processed successfully"},"400":{"description":"Bad request - Invalid file data"},"401":{"description":"Unauthorized"},"404":{"description":"File not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

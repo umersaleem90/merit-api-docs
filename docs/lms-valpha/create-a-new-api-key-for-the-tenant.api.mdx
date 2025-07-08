@@ -1,0 +1,71 @@
+---
+id: create-a-new-api-key-for-the-tenant
+title: "Create a new API key for the tenant"
+description: "Create a new API key for the tenant"
+sidebar_label: "Create a new API key for the tenant"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVd9v2zYQ/leIe+oAybLdBt305jUDWrRFgzR7mWEUZ+kcsaFIljw5EQz978NJiu3EXpEC84sp3u+77z7ugPE2Qr4E9PrbHbURVgl4DFgTUxDJDizWBDkwWbT8TZeQgLaQg0euIIFAPxodqIScQ0MJxKKiGiHfAbdeDCMHbW8hgY0LNTLk0DS6hK5bDcYU+U9XtmLx3FfhLJNlEaH3RhfI2tnse3RW7k5CufV3KhgS8MF5CqwpipQevA7tJTL9NK0SmVLWNUECJcUiaC/hIIcv/QGNGjwp0VQbFxRXpBZXH9QdtdB1CbBmI87fBUKmhdcfqb1kB10n0kDROxuHpObTmfw9DXRz8KcqjGpNZFVsioJi3DTGtKroPcsQ/qfm6PIFs0rG8X94mXJk5CaeUyXb1D3eCtZb6qG0Pwbauru+tL7NVMKqS+CO2qtAG/1w6m6QvsdYnZX98ti7BMb2LvjlJo0vf9VERvnxvzJ/Dj7BhBgcA6NSXCGrWLnGlGpNKrILVKpIRRPItGrd9tgsjBaIDOB73K0l9Eu8n+h+XsfNPrT2uCnH1T4tY3Ue/Ncj5B+XoHte3aCsUFm631f4uFpDipBATVy5UkjHxR7Cwj05ZINCzHZ7duoy9DrtqSyBSGH7SGNNMJBDxexjnmXbi7R0nJo6piXVLhUjudCWKVg0aU1By2dBVuAZJw1NwgS9j97xpHB1tp2djOqStmScr8myGmJDlxyHzrPMuAJN5SLnr6fT6Tkvn0Rjb79KQFb6+sCUfz1g7Q09ZzaYT+dv0unbdP7Hzewiv5jl898n07ezfwRx2m5cD7VxRp+lPPXp81e1ML5C6TwkIM0acphNppPpGR4kKzOKngq9GRkn9uM6uCJbeqctR4kr86qxJ6TxHXnZwJ/E3W8I0wNn3qC2/eJJW3cjFpYjnmXs+fFbtYfDKgFpu6judmuM9HcwXSfXPxoKLeTLVQJbDBrX0qLlDkod5VxCvkET6SSrPQPDq+txu35Tslnnsh0v0bbSaDSNfA1r9uR17YT0KsKSQp/EIH83hEpvxMvB/oT4BW6DxaIoyPNPdVdHi3X15esNJLAeX+LalWIT8F6IGe+HXF1fek/s/d0ODNrbBm9Fd/Apv38BMX7Zvw==
+sidebar_class_name: "post api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create a new API key for the tenant"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/api-keys"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Create a new API key for the tenant
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"expiryDate":{"type":"string","format":"date-time","description":"Optional expiry date for the API key"}},"title":"CreateApiKeyDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"The API key has been successfully created","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenantId":{"type":"string","format":"uuid"},"status":{"type":"string","enum":["active","inactive","revoked","expired"]},"keyPrefix":{"type":"string"},"keyHash":{"type":"string"},"expiryDate":{"type":"string","format":"date-time"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"},"fullKeyHash":{"type":"string","description":"The full API key hash that should be stored securely by the client"}},"required":["id","tenantId","status","keyPrefix","keyHash","createdAt","updatedAt","fullKeyHash"],"title":"CreateApiKeyResponseDto"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

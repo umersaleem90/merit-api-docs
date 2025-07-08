@@ -1,0 +1,71 @@
+---
+id: add-a-new-point-entry-earn-burn-adjust
+title: "Add a new point entry (earn/burn/adjust)"
+description: "Add a new point entry (earn/burn/adjust)"
+sidebar_label: "Add a new point entry (earn/burn/adjust)"
+hide_title: true
+hide_table_of_contents: true
+api: eJytllFv2zgMx7+KwacNkGMnbdLNb7l1DwU6rNh6LxcEBWMxjXq2pEly2iDwdz/QdhInDXYd0L6kkUTyL/JHKlsI+Oghm4E1Sgf/UJB8JAdzARYdlhTI8fYWNJYEGQTSqMODkiBAacjAYliBAEe/KuVIQhZcRQJ8vqISIdtC2Fg29MEp/QgClsaVGCCDqlIS6nreGpMPfxm5YYtTX7nRgXTgLbS2UDkGZXTy5I3mtVehzOKJ8gACrDOWXFDkebekckHuRr5BlOgOvD5Iuio5XYROg4BF1XygfKp8KFnkvBbgTeVyuj/rYr99TkgtAEtTtXfttpQOxCWpBdCLVW5zjeGstP0dJAaKgyqJbRxhl6eTUHW/aLNDdrq7H92ip3mvcC4gqFCwyy+OMNBdQ9BtA9B1MFDXbQxvjfZtCUbpkD8k+dwpy1WEDBq7iHRwmyhvPHGUdyq6emO591i/5XSbq7eefgeUHs77OOyfk/I/MPmAofK/E5ab0hbUlsOSlt0uQ0iyUdcC+SDfh0gBXfkfMLzdXWXlH9qckN/Msv5cO5R33wtdIvdZO5La64R+D3xlopsuqMUJ8lMpI4w0PUe2B/8HJiFhDpKWgo+NmLAykget8Q3ePG8zSFrBPtnulddJO8PjboYL8OTWu/lduQIyWIVgfZYk63EsTYiL0seSShOjVc0C8+E0FnFJTvHXnHRQa/KDigZugNZ6a8IgN2WyHsLpta5pTYWxDG/UxoZa9ENnSVKYHIuV8SG7SNP0nJdbPrG3nwvgnv9xeCK+viBzeTzS4WKJn8bLyWU8vhpexZfjySheXCzzeJR/nlwsJxNc4mRXz2zXc/1BfWDmMJ8Pa7tOSo+nMIzS0WWcXsWjz/fDcTYeZqNPg/Rq+A8cOO/xrfTSNJR2uHzjLEe3335G08KuMJre3YAArlmbiuEgHaSvEvTdkp7e3UTeUq6W3WT00dK4nivSssWB4zI7JTY9173jf0DgUfB9hwV6CYktUOmmCbnE2w7OWddN3CZZv7GO+ZwLYA74/Ha7QE9/u6KueflXRW4D2WwuYI1O4YKTNduCVJ7/l5AtsfD0Str+zYAPP7oG/xgdin4suVtEveGUY1HxNxDwL22OfufUPOhWhJJcI6Ld/9KGirvncWf/6qli/luLaZ6TDb89O++1+933n/f8KnS/iUoj2cbhM5OFz61W01y9GeLN2hYK1I8VPvLZ1if//QecnF9P
+sidebar_class_name: "post api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Add a new point entry (earn/burn/adjust)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/points-ledger"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Add a new point entry (earn/burn/adjust)
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"memberId":{"type":"string","format":"uuid"},"type":{"type":"string","enum":["earn","burn","adjustment"]},"sourceType":{"type":"string"},"sourceId":{"type":"string"},"amount":{"type":"integer"},"expiryDate":{"type":"string","format":"date-time"},"reason":{"type":"string"}},"required":["memberId","type","sourceType","sourceId","amount"],"title":"CreatePointsLedgerDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Point entry created","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"member_id":{"type":"string","format":"uuid"},"type":{"type":"string","enum":["earn","burn","adjustment"]},"source_type":{"type":"string"},"source_id":{"type":"string"},"amount":{"type":"integer"},"status":{"type":"string","enum":["completed","pending","expired"]},"expiry_date":{"type":"string","format":"date-time"},"reason":{"type":"string"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","member_id","type","amount","status","created_at"],"title":"PointsLedgerEntry"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

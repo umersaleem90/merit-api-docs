@@ -1,0 +1,71 @@
+---
+id: update-a-tier
+title: "Update a tier"
+description: "Update a tier"
+sidebar_label: "Update a tier"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVd9r20AM/leMnja4xO7GXvyWdYMVWla67imEovqU5Fr77nonZwvG//uQ7SZu0pUOxlheHEv69POT3ADjKkI+BzYUIiwUeAxYEctbPm/AYkWQg9GgwFjIwSOvQUGgh9oE0pBzqElBLNZUIeQN8NYLInIwdgUKli5UyJBDXRsNbat2TpksWr75i74XPZgif3R6K4hDX4WzTJZFhd6XpkA2zqZ30VmRHYVyt3dUMCjwwXkKbCiKtq/gMKFWQWXsjXfGchypjWVaUXjUB1pSCFi+YEIb+q2LgPb+OU2rgA2XIrs2FL57jUzQtqIIFL2zsU/+XZbJQ1MsgvFS/wBJ6g4j8/hLfTL6FWNTIya8xvp/bL6CIpD07gb5xSKkwRM2FQlm6PcfYNrxesz7vRzvUdebIc3FU0J0VGjVwdx7miSYyAUABRXx2ul+GQvZxm4pc0j7KDFtduHaVDBpY3QLCiKFzePVqEMJOayZfczTdPNhoh1PyipONFVugt50AmlesFhOKgpGXguybDYUpzVNwxS9j97xtHBVujmBw8Q/0YZK5yuynPSxQW7LPnSepqUrsFy7yPn7LMue83IuFjv8QoEw/Gp/Qz7/xMqXtN/5/XjGbMuOyJU95VL2SJ2slWO3dN3Ah+lcSP3J+cW3ZFb6NSazyzNQIN3skzyZZtPsKPWvnuzs8iyJngqzHDY0JksXRq7I6iHHVoF3kSu0o2IOp/8kwo6RTD859SUa25FWOtwMvJgP7IugIB8TcXCYGy08lBmIcdPcYqTvoWxbET/UFLaQzxcKNhgM3ko75g1oE+W/hnyJZaSjvHbXCd5cDdvwNpGgz+U7CNFupalY1vIGCu5p23/ZhDb/MOK+S+2iVbAm1BS6snv9aR9qci1e9vijMyxp94hZUZDnF20Xo82+nF2ffgEFt8M3snJaQAF/dJfjR5+s62rvzmAna6BEu6pxJba9U/n9AvzG0a4=
+sidebar_class_name: "patch api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a tier"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/tenants/{tenant_id}/tier/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update a tier
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"min_points":{"type":"integer"},"min_referrals":{"type":"integer"},"min_events":{"type":"integer"},"rank":{"type":"integer"}},"title":"TierUpdate"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Tier updated","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"name":{"type":"string"},"min_points":{"type":"integer"},"min_referrals":{"type":"integer"},"min_events":{"type":"integer"},"rank":{"type":"integer"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","name","rank"],"title":"Tier"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

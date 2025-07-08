@@ -1,0 +1,71 @@
+---
+id: list-all-tiers-also-list-tier-of-a-member-based-on-query-parameter
+title: "List all tiers. Also list tier of a member based on query parameter"
+description: "List all tiers. Also list tier of a member based on query parameter"
+sidebar_label: "List all tiers. Also list tier of a member based on query parameter"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVcFq20AQ/ZVlTi3IltPSi26GlhJIaGjTUzBhLI3sTVa7m92RqBH69zKS7MixExqoL7ZXOzNv3rw3aoFxEyG7A9YUIqwSCBS9s5EiZC18Wizkq6CYB+1ZOwsZXOnIypWqD5mrpYlObXRD/YEqXVCoKqrWFNQaIxXKWYXqqaawUx4DVsQUIIHcWSbLUgC9NzpHKZA+RKnSQsy3VKH84p0nyABDwB0koJmqODl36wfKGRLwwXkKrAfsupjciRy03UACpQsVMmRQ17qALgEmi5bv//G2xYpOL3YJVNree6ctT5Fpy7ShsH8eqKQQ0LxxhRp6NUVA+3j+SR4ImYp75DebKJBpxroiial98c4YgUBPtQ5UiGJ0AVP2Rm5GmKsEWLORnLdaQPafBA7zF9G1I51HWbRIzCNvYVqOQ03JqSReG1SXHHIPSpzk7oV4lLxEE9+VfZWcswQac+QJI4e9J1x5xhKnhqiIt66ADDbUy1lIyCAd2Ilpe6CpSwe7JhApNHsy62Aggy2zj1maNl9mheOZqeKsoMrN0Ov+QGQTLJpZRUHL35ws64bivKZ5mKP30Tue565Kmwt42ehXasg4X5FlNdQG4fq5dJamxuVoti5y9nmxWJzLciU3DvErGUzpeuJHzVwLNnV1/Ustjd+iWt5cQgLS6ZDgYr6YL07S/vBklzeXKnrKdTnuk9hvpOdUZIvRpyJHF7nCft2Mcvk/kzzCddAT0x9OvUFtewMKZ+045bvRAzLTbGqHw14WQuVe20rd38F0nRwPapbxFzri2kz0/Ei7F/pv0NQCpOe8waAl4Hzwiw4Ouxo+/Bx981EJvHOd7fe13U1r7gE9d9etugS2hAWFHsTwfJnn5HkSefJyEPQHr3z/dgtd9xdnslJt
+sidebar_class_name: "get api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List all tiers. Also list tier of a member based on query parameter"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/tiers"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+List all tiers. Also list tier of a member based on query parameter
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"member_id","in":"query","required":false,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of tiers. Also give tier for a member based on a query parameter","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"name":{"type":"string"},"min_points":{"type":"integer"},"min_referrals":{"type":"integer"},"min_events":{"type":"integer"},"rank":{"type":"integer"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","name","rank"],"title":"Tier"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

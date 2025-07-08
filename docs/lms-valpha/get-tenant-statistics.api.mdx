@@ -1,0 +1,71 @@
+---
+id: get-tenant-statistics
+title: "Get tenant statistics"
+description: "Retrieve comprehensive statistics for the authenticated tenant including member counts, points data, and rates"
+sidebar_label: "Get tenant statistics"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vk1vGzkM/SsCTy0w/upuLnMLNkERoNkNmvQQFD7QEu1Rq5FUiTOI15j/vuDMxHbiZJEu0D0ZGot8j3wUyR0wbjKUXwE9ui1bnWFZgKGsk41sg4cSPhMnSy0pHeqYqCKfbUsqM7LNYqLWISmuSGHDFXm2GpmMYvLoWVmvXWOs36ia6hUlpUPjORcqBus5K4OMhUJvVEKmDAVETFgTUxJmO/BYE5SQGRNPDDJBAVaI/WgobaGARD8am8hAuUaXqYCsK6oRyh3wNg62yfoNFLAOqUaGEkY/TyO9FQghRH1Ia+uYxLDnqN7d39/fT66vJxcX76Hrij0z8ubX8rr05q2slgKbY/CZsgB9mM/l56m/u0GZIwXTqLFRudGacl43zkkMOngmz+IDY3QirQ1+9i2Lo91pRGH1jTSLiClESmwHGhwY3XWvfz66bT3ThtJJwHdyXfmmr5ewHisnq3eHYsphzRNDjpjMeyiAHrCOjqBcfDibdwWgZtvS2yH/3IMNlgdMH/jf0OaC1sd30xf0Vc6NaP7GIMdXYHsrxUGhc4/Yx0Bn8/nLSFf+jyYl8np7hDmk7riw1i4gv4mDDr6lxAMbPfpWLbqGnhPa53kg9OagxxSPuCt06DUp1Cnk/FoCfhsTkCN5/km8Eag3nSUyRDUZtdq+hrUYg6OHKA/4v6FxhawqbEmNbl7InnCpe+vP8vB/XsAbSpo844akdEcFTwisiLx6jPtpUrsCVonwO27ol1J4IQeLeScFbVkOY1O6ZeQMXSf//D5fnPauL16mTEj2bzLQFXD2UoO78kzJo1O3lFpK6jKlkKRnQ01cBQMlbKjvUsgVlDDbj7/ZMLUmuedRQO4dDIOoSQ5KqJhjLmez9mxiAk9cnSeG6jDBaPsPdsSe1JSsHCU5tqU8bWiaphhjjoGnOtSzdnGSzAtqyYVYk/TnHhtk0hygy9nMBY2uCpn7N/GSl09yY2+/lLm0Dr20Y7KvhZv6dH2rzl2sUJ3fXEEBEungYDGdT+cnbv+K5M9vruQdabseZ8Ew/g+uyJtBfFEnhsw19qNiHJYfiR83g8P8eY60O8yd/3/9GMuf6YFn0aH1EkgvwG6sl+N1qYAnFbMsQJSRO7vdCjN9Sa7r5POwFUgdGZtx5Y72gu+0fb7gDO22hF79VwyO9o7D9aUckpX7UH5ddgVUhIZSjzzYnWtNkY+sTia7eNm/lI+Xd9B1/wDUPIpv
+sidebar_class_name: "get api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get tenant statistics"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/analytics/tenant-stats"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve comprehensive statistics for the authenticated tenant including member counts, points data, and rates
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"start-date","in":"query","required":false,"schema":{"type":"string","format":"date","description":"Start date for filtering data (YYYY-MM-DD)"}},{"name":"end-date","in":"query","required":false,"schema":{"type":"string","format":"date","description":"End date for filtering data (YYYY-MM-DD)"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Tenant statistics retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"totalMembers":{"type":"integer","description":"Total number of members (including soft-deleted)","example":1250},"activeMembers":{"type":"integer","description":"Number of active members (not soft-deleted)","example":1200},"totalPointsIssued":{"type":"integer","description":"Total points issued to all members","example":50000},"totalPointsIssuedInCurrency":{"type":"number","format":"float","description":"Total points issued converted to currency value","example":5000},"activePoints":{"type":"integer","description":"Total active points balance across all members","example":30000},"spentPoints":{"type":"integer","description":"Total points spent/redeemed by all members","example":15000},"expiredPoints":{"type":"integer","description":"Total points that have expired","example":5000},"redemptionRate":{"type":"number","format":"float","description":"Percentage of issued points that have been redeemed","example":30},"breakageRate":{"type":"number","format":"float","description":"Percentage of issued points that have expired","example":10}},"title":"TenantStats"}}}},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

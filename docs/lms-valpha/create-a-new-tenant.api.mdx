@@ -1,0 +1,71 @@
+---
+id: create-a-new-tenant
+title: "Create a new tenant"
+description: "Create a new tenant"
+sidebar_label: "Create a new tenant"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVE1v2zAM/SsGz0qcbtjFt2zdoUCLFmt3CoKBsZhEnSypEp02MPzfB8pZ6zRFgQ7zwR80P997VAeMmwTVApgcOk6wVBDpoaXEX73eQ9XlTxNJQ8WxJQW1d0yO5ReGYE2NbLwr75N3Ykv1lhqUN94Hggr86p5qBgUh+kCRDSX567ChkVfiaNwGegUNMWrkN1L0vRp1sxhSLBWwYStud3mGb5GQCfp+cE/BuzSU/DQ7k4emVEcTpOvnoKLOURr+23xGn06nYO1jgwwVtK3RMu2/wKBAkyUm/Qv53SIamSZsGpKYw4QfimmD/mDMK4qMIJpnPGrgKPMJg5m7POWYqIHXAgtHj8UgV8gwbb2GCoJPmQTkLVRQ/tWzgkRxR1FE3kEbLVSwZQ6pKsvdl4n2PLFNmmhq/ASDyQbjmKJDO2koGvmsybHZUZq2NI1TDCEFz9PaN+XuDF73eU47sj405LgYakOvxqWrsrS+Rrv1iavPs9nsrSyX4vEcv1Qg+vvxspnfn7AJll426YWWkXIERePWPrN3wPhKhiour26LuQ1bLOY3F6BAIBoqn01n09lJP9eB3PzmokiBarM+LEUq1j6OUpHTwRuBvVeZkAbdqMO3GTyq8ywypicug0Xjsg4FvO5A7tFhJSCKqetWmOhntH0v5oeW4h6qxVLBDqPBlYy+WPYKtoSaYlbDb9pLV8O+T+6ksLjbVho42X0hcYiY1zUFftd3OVLmzfXtHShYHc7TxmuJifgIKt8rAAU+A5BPjmzrwKLbtLgR3yGnXH8AZXnz8g==
+sidebar_class_name: "post api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create a new tenant"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Create a new tenant
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"metadata":{"type":"object"}},"required":["name"],"title":"TenantCreate"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Tenant created","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"},"metadata":{"type":"object"},"deleted_at":{"type":"string","format":"date-time"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","name","created_at","updated_at"],"title":"Tenant"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

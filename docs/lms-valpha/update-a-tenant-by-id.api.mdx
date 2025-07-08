@@ -1,0 +1,71 @@
+---
+id: update-a-tenant-by-id
+title: "Update a tenant by ID"
+description: "Update a tenant by ID"
+sidebar_label: "Update a tenant by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVU1v2zAM/SsGTxugxOmGXXzL2gEr0GJF154Co2AsJlFnS6pEpw0M//eBtpfPrtiG+RKb0uPH4yPTAOMyQjYDJouWI+QKPAasiCnIQQMWK4JsuPBgNCgwFjLwyCtQEOipNoE0ZBxqUhCLFVUIWQO88QKMHIxdgoKFCxUyZFDXRkPb5j2YIn92eiOIY1+Fs0yW5Qi9L02BbJxNH6OzYjsJ5eaPVDAo8MF5CmwoymlfwXFCrYKKGDXyKy7aVgEbLsV011V+7zUyQdvKUaDonY29+w+TifxoikUwXjLcgpK6Qwln/6kWo/+AWvVPJSvQVBKTfkB+M4iUNGJTkWCKQPi3mIGVv8C0+0KbQafCrsaDBA4858cd7HrXVbnfqL6vCSa9wJP5Jrm8gI6oldO9zgsReqf3DNJhUtJmOxEtKIgU1r8mpg4lZLBi9jFL0/WnkXY8Kqs40lS5EXrTGYxlChbLUUXByGdBls2a4rimcRij99E7HheuStdncJz2Ba2pdL4iy0kfG1q1HzpL09IVWK5c5OzjZDJ5zcuV3NjicwUix9vdUH55wcqXtBuiXZf2hCSkGrtwXTMHyq+lqOTq+nsyLf0Kk+nNJSgQivrIZ+PJeHKSzzdPdnpzmURPhVkMMxKThQt7rshq74wsq1aBd5ErtHsZ/q6hB5G2qmN64dSXaGwnTKGvGVq9W4oKst36yxUIp3LeNHOMdB/KthXzU01hA9ksV7DGYHAuTMwa0CbKu4ZsgWWkk1S2qwHe3Q4if5+Aej3FwYh2I3xiWcsXKPhBm4Mt3eatghWhptAl0Z+f96FGd+Jlhz/ZSKKlHjEtCvL85t18b1pupnfnX0HBfFjpldMCCvgs/xX43Cfrutq7hdbZGijRLmtcyt3eqTw/AUafRBc=
+sidebar_class_name: "patch api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a tenant by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/tenants/{tenant_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update a tenant by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"metadata":{"type":"object"}},"title":"TenantUpdate"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Tenant updated","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"},"metadata":{"type":"object"},"deleted_at":{"type":"string","format":"date-time"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","name","created_at","updated_at"],"title":"Tenant"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: list-all-event-logs
+title: "List all event logs"
+description: "List all event logs"
+sidebar_label: "List all event logs"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVE1r20AQ/StizmvLaelFN9OGEnCooe0pmDDWjq1N9yu7I9Ng9N/LyK6i2m5xiS5CqzdvZmfevD0wbjNUD0A78jyxYZthpSBiQkdMSf7twaMjqIDJo+dHo0GB8VDBc0vpBRQkem5NIg3VBm0mBbluyCFUe+CXKKGZk/FbULAJySFDBW1rNHSdGtgduTWlt7CP2fr7vI1sJegcg8+U5f+72UxemnKdTGQThHdubdHnyqCgDp7Js6AwRmtqFFT5lAW6P0+FKaEUZZhcHp2H9RPVDApiCpESm0MBRl/RUTUa0zXo17Zfgx7aeh01o0bG85sNTGxkWv/g0sg06VFd346acjZ++5gZuc2XQsm3ThS9JK8PJ8shDBR8DC5aYtKw6hTUiZBJPyJfX0Ub9X/GdGPdPUCvyvEyjaU/Eu6oRZfuvlLAhq1kvxXkIohq5VEnIl2YzAX+VmrRb3k/niZoqGBLvdaQG6igHDmBgkxp99sF2mShgoY55qosdx8mOvDEujzR5MIEo+kPjGdKHu3EUTLyWZNns6M8bWmaphhjjoGndXDl7gZOK/1EO7IhOinzkBtkqV9TV2VpQ422CZmr97PZ7BLLQhBD/EosYBP6YR37dS+1FYv7r8XcxgaL+fIOFMhNDwQ309l0dkb7JZKfL++KHKk2m+N252IT0oiKvI7BiB+IYENmh/3yH33p8ij+yDNoiuknl9Gi8b3spAf745hODVvaIaf7/RozfU+26+T44HoyPG0yru3I937Qy4ml79C2krbv+F/wY6Vegx+p+RW+ko9kBA/Vg6xhQ6gp9YUe4uZ1TZFHUWd+KiyDgj/ffoOu+wUOw1KT
+sidebar_class_name: "get api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List all event logs"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/event-logs"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+List all event logs
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"query","required":false,"schema":{"type":"string","format":"uuid"}},{"name":"member_id","in":"query","required":false,"schema":{"type":"string"}},{"name":"event_id","in":"query","required":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"All events","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"member_id":{"type":"string","format":"uuid"},"event_id":{"type":"string","format":"uuid"},"metadata":{"type":"object"},"event_time":{"type":"string","format":"date-time"},"processing_status":{"type":"string","enum":["Pending","Processing","Completed"]},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","member_id","event_id","event_time","processing_status"],"title":"EventLog"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: segments-controller-soft-delete
+title: "Soft delete segment"
+description: "Soft delete a segment by ID"
+sidebar_label: "Soft delete segment"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVFFv0zAQ/ivRPYGUNilsUPI20SIVbQLRTTxU1eTGl8WaY3v2ZaJE+e/okqzt1gHanuLYd/d9vu/zNSAx5F45UtZABktbUCRRI2EkooA3FRqKNttoMYMYrEMvOHIhObY/DZ+tIW+1Rn8dbEGzLhticMKLCgl9gGzVgBEVQgaERhi6VhJi8HhXK48SMvI1xqCYghNUQvyE12WX1bMIeYmVgKyBwvpKEGRQ11092jqGCOSVuYG2jXeoL4QbrvZSvDVjBGdNwMDx79KUP8/XDvtWyyjUeY4hFLXWW2hjOEknx5lXRtRUWq9+o+yDTv5e3liKClubLvL0OSILQ+iN0NES/T36aO699dw1IHHDmu0UhnUMFVJpWXa515dKyCDpFQ1Js5O2TQbnhKRRsuUedhC9EWqvIYOSyIUsSSTeo7ZutBH5LRo50lUYCedG00/Tj9PTD5PTdDod12GUoyEv9GTsazMWzh1pNusL9b3t4IANsEfLkkTbXOjSBsrep2ma3E+OqpxzxC5/zczz2ivaLtkFvawbFB49rzprsAWGrXhYfHkwytefl3ufMImuv8oUltNJkeaDC/SKovOLZXSmXSmis++LI2LfHJqz74soOMxVofLuHYaosP4gEY10VrFiMXC/+9TJOB2nEENuDYmcIGuYhLOBKmGYx/BIDh//IOBTGk1XhA/+NyuGOxP+osRpoQz7sBOjGZyzGmYBk80Ox8KDeXhfSTYfS8YJTbMRAa+8blvevqvRbyFbrWO4F16JDXdz1YBUgdcSskLogP+4w5sfw0x4Gx2OmGfJD5vCbLm7Qtf8BzHc4vbRXGPXvYrBo6nzCgqMvW4Pnupsfj6/nEPb/gF5CACg
+sidebar_class_name: "delete api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Soft delete segment"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/tenants/{tenant_id}/segments/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Soft delete a segment by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}},{"name":"id","required":true,"in":"path","description":"Segment ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Segment soft deleted successfully"},"401":{"description":"Unauthorized"},"404":{"description":"Segment not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

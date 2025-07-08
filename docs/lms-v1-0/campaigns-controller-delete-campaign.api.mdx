@@ -1,0 +1,71 @@
+---
+id: campaigns-controller-delete-campaign
+title: "Delete campaign"
+description: "Delete a campaign by its ID"
+sidebar_label: "Delete campaign"
+hide_title: true
+hide_table_of_contents: true
+api: eJydlNuO0zAQhl8lmiuQ0iYFFkruVuwiFS0CsSAuqgpNnenG4NjGnlSUKO+OJkkPUGARuUliz+H3zOdpoaSogvasnYUCrsgQU4KJwtqjvrPJepdojsniClJwngKK5aKEAl6MJvGFsxycMRQ+lb3/fgdS8BiwJqYQoVi2YLEmKGAf/ZMuIYVAXxsdqISCQ0MpaFHikStIf5G3DzzIiaqiGqFoYeNCjQwFNE0fkXde0kQO2t5B16WHzEwWLd+f999jryRQ9M5GimL/KM/l9QfhQ4HKJDZKUYybxpgdpKCcZbIsjui90aovc/Y5ind7ombM7tafSbHUN0hTWA+5a4oR7+jEcJSZAn3D2hu6V0vXPyk8yWfnx/hgseHKBf2dSuiNnvzlrNZxsnGN7U0vfleWhWUKFk1yS2FLIbkOwQXpFzDeCTFHyGCVQk1cOUFvUN7jxRUUkA1tjVl76G+X7SGLWXvCWyfN7bMNRDbBQAEVs49FlpW0JeP8ZI3qC9lyYuo4Qe8n8+fzZ/OLp7OLfD6fNnGiyHJAM5uGxk7R+zNSr4ZANVlOhnQgFB6zFVlmnEJTucjF4zzPs+3sLMqNWBz8V6JcNUHz7laAGHq+JgwUDpRIh8eldPx4uSf41cf3R4BFRF9qbTeuJ0Zzz8drCpqTm9e3yaXxFSaXbxdnwt54spdvF0n0pPRmxDUmGxdOHMmW3mnLEVKQeg+us2k+zUfkUQnyIsK7yDX2sI83dRxF6jhLfpLQHu/MPVNrPC/TN868QW0Fx74R7cjPchwLIrQ4nRAHhGTjdGitUpDGiWvbrjHSh2C6Tpa/NhR2UCxXKWwxaFxLTZctlDrKdwnFBk2kv5zmwbtxLj1Mfp53vz3IuIhWxsgWTSN/kMIX2v0yaIW//1Lxf6mPdexWXQoVYSmYLttx/1Ip8nzieTb4utMrf3V9c/3+GrruB5d3SlI=
+sidebar_class_name: "delete api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete campaign"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/tenants/{tenant_id}/campaigns/{campaign_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete a campaign by its ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"campaign_id","required":true,"in":"path","description":"Campaign ID","schema":{"format":"uuid","type":"string"}},{"name":"tenant_id","required":true,"in":"path","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Campaign deleted successfully","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Campaign deleted successfully"}}}}}},"401":{"description":"Unauthorized"},"404":{"description":"Campaign not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: analytics-controller-get-points-stats
+title: "Get points statistics"
+description: "Retrieve comprehensive points statistics for a tenant"
+sidebar_label: "Get points statistics"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVtFu4zYQ/BWBT3eAYslJ07p6cy/pIcUFNZIc+hAYh7W0tnlHkbzlyjjX0L8XK8qxE9sNUvTJtsyZWXJHs9yoCkNJ2rN2VhXqDpk0rjApXe0Jl2iDXmHinbYcksDAOrAuQzJ3lEDCaMGySpXzSCAcN5Uq1NiCWcuyD84yOWOQviyQJx3LPQMHlSoPBDUyUlDF40ZZqFEVKjJ+0ZVKFeH3RhNWqmBqMFVaKvTAS5WqUC6xBlVs1NxRDawK1TQditdeiAKTtgvVtukTd2AgvgLGZ9xzMGFL/r1BWh9nryLuNDva6n/mngpV8M4GDLL+PM/l43nHJgetob6HVRKassQQ5o0xolw6y2hZOMB7o8uuY9nXIESbvcL6QtzsK5bSXU/SX9axDHYMJspeA1nZ5xPENvUMSaUvinwQyNZF2IESbRNeYuKRtJO+4Q+ovUFVDC/zPG/TfZ07rBDrNytRDzutNTqQuv7hY+/etqeIOi10HoWgZL3CqPQbGLAlvq70oSFCy0kEbyVnPXxPRA5OVGTfdYe+E2e9KjDZHVeEJQSMyTuPVKJlWOD7ZzIXg4uLVh54Tes3SUTIv9MPe3pYIcEC9502QbrFjv9VwXFEvzCdR0pq7AE7xfO23X9tH494/Lgfj1rneJsP2vLsAF/Z7jRVrFlqVXspetenwxU71bayh5/y4WFEfLbQ8NKR/hsr1abq8liO3FhGsmCSe6QVUnJN5EgCTjEsJKJ3qS7V1MhLJ1m/wC4hJJULlcX4DtnmKcfbDLa4LPYiC/0ECJ1SjP+GjCrUktmHIssqXKFx/mwG5Te01Zmpwxl4fzb6dfTL6PLn4WU+Gg2acCb2ITDDATV2AN4fuOAqEtXy+kQ5JZG9UyuyzLgSzNIFLi7yPM9WwwOWT7LiCT+VysuGNK/vJTJjKs4QKPqyy1HpVP8o7b/8vo37P/562KW9FNEds7Zz19m67/Mtkubk0+19MjZ+Ccl4cnNQ2J8e7XhykwSPpZ73gR6H8w6ItooHr1Il5x2hw0E+yPuhAKUMBSnCu8A1dOOgH2sfkQ/H/8tCNrvZ8p+vEP15MP7gzBvQVqzaNWrT2+uxvx2IfLF/UXhymDhxu9XosmmqpLUC3mxmEPAzmbaVx3Eei/cqHWBm9ub1N1y/uC6swDRSXeeeE+t3F4Dd6qn8IC3Lj0udPMZ3d30cvU9OHU7/EOx6X3Nbzu6A2mmbqiVCJf583PT/j8sSPe8hD+4E7f57/vH6QbXtP2Ktis0=
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get points statistics"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/analytics/points/stats"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve comprehensive points statistics for a tenant
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","schema":{"format":"uuid","type":"string"}},{"name":"startDate","required":false,"in":"query","schema":{"format":"date","type":"string"}},{"name":"endDate","required":false,"in":"query","schema":{"format":"date","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Points statistics retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"totalPointsEarned":{"type":"number","description":"Total points earned in the period","example":15000},"totalPointsRedeemed":{"type":"number","description":"Total points redeemed in the period","example":8000},"totalPointsExpired":{"type":"number","description":"Total points expired in the period","example":2000},"activePointsBalance":{"type":"number","description":"Current active points balance","example":50000},"redemptionRate":{"type":"number","description":"Points redemption rate (percentage)","example":53.33},"expiryRate":{"type":"number","description":"Points expiry rate (percentage)","example":13.33},"averagePointsEarnedPerMember":{"type":"number","description":"Average points earned per member","example":12}},"required":["totalPointsEarned","totalPointsRedeemed","totalPointsExpired","activePointsBalance","redemptionRate","expiryRate","averagePointsEarnedPerMember"],"title":"PointsStatsResponseDto"}}}},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: points-parcels-controller-get-upcoming-points-expiry
+title: "Get upcoming points expiry"
+description: "Fetch points parcels that are expiring soon"
+sidebar_label: "Get upcoming points expiry"
+hide_title: true
+hide_table_of_contents: true
+api: eJydV11v2zgQ/CsEn1pAsmXHThM9nZukRYr2GtQJDrjAKGhpbbGVSJakgriG//thRcqWLMc59ymJJO7MfnB2sqYpmERzZbkUNKYfwCYZUZILa4hiOoHcEJsxS5gGAs+Kay6WxEgpaEClAs3w5G1KY3pXnbpzh66ksFrmOejvS7APKpEFF0v3yQ2GWdGAKqZZARa0ofHjmgpWAI2pBcGE/c5TGlANv0quIaWx1SUElCNJxWxGgz3m99UpcntNA2qSDApG4zVdSF0wS2NallU8u1IIYSymQTebYItqpLbvVy3IBctNjfmrhIpyG3QqtSULDnlK3kBv2QtciVbfU2Yh8HV822LUZhBQEGVB40daCqNA2EkhS2Fp4GgF1MW7ZhbobJ/uV52C/hPG0h/csapZTKZXNKDXN9MrOjtWLcWWcCLyHVsCEWUx34P2IP5NEyTnBbcnovxdhSFyQbiFwhAFmniyL0POEMMoKQwYfD+MIvzRjlzPcH07XGeIBqs5PEFKTJkkYMyizHPklUhhQVgMxJTKeVLdlP4Pg9HWXTZy/gMSTFdpvFeWOy4ps6xLZqI1W2GWratac3KhzG7eGX5OA1rV5HVMnh6c1GdWqBwfjccRXIyiKITh5TwcDdJRyN4NzsPR6Px8PB6NoiiKOp15EPxXCYSnICxfcNBkITWxGZACXB/80B+F/iQzQa4ldBvPCsCCtAPCswUtWH77SkbwbMPB8KwT9cafP04bCsbz4wA/ZCZ6qYS//KNeIosuGsYhLE01GHMoma0WNKUNtSa0vJKLlwkMo+EoHAzDs8H98CweX8bjy38PpFvND0as4VsDhizaQtW5TQ3MQRR1h6A6TFh1ujHAXDi0LQxLLH8CtzDes5yJBI6CjbtgkypEjTB3QfbLumnqyyOttsRWe7fDU/e41YT9WhwmjTrKbdWD5oZ0pf7mZefayoqKlZblpxb1Hg95acX0NCRSp4YUzCYZKhbm6+RyEzjpPoqwH/+q1BqbphoK7gNN+e9XgnXYvqjQdfq4KMyJQfdLoKoY+82ttLQuclAvsW0eLfxm29iSC2Yhfa1/iDeKBgd2h2ClzaTmvyHFPMeHFsyt8FozBf0EmtxoLd2AWrZEh+Tnh3iLhRQLsJlE87WESsbRGcW07yyU6a+3XmrTd9cg9KauX/p1FkLtxkwF66xYqXMa08xaZeJ+P4UnyKUK5yz5CSIN88KETKnw4vLi3cX4fDCOLi56pQkTEFazfNDTpegxpTr6cu0CFThNDo7ivt+hxf1+LhOWZ9LY+CyKov7ToBPlM36xPT9D5kmpuV1Ncae62ZkD06C3ixbb6B8F/pcPtX5++ud+p5xIoqo5FwtZDaEfgi+guSWfv0zJJFcZI5O72w6xrwrE5O6WGAUJX/iNb6qFsTsIInWtoAHFerujg17Ui7xrYAnqKpJQ0tiCVX7Be6KPYEl50Inss1nvHMiJtt6XwsKz7auccVHJvq50yU3YozfpmEPc9OvtIUOF3BuzWUCxtxhivZ4zAw8632zwsRMoHL6UGzbPG37vxbz+t/8+mNJPWDWN/xPLS/yoGskTOdSO+hWc2rH/IVTbQh/B8sr2hzBHPPQRzNqt70Bn+IfmiHpiX99886r9ljT/rzuIXltc0ephzWo3nJvZJqAZMOwAsnHvJ0kCqkm749U3TZn9eHNPN5v/AIlsN00=
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get upcoming points expiry"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/points-parcels/upcoming-expiry"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch points parcels that are expiring soon
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}},{"name":"sortBy","required":false,"in":"query","description":"Sort field (e.g., expiry_date, points)","schema":{"type":"string","enum":["unspentAmount","name","expiryDate"]}},{"name":"sortOrder","required":false,"in":"query","description":"Sort order","schema":{"enum":["ASC","DESC"],"type":"string"}},{"name":"page","required":false,"in":"query","description":"Page number","schema":{"type":"number"}},{"name":"limit","required":false,"in":"query","description":"Number of items per page","schema":{"type":"number"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Upcoming points expiry retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"data":{"description":"Array of points parcel expiry objects","type":"array","items":{"type":"object","properties":{"id":{"type":"string","example":"550e8400-e29b-41d4-a716-446655440000","description":"Unique identifier for the member"},"name":{"type":"string","example":"John Doe","description":"Name of the member"},"externalId":{"type":"string","example":"ext-123","description":"External identifier for the member"},"email":{"type":"string","example":"john.doe@example.com","description":"Email address of the member"},"expiryDate":{"format":"date-time","type":"string","example":"2024-12-31T23:59:59Z","description":"Expiry date of the points parcel"},"unspentAmount":{"type":"number","example":100,"description":"Unspent amount of points in the parcel"},"activePointsBalance":{"type":"number","example":500,"description":"Active points balance of the member"}},"required":["id","name","externalId","email","expiryDate","unspentAmount","activePointsBalance"],"title":"PointsParcelExpiryResponseDto"}},"total":{"type":"number","example":100,"description":"Total number of records matching the query"},"page":{"type":"number","example":1,"description":"Current page number"},"pageSize":{"type":"number","example":10,"description":"Number of items per page"},"totalPages":{"type":"number","example":10,"description":"Total number of pages"}},"required":["data","total","page","pageSize","totalPages"],"title":"PaginatedPointsParcelExpiryResponseDto"}}}},"401":{"description":"Unauthorized"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

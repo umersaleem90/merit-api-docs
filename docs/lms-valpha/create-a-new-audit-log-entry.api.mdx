@@ -1,0 +1,71 @@
+---
+id: create-a-new-audit-log-entry
+title: "Create a new audit log entry"
+description: "Create a new audit log entry"
+sidebar_label: "Create a new audit log entry"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVlclu2zAQhl9FmDNlO5vT6uYuhwAJEjTtKTCCsTSSmVIkQ46cGIbevRjJcJQFiQv0Uh0si5qN/3wcbYCxipDdADaF5tS4KsJcQaD7hiJ/ccUask33qAMVkHFoSEHuLJNleYXeG50ja2fHd9FZWYv5kmqUf7z2BBm4xR3lDAp8cJ4Ca4rdW7Jo+VYXA9PIQdsKFJQu1MiQQdPoAloFWNTa7m2cS0WvTVsFjKGivbMWxKhNfL2ZtlUDXW4GmxmUuitkroA1G/GfidLnrvoaCJmgbftI0Tsbe10OJwdyKyjmQft+I71bYlyV5J2jBP9HfTCu2leO/7tlCrba3SK/G6pAppR1TeLT+OIvfV6gsdVXfcDIs+reAKZDpdvfkIseowQTSw8J7iAhy2ENCmripSsgA+9i13nkJWQw3p13UBAprCjIGNhAEwxksGT2MRuPVydp4Tg1dUwLql2KXncL2jIFiyatKWh5zMmyXlEcNTQKI/Q+esej3NXj1QG8LPkbrcg4X5PlpM8NrRqmzsZj43I0Sxc5O5pMJm9FOReLnf9cgWD/42lwfX/E2ouAzwYNHJX46aScHqcnpwen6fHJ9DBdHJV5eph/nh6V0ymWOB22Z3+PLb9PaAyw3TfIE7vSaW1L19W/JeFC1E7OL66TmfFLTGZXZ6BAetdnPhhNRpNXQl16srOrsyR6ynW5HRIxKV0YhCJbeKctRyFeWKmxO4sWa/qYsmcJd2eE6ZHH3qC23TGS9m62AA4+OIK6NFoWN5sFRvoVTNvK8n1DYQ3ZzVzBCoPGhahwM28VLAkLCh2xv2ktBfajMP0pqcXcNFLCq7EooPUeszwnz+/azgfn5+ry+icoWGw/ibUrxCfgA6juNwNQ4DoJutHTrW3AoK0arMS2jynXHyDFhNc=
+sidebar_class_name: "post api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create a new audit log entry"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/audit-log"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Create a new audit log entry
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"tenant_id":{"type":"string","format":"uuid"},"admin_id":{"type":"string","format":"uuid"},"action":{"type":"string"},"target_id":{"type":"string","format":"uuid"},"details":{"type":"object"}},"required":["tenant_id","admin_id","action"],"title":"AuditLogCreate"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Audit log created","content":{"application/json":{"schema":{"type":"object","properties":{"log_id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"admin_id":{"type":"string","format":"uuid"},"action":{"type":"string"},"target_id":{"type":"string","format":"uuid"},"details":{"type":"object"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["log_id","tenant_id","admin_id","action","created_at"],"title":"AuditLog"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: segments-controller-process-segment-file
+title: "Process segment file"
+description: "Process uploaded CSV file to add members to segment"
+sidebar_label: "Process segment file"
+hide_title: true
+hide_table_of_contents: true
+api: eJydld+P0zgQx/8Va544KW3aOxZ6eVt2QeoJxIoudw9VhabxpDU4trGdQonyv6NJvP1BVyexfWky9XdmPPOZaQuSQumVi8oaKODO25JCEI3TFiVJcbP4V1RKk4hWoJSipnpNPvBroE1NJkIG1pFH9jCXUMBisIcba6K3WpP/5Aa36Zc3ShNk4NBjTZF8gGLZgsGaoIBIBk38pCRk4OlrozxJKKJvKAPFKTqMW8h+yfu+V4n5LWQQyi3VCEULlfU1RiigaXp/ce84RIhemQ10XXaI+pvh0kV+N95qiEEhvrJyz4pfQ5bWRK5p0QI6p1XZlzX/HDhsexIqubbrz1RyC5znJkRFAYq2yyCqqOmY6U3YcdVTe5XZ3EYLXdd1nFFw1oReCH9OJvx1fltWitRCkiI0JT9VjdZ76DJ4/pjmFUqR7ipGYm52qJUcSJIYcdBNL3UfDTZxa736QXI49Pzy0EP5rR88GhtFZRvTK64eS2duInmDWizI78iL195bzwRAxA3zd6AWVhnUFLeWUXY29MVlBgrIBzZD3h4g7fI0BSFv+S1VaVQNiIc+2sB34zUUsI3RhSLPJe1IWzdaY/mFjBzpOozQudHs79nL2dWL6dVkNhs3YVSSiR71dOwbM0bnLlC8HRz19RjCAXN9jFbkubYl6q0NsfhrMpnku+mFl7d84qBfceZl41XcL5i4gY01oSd/wJDpSqYsPbx54P+f/+6P+HMSfamZ4g9H/l9/x9oxpMyrMpXtuU7cviOvonj7biGutduiuL6bXyT93pG5vpuL4KhUVZqVICrrT4RkpLOKG5sB92KQTseT8QSGecOS540T5HbX2E9a2gsP+zB1WaS+nuXRHqf2ifszFSrS95g7jcowx30H28TeMu1FvkVxuiIf8GN7bzgjcJUBt531bbvGQB+97jo2f23I76FYrjLYoVe45qovW5Aq8LOEokId6H+u+uxD2l1/iNPt++hdkhHNnruAuuE3yOAL7c9WPpP7pAzOFvITUuDYqy6DLaFkxpdt+uFmiDa6Z/lReLGcu9O1cfd+wfyv05KvrWSNx2/8J4PfhsC2v1E/Wb2tBY1m0+CGzw4++fMTfwGdtQ==
+sidebar_class_name: "post api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Process segment file"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/segments/{id}/process-file"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Process uploaded CSV file to add members to segment
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}},{"name":"id","required":true,"in":"path","description":"Segment ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{},"title":"SegmentCsvFileProcessingDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"File processed successfully"},"400":{"description":"Bad request - Invalid file data"},"401":{"description":"Unauthorized"},"404":{"description":"Segment or file not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

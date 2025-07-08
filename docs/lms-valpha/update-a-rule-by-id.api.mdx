@@ -1,0 +1,71 @@
+---
+id: update-a-rule-by-id
+title: "Update a rule by ID"
+description: "Update a rule by ID"
+sidebar_label: "Update a rule by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9V21v2zYQ/ivcfdoA2ZadJmmFdUCWdFiAZgvSdh9mGMZZOtnsJFIlKSeG4f8+HCnLcuym6VosgBOHOt5zr8+d1uBwbiEZg6kLsjCJoEKDJTkyfLwGhSVBAjKDCKSCBCp0C4jA0KdaGsogcaamCGy6oBIhWYNbVXzDOiPVHCLItSnRQQJ1LTPYbKJWqSOFyl1/P9WTcJms+1VnK77xWFeqlSPl+BFWVSFTdFKrwUerFZ8dQOnZR0odRFAZXZFxkiw/DQ4cGpSRTY2sWCck8AeWJHQu3IIExxc2EdCSvMtf9OaxsuurrSqvQriFtF6r8I6QFU4zQKWlcvbiHk1GXRipHM3JQASlVLKsS0iGBwbX5YwM4wQtAoMacb8g1UGUVjgj53PiyG4isA6Nu0J3NCatWxk66jlZ0oFv7/i+4Oci16aNl1hiITPpVj5wKvsGhDcq+4J+69DV9ph6UhysMWDq5JJ8sTZfJ0cccbV9nPMSH948UFqzkL0l88GSeToz8WPFN/jAT4RqM8Ru2k5OUlRiRoI8EGWiIiNqBgoG3PqEfhv4tii8Xg9IaJTIjS53hvhcFXIuZ7KQbvWbLAKXtIhoDK44io5K++VWy72C917m87kxlJMxWFiIwEnvz0ct1ZRzDk3X2Wmqy6ogR9xdwZnpDAtUKcs47bCYNsfsGGWHCWY7OPrBKuG07z5fQGw0Om2eMvM1RPAD//qFP/zlZ/68PgS61GWFRlqtRKt4E8ESi/oZzPMXi7F1qVdDAucolXVMvx1OHHej2/FgizPhYLqCgS4NoaO7uqCQ0avANvuwTbKFW6ATGQ+RUioSnXJo+q+tlc0O4UOVNQhe9yaYaiutbKiEURzzn31Ilhe1v8pZ/U78Lp9B0Gy6H2DTZ0ofHxrbmfBcLU2B4mcJfsvHofafR5eBX7/yxn9izMBGU2r5cFqRmdbHSakRblx+WjD1BZpN0T3fg6ZuvuLOo/bxc3pXBU2OOxk9yFenpe5CB/hC3y/q0AoCA7PPVuL6igma3EJnYU9KeVHy+1ICg2CAHay3C9Vm4Ne5wVpmG4jAkllu97naFJDAwrnKJoPB8rSXadcrStvLqNQ9rKQ/4LgahUWvJCP535QU58/2a+qbPlaVrbTrp7ocLIcH7HNFSyp0VfKaErCBt74ddDIYFDrFYqGtS07iOD6m5S1LtPcnEXAT3+3WuzcPyGy+W8c69bddsuAkx5en+dmL3un58Lz34vRs1Jud5GlvlL46O8nPzjDHMzhYmuK9lQZG8ehFLz7vjV69H54mp8Nk9LIfnw//hs5W8pTQtlF2/XB8I4iPTer4+Dgd70/GvQG4m0R+4DQzoyUc7kGpcu1rvqnFG86zeHvzTlwU1QLFxe013yRjQzKG/bgfH6Toz4rUxe21sBWlMm/I1nqO36kilYXwBvayrkTVSdrxWt/DaVvT0YMbVAVK5buX62nddMG4aUP2P+m8WIT3mggS6XuPK46F1+sZWvpgis2Gjz/VZFaQjCccLSNxxkEZryGTlr9nkORYWDqwqx038ONdQws/CaaEY/Zu9x+16iQFIviHVuENi5vkf0Rso+QrYkGYcb2N183jy4DUa5aD7fWDscpWhxsXaUqVe1J20qGx24v3l79DBLPmXa3Uma9kvOe84X2wVXvX/ZjxZ2soUM1rnLNsUMo//wL7RgxJ
+sidebar_class_name: "patch api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a rule by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/tenants/{tenantId}/rules/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update a rule by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"tenantId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string","description":"Name of the rule"},"eventId":{"type":"string","format":"uuid","description":"ID of the event this rule applies to"},"pointsAwarded":{"type":"integer","minimum":1,"description":"Number of points awarded when this rule is triggered"},"startDate":{"type":"string","format":"date-time","description":"Start date for the rule validity"},"endDate":{"type":"string","format":"date-time","description":"End date for the rule validity"},"status":{"type":"string","enum":["active","inactive"],"description":"Status of the rule"},"maxExecutionsPerUser":{"type":"integer","minimum":0,"description":"Maximum number of times this rule can be executed per user"},"maxPointsPerUser":{"type":"integer","minimum":0,"description":"Maximum points a user can earn from this rule"},"eligibilityFilters":{"type":"array","items":{"type":"object","properties":{"filterType":{"type":"string","enum":["referrals","tier","join_date","events_completed","points_balance","total_points_earned"],"description":"Type of filter to apply"},"operator":{"type":"string","enum":["=","!=",">",">=","<","<="],"description":"Comparison operator"},"value":{"type":"string","description":"Value to compare against"}},"required":["filterType","operator","value"],"title":"CreateRuleFilterDto"},"description":"Filters that determine eligibility for this rule"}},"title":"UpdateRuleDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Rule updated","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"name":{"type":"string"},"event_id":{"type":"string","format":"uuid"},"points_awarded":{"type":"integer"},"start_date":{"type":"string","format":"date-time"},"end_date":{"type":"string","format":"date-time"},"status":{"type":"string","enum":["active","inactive"]},"max_executions_per_user":{"type":"integer"},"max_points_per_user":{"type":"integer"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","name","event_id","points_awarded"],"title":"Rule"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

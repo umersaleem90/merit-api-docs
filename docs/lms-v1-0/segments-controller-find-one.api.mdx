@@ -1,0 +1,71 @@
+---
+id: segments-controller-find-one
+title: "Get segment by ID"
+description: "Fetch a specific segment by ID"
+sidebar_label: "Get segment by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVmFv2zYQ/SsEgQEdIFmUa6euvgVJW2Ro16JJMGBGUNDiOWIrkQx5cusJ+u/DSYoj22mGZp8sU7x7j8d379RwBSH32qG2hmf8LWBeMMmCg1yvdc4C3FZgkK227OKcR9w68JI2Xyie8cv+bTizBr0tS/Bf1tqojwZ4xJ30sgIEH3i2bLiRFfCMIxhp8ItWPOIe7mrtQfEMfQ0R10TBSSx4dMDrqovqKYS8gEryrOFr6yuJPON13eXDrSOIgF6bW9620Q71F+GGc/0q3g1hBGdNgED7p0LQz+O5PaDXsAHFQp3nEMK6Lsstj3huDYJBipTOlTrv6p18DRTejOgM8Hb1FXKkgnu6HdQ9uFajPQPFiMMPWbmSluZzAYuZEDFMX6/iWapmsXyVnsSz2cnJfD6bCSHEUWGujb6rgWkFBvVag2dr6xkWcC8U3kZDzZ/CvrKOndUBbUXqOAT5U1bA7Pow7d6mp7LfV7ijZh1LxW+ULr8HZCsZQDFrmKt9XsgArNABrd8eUTl/+PcIowqqFfhwZuv+ugZKpqblMaVUiKNDdpso6ZCFaXOYP/cgEdQp7olPSYQYdQVHChwXYSqmL+NUxCK9SqeZEJkQfx+3la4goKwc+17AHjz7LgMb8IlK7dT/pzJ9PpVSBmQDCersUTMv++7uVLef9eCGxgUdn+gm4qhxLJ3PQxefo+VtS3AzkR638rWRNRbW63/6Is3E7Of9biwpsjbdzvljznBhELyRJbsEvwHP3nhvfXdYlLdkoju/JcoVYGHJhG+ha37ysYwnvb+GpNkZbZsMhQxJo1VLjtbl72259iXPeIHoQpYkCjZQWhevZP4NjIrLKsTSuXjxevFqMT9J52KxmNQhzsGgl2U68bWZSOceaZwuUXfyHo6THT+gZUlS2lyWhQ2YvRRCJJv0KMt72rGLvyHmee01bi/JBHufW4H04HfOSLc4LEXDw9t7uf7x19WDUIlEV1xt1rbr3kEDH8BrZO8/XLLT0hWSnX66OCL20YE5/XSxm5OdRYfOcR4CwShnNV1XxKnefWg6ERMx2LzMqZ+IhLMBK9kZ2zCy3gEeTd8DC9xNiv+e28OhEX5g4kqpTdfUdBvNIJ3lMJqJbTae0vfqoXWtSHp0ZxTQNOSk175sW1q+q8Fveba8ifhGei1XVM5lw5UO9Kx4tpZlgCeO8eLz0NW/s/HEf5T8sCgNufZGljX94xH/Btu9zwyS3bMY7H0EPIMCYd+0ES9AKhLoshlenOY5OByFHI35dtzf795c8bb9F1wJRJ4=
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get segment by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenant_id}/segments/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch a specific segment by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}},{"name":"id","required":true,"in":"path","description":"Segment ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Segment retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"550e8400-e29b-41d4-a716-446655440000","description":"Unique identifier for the segment"},"name":{"type":"string","example":"Top Customers","description":"Name of the segment"},"description":{"type":"string","example":"Segment for top 10% of customers based on purchase history","description":"Description of the segment"},"membersCount":{"type":"number","example":100,"description":"Number of members in the segment"},"createdAt":{"format":"date-time","type":"string","example":"2023-10-01T12:00:00Z","description":"Timestamp when the segment was created"},"updatedAt":{"format":"date-time","type":"string","example":"2023-10-02T12:00:00Z","description":"Timestamp when the segment was last updated"}},"required":["id","name","description","membersCount","createdAt","updatedAt"],"title":"SegmentResponseDto"}}}},"401":{"description":"Unauthorized"},"404":{"description":"Segment not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: update-a-member-by-id
+title: "Update a member by ID"
+description: "Update a member by ID"
+sidebar_label: "Update a member by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vk2P2zYQ/SvCnFpAtpwWvejmJAW6QIIu0uRkGMZYHNvcUiRDjpw1DP33YkivrdraxaYI6oul4XzPm0cdgXEboV5AS+2aQoRlCR4DtsTyVi+OYLElqEErKEFbqMEj76CEQF87HUhBzaGjEmKzoxahPgIfvFhEDtpuoYSNCy0y1NB1WkHfl2enTBYtr36g72U2pshvnTqIxbWvxlkmy3KE3hvdIGtnq4forMhuQrn1AzUMJfjgPAXWFOU0V3CdUF8CtajN6AlrClLr2Flk5C6OVUi2a2VC2LDeU2rU6XHZl9ASo0IeSbhPEdmI6GOa7hevkAn6Xo4CRe9szMX8MpvJn6LYBO2lH2ejoktWMqEf1LmxDtwMshxg4zXaz4/jkSlYNM81/plxDUJkjdSyDYWAZtU4NR4sa1BY5XV6bfIPTttVms1L2qIwYd3Si1gace+dthxXazRom2EMbZm2FJI/x2hWJ03CYEmNK74AuP+OYkWGmNQK+fUdaALh99qcsPwdNv2QjBaZBYeslcFxjY3hSJfXa5gWMBU93La8nAUWGTrF+lDcvYfU751TmRob4cZEkTVUOYtYHc/p9NWJxaujVj2UECnsn2i8CwZq2DH7WFfV/reJcjwxbZwoat0EvU4CGbRsy6SloOW1IStTitOOpmGK3kfveNq4ttq/gesa3tOejPMtWS5ybBCyv4Suq8q4Bs3ORa5/nc1mY14+iMbZflmCEMynC6n//oitN3Qh4QHK8jJfBOc1uYieMHqB4gDSMhdtNy7B4zy1oLn48PGvYm78Dov5/R2UII3N+b6Zzqazmyr+9GTn93dF9NTozYkrY7FxYeCKrMorl9c0cot2UNdzmPhXpDOOmR658ga1TVAPidUyWhYnzEYooR7C9+naL6HWSqAqkxH943GNkb4E0/ci/tpROEC9WJawx6BxLZ1ZHEHpKM8K6g2aSDepna8M+OnTaY1+LmQuYymfhGgP0l80nbxBCX/TIX+ACJj+x4iXRvVCUjtCRSGVnc/f5VCTz+LlYn9zN0ra2WLeNOT5Rd3lYOXv55/f/QElrE+fMm26dyDgN2Ec/JaTdan2xLpJdgSDdtvhVnSzU/n9AyIuYxw=
+sidebar_class_name: "patch api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a member by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/tenants/{tenant_id}/members/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update a member by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"email":{"type":"string"},"tier_id":{"type":"string"},"status":{"type":"string","enum":["active","inactive"]},"metadata":{"type":"object"}},"title":"MemberUpdate"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Member updated","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"tenant_id":{"type":"string","format":"uuid"},"name":{"type":"string"},"external_id":{"type":"string"},"email":{"type":"string","format":"email"},"referral_code":{"type":"string"},"referrer_member_id":{"type":"string","format":"uuid"},"join_date":{"type":"string","format":"date-time"},"tier_id":{"type":"string","format":"uuid"},"points_balance":{"type":"integer"},"total_points_earned":{"type":"integer"},"metadata":{"type":"object"},"status":{"type":"string","enum":["active","inactive"]},"deleted_at":{"type":"string","format":"date-time"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"}},"required":["id","tenant_id","email","referral_code","join_date"],"title":"Member"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: unassign-vouchers-from-a-member
+title: "Unassign vouchers from a member"
+description: "Removes the assignment of one or more vouchers from a specific member"
+sidebar_label: "Unassign vouchers from a member"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vk2P2zYQ/SvEnFpAsuSsvG10cz4OBrLIYjfpZWEEtDiymYofISklC0H/vRhJK8uxGwTFNr7IIjnzZobvzaiFwPce8gdoTF0c0HnYRiDQF07aII2GHO5QmQY9Cwdk3Hu51wp1YKZkRiMzjinjkD3Zs9IZxTjzFgtZyoIpVDt0EIHljisMhJE/tKC5QsghoOY6fJICIpAEZ3k4QAQOv9TSoYA8uBoj8MUBFYe8hfBoydAHJ/UeIiiNUzxADnUtBXRdNPn+X5wO+TxnwNvBGH14ZcQjWXzvqzA6oA60xa2tZMHpbpLPni6oPYcyu89YhJOgphveiP6OrTMWXZDoyW62d/TCneOPlGVA5X8ikQjwG1e2QkJbrVL8M0vTGF+83MXZUmQx/2N5HWfZ9fVqlWVpukwh+pljS9h2XQRBBvIMf41EW09UfBMMdB2dceit0X7I6UWa0uOUzKP1jMieuZ7ggvm6KND7sq4qSvs/F/20tAq953u8VL+pXHA/g57iuXoS1Um0vb5GUfUp94dfm3oIdcSQOuC+l90EctV1Q5WyS4V5xQUbWchittENr6Q4qto4pk0YA0HBgpnFkKXZucObfpsMJyfkoTS17rmyuhTFRgd0mlfsHl2Djr11zjiSHygMByNIbsb3RSbV5ZAM/cMn7dRIumQEjAWWUkty7ZN2tuGTIXaftJOau6TWQ3YQge/Rhz5VuwpyOIRgfZ4kzSoWJsSV8rFAZWJuZb8gx8BjhU7Sa4E6yAb9osaFW3BrvTVhURiVNEv4vsW+wQYrY/u+OmADdZwjdJ4klSl4dTA+5Fdpml7y8o5OTPbbCIiqd8fO8vaJCad6f26tUlssTc/FUbI3VBP27uaerSt74Gx9u4EIqMJD4MtFukjP0nlvUa9vN9Mk6eXnWWnczBVqYY3UwROliBqK9+ocm/XH8U7PxtM0lU4w26Pon23sjYIM+C0ktuJSU6T9zbYjiR/GIeghgnw+Dy/wmI7M92hhJDNtzYfTxOdtBMQbAmrbHff40VVdR8tfanSPkD9sI2i4k3zX9+4WhPT0X0Be8srjD6r02904YX5n/5br0zTR1FQbXtX0BhH8jY8n858Y/wuBfz3i8XI6UskBuUDX13vYfz1AxR/Iy9H+bPhQ2IPFuijQhh+e3c5a5+37+w8QwW78ylBGkI3jX+lLgX8dYjV2IBp9htBaCxXX+7ofYTD4pN8/+SJ3dQ==
+sidebar_class_name: "post api-method"
+info_path: docs/lms-valpha/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Unassign vouchers from a member"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/tenants/{tenant_id}/voucher-definitions/{id}/vouchers/members/{member_id}/unassign"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Removes the assignment of one or more vouchers from a specific member
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenant_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"member_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["voucherIds"],"properties":{"voucherIds":{"type":"array","items":{"type":"string","format":"uuid"},"example":["550e8400-e29b-41d4-a716-446655440010","550e8400-e29b-41d4-a716-446655440011"]}},"title":"VouchersAssignmentDto"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Voucher assignments removed successfully","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Successfully removed 3 voucher assignments from member"},"removedCount":{"type":"integer","example":3}}}}}},"400":{"description":"Bad request - Invalid vouchers or not assigned to member"},"404":{"description":"Member or vouchers not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      

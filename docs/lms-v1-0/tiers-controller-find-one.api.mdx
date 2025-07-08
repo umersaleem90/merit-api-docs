@@ -1,0 +1,71 @@
+---
+id: tiers-controller-find-one
+title: "Get tier by ID"
+description: "Fetch a specific tier by ID"
+sidebar_label: "Get tier by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVttu4zYQ/RVinnYBOZITO/EK6EPQZAMXm26QC/pgGAUtjSJuJJIhR951Bf17MZJsK5c2zaJPkqiZOYczwzOsIUWfOGVJGQ0xfEZKciGFt5ioTCWCFDqx2oj5GQRgLDrJlvMUYrhV6PyvRpMzRYHuz0zp9KtGCMBKJ0skdB7iRQ1alggxEGqpaZ5CAA4fK+UwhZhchQEoxraScgieEbptnTp4n+RYSohryIwrJUEMVaU4Hm0sI3hySt9D0wQ7UPVOON7uO8GWDOCt0R492x9GET9eCeyQnMI1psJXSYLeZ1VRbCCAxGhCTewmrS1U0mY5/ObZtx5w6bHN6hsmxJl2XBNSHbJKBzY9v+c7vNPqsUKhUtSkMmaVGScox7bUEAD+kKUtOML48Agn0+OTEc4+rUbjw/RoJCfT49Hk8Ph4PBmfTKIoguBZfppgX+g3yeyqKyiXJMx37QXlyv9/XLo2eIvH77JEYbLX03BhijZUqfSVUZr8IJ6uylVr/jTepdKqrEphW3ux7T9BRsgk5xZ4fZvjKIo6pGvM0DlZvAOs+83bcFvn/4487WDP1/iuDe4xsfV8z1abAJzUD2+DXUv9EFqnjFO0GZZJfMjVfY5uS+MX0X/zz49DtKOmGcrAotOFgSK1fTKs8bMqDLPT814GQIraFuHTfd1rwBkZaBrGm0Tjl0Jwp2VFuXHqL2y7ahJN/kEttCGRmUq3ZtPXRGWuCZ2WhbhBt0Ynzp0zjuUPSN6z9nYazUxLpNywat9jqxssfjGEXQZ8WG9T0YScOx/WKm1YBdvAnYxXroAYciLr4zBMcY2FsaOVTB5Qp6Oi9CNp7Wj2aXYymx6Pp9FsdlD5UYKanCzGB67SB9LaF9U96wKVqEl0cMD6vUeLw7AwiSxy4yk+iqIoXI9fRPnCFjv/JTNPKu6XG9bOTh5XKB26naBy4fqloH/5vJWP3/643Ss9k2izqnRm2nbty36JTpH4cnkjTgubS3F6NX9B7KtFfXo1303UVtl9K7p7R9Sp3bYd57tzHR9EB1E/HWTC04FJWOOplO1c6GfcBdLTOf2EQb2fLm+M9367hD8otIVUmhuvrUPdN8yiPzLMMx6cnrZneE2l3GxcKTau65X0eOeKpuHlxwrdBuLFMoC1dEquOImLGlLl+T2FOJOFx3/h/+G6P8IfxfBi8CrxflFqHrBrWVT8BQE84GZ4GeFe+zkCu6vCT8DzcFo2AeQoU27JRd3/OE0StDRweXEfaIan+eL8Fprmb0dBSu4=
+sidebar_class_name: "get api-method"
+info_path: docs/lms-v1-0/merit-lms-alpha-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get tier by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/tenants/{tenantId}/tiers/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch a specific tier by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenantId","required":true,"in":"path","description":"Tenant ID","schema":{"format":"uuid","type":"string"}},{"name":"id","required":true,"in":"path","description":"Tier ID","schema":{"format":"uuid","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Tier retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the tier","example":"123e4567-e89b-12d3-a456-426614174000","format":"uuid"},"tenantId":{"type":"string","description":"Tenant ID that owns this tier","example":"123e4567-e89b-12d3-a456-426614174000","format":"uuid"},"name":{"type":"string","description":"Name of the tier","example":"Gold"},"minPoints":{"type":"number","description":"Minimum points required to achieve this tier","example":1000},"minReferrals":{"type":"number","description":"Minimum number of referrals required to achieve this tier","example":5},"minEvents":{"type":"number","description":"Minimum number of events required to achieve this tier","example":10},"rank":{"type":"number","description":"Rank/priority of the tier (higher number = higher tier)","example":3}},"required":["id","tenantId","name","minPoints","minReferrals","minEvents","rank"],"title":"TierResponseDto"}}}},"401":{"description":"Unauthorized"},"404":{"description":"Tier not found"},"500":{"description":"Internal Server Error"}}}
+>
+  
+</StatusCodes>
+
+
+      
