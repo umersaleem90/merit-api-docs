@@ -2,6 +2,7 @@ import { themes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
+import * as basicAuth from "express-basic-auth";
 
 const config: Config = {
   title: "Merit LMS API Documentation",
@@ -12,7 +13,7 @@ const config: Config = {
   url: "https://your-docusaurus-site.example.com",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/",
+  baseUrl: "/merit-api-docs",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
