@@ -2,7 +2,6 @@ import { themes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
-import * as basicAuth from "express-basic-auth";
 
 const config: Config = {
   title: "Merit LMS API Documentation",
